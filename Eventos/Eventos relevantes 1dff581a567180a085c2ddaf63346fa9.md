@@ -1,5 +1,4 @@
 # Eventos relevantes
-
 # 🧾 **Resumen Narrativo – Camino del Dao Razonado hasta el Día 78**
 
 ---
@@ -66,21 +65,6 @@ Tras múltiples entrenamientos y combates reales, Wùzhào rompió el primer gra
 - Aumentó sus estadísticas energéticas
 - Activó una **Pasiva de Resonancia Interna**: +1 a tiradas INT o WIS al mantener >50% HP
 - Su núcleo se estabilizó, y ahora puede dirigir chi hacia el cuerpo sin pérdida estructural
-
----
-
-## 📊 Estado actual al Día 78
-
-- **Nivel:** 2 – Refinamiento del Qi (Etapa Final)
-- **HP:** 18 / 18
-- **Maná:** 1,400 / 1,400
-- **Chi Espiritual:** 1 punto (reservado)
-- **Inspiración:** 2 puntos
-- **Arte Marcial:** Estilo Wùzhào (consolidado)
-- **Técnica Signatura:** Refuerzo del Dao Razonado – V1.0
-- **Arma Vinculada:** Yīngxī – optimizada y reactiva
-- **Repertorio técnico:** 10 técnicas nucleares, ninguna innecesaria
-
 ---
 
 > “Ya no busco más poder.
@@ -88,5 +72,30 @@ Tras múltiples entrenamientos y combates reales, Wùzhào rompió el primer gra
 > 
 > Busco **el diseño perfecto del cuerpo, la técnica… y el momento exacto para usarlas.**”
 > 
+
+---
+
+Posteriormente, aceptó una misión externa de nivel azul: **investigar una entidad desconocida en el Santuario Sumergido**. Allí, no solo neutralizó el problema sin recurrir a la violencia, sino que comprendió la lógica vibracional del entorno y aprovechó su Modo Agua para asimilar su chi.
+
+Durante esta misión:
+
+- Integró el **Modo Agua** como la cuarta cara de su núcleo espiritual.
+- Desarrolló el principio de **resonancia sin violencia**, expandiendo su comprensión del entorno líquido y emocional.
+- Obtuvo un **artefacto triarmónico** y un **núcleo de chi inverso** que luego usaría para forjar su segunda espada.
+
+En el **Valle del Silencio Dinámico**, lugar donde las técnicas no vibran y el chi no responde, creó su segunda hoja:
+
+### 🗡️ Wùmián – La Hoja Sin Intención
+
+Una espada que no canaliza chi, no emite aura, no responde a herencia ni propósito espiritual. Solo corta.
+
+Es la contracara perfecta de Yīngxī, su primera hoja, que vibra con intención resonante.
+
+Con esto, Wùzhào ha definido su estilo:
+
+- Cortes precisos o inevitables.
+- Presencia sin emoción detectable.
+- Comprensión antes que fuerza.
+- Dao como diseño, no como destino.
 
 ---
