@@ -1,0 +1,684 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Tecnicas</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+	margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(50, 48, 44, 1);
+}
+.highlight-gray {
+	color: rgba(115, 114, 110, 1);
+	fill: rgba(115, 114, 110, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(205, 60, 58, 1);
+	fill: rgba(205, 60, 58, 1);
+}
+.highlight-default_background {
+	color: rgba(50, 48, 44, 1);
+}
+.highlight-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.highlight-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(115, 114, 110, 1);
+	fill: rgba(115, 114, 110, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(205, 60, 58, 1);
+	fill: rgba(205, 60, 58, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(248, 248, 247, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(248, 243, 252, 1);
+}
+.block-color-pink_background {
+	background: rgba(252, 241, 246, 1);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: undefined; }
+.select-value-color-pink { background-color: rgba(225, 136, 179, 0.27); }
+.select-value-color-purple { background-color: rgba(168, 129, 197, 0.27); }
+.select-value-color-green { background-color: rgba(123, 183, 129, 0.27); }
+.select-value-color-gray { background-color: rgba(84, 72, 49, 0.15); }
+.select-value-color-translucentGray { background-color: undefined; }
+.select-value-color-orange { background-color: rgba(224, 124, 57, 0.27); }
+.select-value-color-brown { background-color: rgba(210, 162, 141, 0.35); }
+.select-value-color-red { background-color: rgba(244, 171, 159, 0.4); }
+.select-value-color-yellow { background-color: rgba(236, 191, 66, 0.39); }
+.select-value-color-blue { background-color: rgba(93, 165, 206, 0.27); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="1fdf581a-5671-804e-9fa8-cd00d478db41" class="page sans"><header><h1 class="page-title">Tecnicas</h1><p class="page-description"></p></header><div class="page-body"><h1 id="1fdf581a-5671-80ad-bd31-c3e8a6f52064" class="">🔥 TÉCNICAS DEFINITIVAS EVOLUTIVAS </h1><hr id="1fdf581a-5671-801b-9005-fe6895132a65"/><h2 id="1fdf581a-5671-80c3-9e4f-d9dc7a28ae13" class="">🔥 FUEGO – 焚界元心</h2><p id="1fdf581a-5671-8032-a03b-f8a740165ca3" class=""><strong>Dao:</strong> Combustión existencial, sol interior, fusión y fisión espiritual.</p><table id="1fdf581a-5671-808a-b00e-c6d2853c782a" class="simple-table"><tbody><tr id="1fdf581a-5671-80df-81d1-d76042f8be9d"><td id="GeQL" class="">Versión</td><td id="s`|M" class="">Nombre</td><td id="JX}H" class="">Efecto</td><td id="gMAz" class="">Nivel</td><td id="q`:r" class="">Rango</td><td id="KbhS" class="">Daño</td></tr><tr id="1fdf581a-5671-8034-82d6-dd64a1319443"><td id="GeQL" class=""><strong>V0</strong></td><td id="s`|M" class=""><strong>Chispa de Juicio Menor</strong> (炎印初兆)</td><td id="JX}H" class="">Calor que debilita chi y rompe defensas menores.</td><td id="gMAz" class="">5</td><td id="q`:r" class="">🟡 Intermedia</td><td id="KbhS" class="">2d6 fuego</td></tr><tr id="1fdf581a-5671-806a-b1c9-c26c7aa5edfd"><td id="GeQL" class=""><strong>V1</strong></td><td id="s`|M" class=""><strong>Llama del Juicio Ardiente</strong> (炎判初印)</td><td id="JX}H" class="">Pilar solar concentrado. Daño espiritual + interrupción de chi.</td><td id="gMAz" class="">7</td><td id="q`:r" class="">🔴 Avanzada</td><td id="KbhS" class="">4d8 fuego + 1d6 espiritual</td></tr><tr id="1fdf581a-5671-8014-8ca7-d16218c8a651"><td id="GeQL" class=""><strong>V1.5</strong></td><td id="s`|M" class=""><strong>Fulgor de Núcleo Controlado</strong> (控炎核環)</td><td id="JX}H" class="">Estallido de calor dirigido. Daño sostenido, sin sobrecarga.</td><td id="gMAz" class="">10</td><td id="q`:r" class="">🔴 Avanzada</td><td id="KbhS" class="">3d10 fuego</td></tr><tr id="1fdf581a-5671-80c6-bf53-d5442e160b1f"><td id="GeQL" class=""><strong>V2</strong></td><td id="s`|M" class=""><strong>Coro Solar del Castigo</strong> (陽審輝鳴)</td><td id="JX}H" class="">Aura ardiente que agota técnicas enemigas.</td><td id="gMAz" class="">13</td><td id="q`:r" class="">◻ Mítica</td><td id="KbhS" class="">6d10 fuego persistente</td></tr><tr id="1fdf581a-5671-80f4-b6e9-c0fd766bfae9"><td id="GeQL" class=""><strong>V3</strong></td><td id="s`|M" class=""><strong>Fulgor Final: Ruptura del Núcleo</strong> (核炎審理)</td><td id="JX}H" class="">Fisión espiritual. Zona irradiada.</td><td id="gMAz" class="">18</td><td id="q`:r" class="">⚫ Prohibida</td><td id="KbhS" class="">10d10 fuego + 4d6 radiante</td></tr><tr id="1fdf581a-5671-803a-b44b-e67ceecc7413"><td id="GeQL" class=""><strong>V3+</strong></td><td id="s`|M" class=""><strong>División del Núcleo Primordial</strong> (裂核焰審)</td><td id="JX}H" class="">Fisión espiritual catastrófica. Deja zona muerta.</td><td id="gMAz" class="">17</td><td id="q`:r" class="">⚫ Prohibida Única</td><td id="KbhS" class="">12d10 fuego + 6d6 explosivo planar</td></tr></tbody></table><h2 id="1fdf581a-5671-80be-bec3-d9277780e223" class="">🪨 ROCA – 不破本石訣</h2><p id="1fdf581a-5671-80f5-a5cc-fa919607e5a2" class=""><strong>Dao:</strong> Masa absoluta, origen fundacional, existencia implacable.</p><table id="1fdf581a-5671-804b-bf84-fd55fcacb4c9" class="simple-table"><tbody><tr id="1fdf581a-5671-80c6-97d9-f61c823cb683"><td id="^dAG" class="">Versión</td><td id="JBhh" class="">Nombre</td><td id="|wgb" class="">Efecto</td><td id="vvUy" class="">Nivel</td><td id="NyCm" class="">Rango</td><td id="phK=" class="">Daño</td></tr><tr id="1fdf581a-5671-8043-9199-e5977a682f0c"><td id="^dAG" class=""><strong>V0</strong></td><td id="JBhh" class=""><strong>Fragmento de Roca Base</strong> (原石碎擲)</td><td id="|wgb" class="">Impacto estabilizador que reduce movilidad.</td><td id="vvUy" class="">5</td><td id="NyCm" class="">🟡 Intermedia</td><td id="phK=" class="">2d6 contundente</td></tr><tr id="1fdf581a-5671-8054-8cca-e4e26ca5ab32"><td id="^dAG" class=""><strong>V1</strong></td><td id="JBhh" class=""><strong>Golpe del Fundamento</strong> (地印初擊)</td><td id="|wgb" class="">Rompe chi defensivo con masa espiritual densa.</td><td id="vvUy" class="">7</td><td id="NyCm" class="">🔴 Avanzada</td><td id="phK=" class="">4d8 contundente + retroceso</td></tr><tr id="1fdf581a-5671-80b2-b7a9-f50c0bd03fc3"><td id="^dAG" class=""><strong>V1.5</strong></td><td id="JBhh" class=""><strong>Roca de Carga Estable</strong> (定重之石)</td><td id="|wgb" class="">Proyectil pesado que aplasta sin fractura espiritual.</td><td id="vvUy" class="">10</td><td id="NyCm" class="">🔴 Avanzada</td><td id="phK=" class="">3d10 contundente</td></tr><tr id="1fdf581a-5671-806c-973b-f30e9e99ff00"><td id="^dAG" class=""><strong>V2</strong></td><td id="JBhh" class=""><strong>Fragmento del Eje Inamovible</strong> (靈軸古磐)</td><td id="|wgb" class="">Ignora técnicas enemigas y ancla el terreno.</td><td id="vvUy" class="">14</td><td id="NyCm" class="">◻ Mítica</td><td id="phK=" class="">6d10 terrestre</td></tr><tr id="1fdf581a-5671-80fc-afda-c264c4454ee5"><td id="^dAG" class=""><strong>V3</strong></td><td id="JBhh" class=""><strong>Ecos del Núcleo Inamovible</strong> (萬壓原震)</td><td id="|wgb" class="">Inmoviliza el campo. Impacto de masa primigenia.</td><td id="vvUy" class="">18</td><td id="NyCm" class="">⚫ Prohibida</td><td id="phK=" class="">10d10 gravedad + inutilización</td></tr></tbody></table><h3 id="1fdf581a-5671-804f-a752-da3645f3dd37" class="">💧 <strong>Elemento Agua</strong> – 海納萬象</h3><table id="1fdf581a-5671-809e-b183-d9a865893fb9" class="simple-table"><tbody><tr id="1fdf581a-5671-80ec-abb5-e36173678e4c"><td id="}|Un" class="">Versión</td><td id="]@G[" class="">Nombre</td><td id="eZ?M" class="">Efecto</td><td id="ESL&lt;" class="">Nivel</td><td id="VM&lt;z" class="">Rango</td><td id="Rlj}" class="">Daño</td></tr><tr id="1fdf581a-5671-8094-9928-d43a137b1e82"><td id="}|Un" class=""><strong>V0</strong></td><td id="]@G[" class="">Flujo de Pulso Interior (水動初形)</td><td id="eZ?M" class="">Ataque de agua a presión que desestabiliza el chi.</td><td id="ESL&lt;" class="">5</td><td id="VM&lt;z" class="">🟡 Intermedia</td><td id="Rlj}" class="">2d6 agua</td></tr><tr id="1fdf581a-5671-8073-ac5e-c2c324fd3332"><td id="}|Un" class=""><strong>V1</strong></td><td id="]@G[" class="">Tormenta de Canalización (導水之陣)</td><td id="eZ?M" class="">Interrumpe técnicas enemigas canalizadas.</td><td id="ESL&lt;" class="">7</td><td id="VM&lt;z" class="">🔴 Avanzada</td><td id="Rlj}" class="">4d8 agua + 1d6 chi</td></tr><tr id="1fdf581a-5671-809d-8baa-f90c43d9d935"><td id="}|Un" class=""><strong>V1.5</strong></td><td id="]@G[" class="">Presión Abisal Controlada (海壓穩環)</td><td id="eZ?M" class="">Invoca marea dirigida que impide movimiento.</td><td id="ESL&lt;" class="">10</td><td id="VM&lt;z" class="">🔴 Avanzada</td><td id="Rlj}" class="">3d10 presión</td></tr><tr id="1fdf581a-5671-8010-aaa4-ee72cd69e642"><td id="}|Un" class=""><strong>V2</strong></td><td id="]@G[" class="">Marea del Origen Celeste (原潮無律)</td><td id="eZ?M" class="">Afecta concentración y movilidad enemiga.</td><td id="ESL&lt;" class="">13</td><td id="VM&lt;z" class="">◻ Mítica</td><td id="Rlj}" class="">6d10 agua + aturdimiento</td></tr><tr id="1fdf581a-5671-807f-b234-c51374978fe8"><td id="}|Un" class=""><strong>V3</strong></td><td id="]@G[" class="">Diluvio del Retorno Eterno (潮返絕審)</td><td id="eZ?M" class="">Inundación espiritual absoluta.</td><td id="ESL&lt;" class="">18</td><td id="VM&lt;z" class="">⚫ Prohibida</td><td id="Rlj}" class="">10d10 agua + desactivación de dao</td></tr></tbody></table><h3 id="1fdf581a-5671-80f9-943b-f355ad922f45" class="">🌬️ <strong>Elemento Aire</strong> – 風界天律</h3><table id="1fdf581a-5671-8038-b389-f9da5ef59770" class="simple-table"><tbody><tr id="1fdf581a-5671-809f-96f3-ebfafb298ba9"><td id="Q_r:" class="">Versión</td><td id="X_}f" class="">Nombre</td><td id="Jb&gt;T" class="">Efecto</td><td id="fVRM" class="">Nivel</td><td id="vxQJ" class="">Rango</td><td id="nLLX" class="">Daño</td></tr><tr id="1fdf581a-5671-8043-b773-f2e7b22051e9"><td id="Q_r:" class=""><strong>V0</strong></td><td id="X_}f" class="">Corte de Brisa Elevada (風刃初勢)</td><td id="Jb&gt;T" class="">Laceraciones veloces de aire.</td><td id="fVRM" class="">5</td><td id="vxQJ" class="">🟡 Intermedia</td><td id="nLLX" class="">2d6 aire</td></tr><tr id="1fdf581a-5671-800e-8920-efdbe237c24a"><td id="Q_r:" class=""><strong>V1</strong></td><td id="X_}f" class="">Giro del Vórtice Espiritual (旋風道襲)</td><td id="Jb&gt;T" class="">Desorienta al enemigo y lo lanza al aire.</td><td id="fVRM" class="">7</td><td id="vxQJ" class="">🔴 Avanzada</td><td id="nLLX" class="">4d8 aire + caída</td></tr><tr id="1fdf581a-5671-800e-847b-f11683a0827e"><td id="Q_r:" class=""><strong>V1.5</strong></td><td id="X_}f" class="">Murmullo del Vacío Interior (空鳴隱喚)</td><td id="Jb&gt;T" class="">Silencia técnicas y proyectiles.</td><td id="fVRM" class="">10</td><td id="vxQJ" class="">🔴 Avanzada</td><td id="nLLX" class="">3d10 aire + cancelación menor</td></tr><tr id="1fdf581a-5671-8088-a2a6-eaca071d510a"><td id="Q_r:" class=""><strong>V2</strong></td><td id="X_}f" class="">Tifón de Juicio Circular (審氣回輪)</td><td id="Jb&gt;T" class="">Golpea múltiples enemigos con presión centrífuga.</td><td id="fVRM" class="">14</td><td id="vxQJ" class="">◻ Mítica</td><td id="nLLX" class="">6d10 aire + derribo</td></tr><tr id="1fdf581a-5671-80d6-91b0-f09f7e7aa65e"><td id="Q_r:" class=""><strong>V3</strong></td><td id="X_}f" class="">Juramento del Huracán Primigenio (原颶律審)</td><td id="Jb&gt;T" class="">Manipulación total del entorno aéreo.</td><td id="fVRM" class="">18</td><td id="vxQJ" class="">⚫ Prohibida</td><td id="nLLX" class="">10d10 aire + parálisis respiratoria</td></tr></tbody></table><h2 id="1fdf581a-5671-8018-8d24-c2599ac0e7bc" class="">❄️ HIELO – 絕霜破界</h2><p id="1fdf581a-5671-80b9-b6ff-efd82526b542" class=""><strong>Dao:</strong> Suspensión del movimiento, tiempo congelado, quietud existencial.</p><table id="1fdf581a-5671-80f0-82f8-f33e4472e0f0" class="simple-table"><tbody><tr id="1fdf581a-5671-8085-acde-f348fbc56d96"><td id="JJ`u" class="">Versión</td><td id="|R{I" class="">Nombre</td><td id="Qaus" class="">Efecto</td><td id="?qCy" class="">Nivel</td><td id="Q[^E" class="">Rango</td><td id="f_bS" class="">Daño</td></tr><tr id="1fdf581a-5671-80b7-a1ef-e541b05fea87"><td id="JJ`u" class=""><strong>V0</strong></td><td id="|R{I" class=""><strong>Aguja de Rocío Estancado</strong> (寒針初凝)</td><td id="Qaus" class="">Hielo punzante que ralentiza.</td><td id="?qCy" class="">5</td><td id="Q[^E" class="">🟡 Intermedia</td><td id="f_bS" class="">2d6 hielo</td></tr><tr id="1fdf581a-5671-8008-983f-da535f009e20"><td id="JJ`u" class=""><strong>V1</strong></td><td id="|R{I" class=""><strong>Lanza de Escarcha Silenciosa</strong> (霜槍之斬)</td><td id="Qaus" class="">Congela chi al contacto.</td><td id="?qCy" class="">7</td><td id="Q[^E" class="">🔴 Avanzada</td><td id="f_bS" class="">4d6 hielo + ralentización</td></tr><tr id="1fdf581a-5671-804e-9e41-ede248c9a71d"><td id="JJ`u" class=""><strong>V1.5</strong></td><td id="|R{I" class=""><strong>Manto de Hielo Direccionado</strong> (凝霜遮體)</td><td id="Qaus" class="">Zona de baja temperatura que entumece al enemigo.</td><td id="?qCy" class="">10</td><td id="Q[^E" class="">🔴 Avanzada</td><td id="f_bS" class="">3d10 frío</td></tr><tr id="1fdf581a-5671-80e1-bf95-cf0b12bc0e6a"><td id="JJ`u" class=""><strong>V2</strong></td><td id="|R{I" class=""><strong>Prisión del Tiempo Inmóvil</strong> (凍時牢獄)</td><td id="Qaus" class="">Suspende técnicas en el aire.</td><td id="?qCy" class="">13</td><td id="Q[^E" class="">◻ Mítica</td><td id="f_bS" class="">6d10 congelante + suspensión</td></tr><tr id="1fdf581a-5671-80b7-8dd9-f5f4eaf5ebbc"><td id="JJ`u" class=""><strong>V3</strong></td><td id="|R{I" class=""><strong>Cero Existencial Absoluto</strong> (零界封絕)</td><td id="Qaus" class="">Tiempo detenido. Atrapamiento dimensional.</td><td id="?qCy" class="">18</td><td id="Q[^E" class="">⚫ Prohibida</td><td id="f_bS" class="">10d10 hielo puro + negación</td></tr></tbody></table><hr id="1fdf581a-5671-80ee-b655-ea17bc6dfd21"/><h2 id="1fdf581a-5671-804f-a3e2-fdd725086933" class="">⚙️ METAL – 鋼魂律典</h2><p id="1fdf581a-5671-80bc-b7d6-e1acfe7c8efc" class=""><strong>Dao:</strong> Forja espiritual, estructura, cuerpo-arma, ley endurecida.</p><table id="1fdf581a-5671-80ac-8687-d75231dac176" class="simple-table"><tbody><tr id="1fdf581a-5671-8001-b565-f69e2e83e28e"><td id="TT}f" class="">Versión</td><td id="cdzN" class="">Nombre</td><td id="xuRI" class="">Efecto</td><td id="hHOh" class="">Nivel</td><td id="@cDo" class="">Rango</td><td id="xph[" class="">Daño</td></tr><tr id="1fdf581a-5671-8025-bf42-dcefb44d9415"><td id="TT}f" class=""><strong>V0</strong></td><td id="cdzN" class=""><strong>Golpe de Tuerca Espiritual</strong> (螺擊初構)</td><td id="xuRI" class="">Aumenta peso y rigidez en impactos.</td><td id="hHOh" class="">5</td><td id="@cDo" class="">🟡 Intermedia</td><td id="xph[" class="">2d6 contundente</td></tr><tr id="1fdf581a-5671-800f-8ad4-cbd209887514"><td id="TT}f" class=""><strong>V1</strong></td><td id="cdzN" class=""><strong>Martillo del Dao Forjado</strong> (鑄道重擊)</td><td id="xuRI" class="">Resonancia metálica en armas y chi enemigo.</td><td id="hHOh" class="">7</td><td id="@cDo" class="">🔴 Avanzada</td><td id="xph[" class="">4d8 metal + 1d6 energía</td></tr><tr id="1fdf581a-5671-809e-8e1f-d23125291551"><td id="TT}f" class=""><strong>V1.5</strong></td><td id="cdzN" class=""><strong>Columna de Presión Interna</strong> (鍛擊準爆)</td><td id="xuRI" class="">Golpes lineales que acumulan tensión sin romper.</td><td id="hHOh" class="">10</td><td id="@cDo" class="">🔴 Avanzada</td><td id="xph[" class="">3d10 contundente</td></tr><tr id="1fdf581a-5671-80ce-acf9-f67a04b78c12"><td id="TT}f" class=""><strong>V2</strong></td><td id="cdzN" class=""><strong>Mandato de Engranajes Vivientes</strong> (魂鋼律陣)</td><td id="xuRI" class="">Automatización ofensiva defensiva.</td><td id="hHOh" class="">13</td><td id="@cDo" class="">◻ Mítica</td><td id="xph[" class="">6d10 metal cinético</td></tr><tr id="1fdf581a-5671-80dc-9b63-eaf7d6480757"><td id="TT}f" class=""><strong>V3</strong></td><td id="cdzN" class=""><strong>Canonización del Cuerpo-Arma</strong> (鋼神合一)</td><td id="xuRI" class="">Transformación total. Conciencia de combate puro.</td><td id="hHOh" class="">18</td><td id="@cDo" class="">⚫ Prohibida</td><td id="xph[" class="">10d10 penetrante + dominio</td></tr></tbody></table><hr id="1fdf581a-5671-8099-a3dd-d8ac13a51baf"/><h2 id="1fdf581a-5671-80c0-9ccc-c82fb3357444" class="">⚡️ RELÁMPAGO – 終雷天裁</h2><p id="1fdf581a-5671-80ab-94f3-e357f62bd651" class=""><strong>Dao:</strong> Velocidad perfecta, rayo puro, juicio instantáneo.</p><table id="1fdf581a-5671-800b-a3c5-f9680b6f1a2a" class="simple-table"><tbody><tr id="1fdf581a-5671-801d-a494-db354cbb546c"><td id="dIuL" class="">Versión</td><td id="Uxj[" class="">Nombre</td><td id="qx`D" class="">Efecto</td><td id="PU;n" class="">Nivel</td><td id="zal|" class="">Rango</td><td id="H[{V" class="">Daño</td></tr><tr id="1fdf581a-5671-80fb-8399-e4e4edf5618f"><td id="dIuL" class=""><strong>V0</strong></td><td id="Uxj[" class=""><strong>Chispa de Anticipación</strong> (閃律初兆)</td><td id="qx`D" class="">Movimiento disruptivo, interrumpe canalización.</td><td id="PU;n" class="">5</td><td id="zal|" class="">🟡 Intermedia</td><td id="H[{V" class="">2d6 rayo</td></tr><tr id="1fdf581a-5671-807d-9efa-f14ef28d673c"><td id="dIuL" class=""><strong>V1</strong></td><td id="Uxj[" class=""><strong>Impacto del Relámpago Caído</strong> (雷落之斬)</td><td id="qx`D" class="">Corta antes de la técnica enemiga.</td><td id="PU;n" class="">7</td><td id="zal|" class="">🔴 Avanzada</td><td id="H[{V" class="">4d6 rayo + ceguera</td></tr><tr id="1fdf581a-5671-80df-b766-e4e4167bede3"><td id="dIuL" class=""><strong>V1.5</strong></td><td id="Uxj[" class=""><strong>Descarga Canalizada</strong> (導電裁擊)</td><td id="qx`D" class="">Golpe con impulso espiritual moderado.</td><td id="PU;n" class="">10</td><td id="zal|" class="">🔴 Avanzada</td><td id="H[{V" class="">3d10 rayo</td></tr><tr id="1fdf581a-5671-80a6-befc-f05f9cc9a9f6"><td id="dIuL" class=""><strong>V2</strong></td><td id="Uxj[" class=""><strong>Carga del Juicio Voltaico</strong> (審雷解放)</td><td id="qx`D" class="">Descarga acumulada de energía enemiga.</td><td id="PU;n" class="">14</td><td id="zal|" class="">◻ Mítica</td><td id="H[{V" class="">6d10 rayo reflejado</td></tr><tr id="1fdf581a-5671-80e8-a191-eea35f45e39c"><td id="dIuL" class=""><strong>V3</strong></td><td id="Uxj[" class=""><strong>Trueno Final: Cero Tiempo</strong> (終雷・零刻)</td><td id="qx`D" class="">Impacto instantáneo. Ineludible.</td><td id="PU;n" class="">18</td><td id="zal|" class="">⚫ Prohibida</td><td id="H[{V" class="">10d10 rayo + parálisis</td></tr></tbody></table><hr id="1fdf581a-5671-809f-bb79-ef1fc5861d94"/><h2 id="1fdf581a-5671-80be-b50b-cc021d48894d" class="">💪 FÍSICO – 肉身天顯</h2><p id="1fdf581a-5671-80cc-9a94-c6c3bc520cf1" class=""><strong>Dao:</strong> Movimiento perfecto, cuerpo como dao, biomecánica absoluta.</p><table id="1fdf581a-5671-804b-a487-ede2f251d624" class="simple-table"><tbody><tr id="1fdf581a-5671-80ec-8f7b-da3b147d5040"><td id="mWWq" class="">Versión</td><td id="PN^n" class="">Nombre</td><td id="@bWO" class="">Efecto</td><td id="CNht" class="">Nivel</td><td id="sHA\" class="">Rango</td><td id="Sz~r" class="">Daño</td></tr><tr id="1fdf581a-5671-80b4-b34d-ce263d50f96e"><td id="mWWq" class=""><strong>V0</strong></td><td id="PN^n" class=""><strong>Puño de Centro Estable</strong> (中擊初式)</td><td id="@bWO" class="">Golpe biomecánico que desajusta posturas enemigas.</td><td id="CNht" class="">5</td><td id="sHA\" class="">🟡 Intermedia</td><td id="Sz~r" class="">2d6 físico</td></tr><tr id="1fdf581a-5671-8093-82a7-c7a95ea88c35"><td id="mWWq" class=""><strong>V1</strong></td><td id="PN^n" class=""><strong>Golpe de Tensión Perfecta</strong> (筋衝起爆)</td><td id="@bWO" class="">Movimiento que maximiza precisión en ángulos clave.</td><td id="CNht" class="">7</td><td id="sHA\" class="">🔴 Avanzada</td><td id="Sz~r" class="">4d8 físico + desbalance</td></tr><tr id="1fdf581a-5671-8042-8d49-d62e90e39a2e"><td id="mWWq" class=""><strong>V1.5</strong></td><td id="PN^n" class=""><strong>Secuencia de Precisión Menor</strong> (筋導連式)</td><td id="@bWO" class="">Serie de impactos menores perfectamente alineados.</td><td id="CNht" class="">10</td><td id="sHA\" class="">🔴 Avanzada</td><td id="Sz~r" class="">3d10 físico</td></tr><tr id="1fdf581a-5671-8063-bebd-e3f04e88f795"><td id="mWWq" class=""><strong>V2</strong></td><td id="PN^n" class=""><strong>Contracción de Vectores</strong> (速脈直衝)</td><td id="@bWO" class="">Transforma la trayectoria para impactar con ventaja matemática.</td><td id="CNht" class="">14</td><td id="sHA\" class="">◻ Mítica</td><td id="Sz~r" class="">6d10 cinético</td></tr><tr id="1fdf581a-5671-80cf-8328-f1eba8195518"><td id="mWWq" class=""><strong>V3</strong></td><td id="PN^n" class=""><strong>Forma del Cero Perfecto</strong> (完型之拳)</td><td id="@bWO" class="">Golpe absoluto. Reestructura la postura espiritual enemiga.</td><td id="CNht" class="">18</td><td id="sHA\" class="">⚫ Prohibida</td><td id="Sz~r" class="">10d10 físico + error dao</td></tr></tbody></table><hr id="1fdf581a-5671-8052-a769-e75ed077b8f7"/><h2 id="1fdf581a-5671-80df-8dbb-ceb899265e06" class="">⚪ VACÍO – 無聲恐主</h2><p id="1fdf581a-5671-80db-b98d-ed8c2cf525b6" class=""><strong>Dao:</strong> Anulación ontológica, negación de chi, existencia corregida.</p><table id="1fdf581a-5671-8010-ad37-d7f8e8b76a28" class="simple-table"><tbody><tr id="1fdf581a-5671-809c-b0f0-d6184be01933"><td id="wmD^" class="">Versión</td><td id="~VaV" class="">Nombre</td><td id="oQr@" class="">Efecto</td><td id="Xi~x" class="">Nivel</td><td id="&lt;:vE" class="">Rango</td><td id="WcPS" class="">Daño</td></tr><tr id="1fdf581a-5671-80b1-9878-c7441f11cb6e"><td id="wmD^" class=""><strong>V0</strong></td><td id="~VaV" class=""><strong>Rasguño del Silencio</strong> (寂線初痕)</td><td id="oQr@" class="">Cortes menores que cancelan técnicas simples.</td><td id="Xi~x" class="">5</td><td id="&lt;:vE" class="">🟡 Intermedia</td><td id="WcPS" class="">2d6 necrótico</td></tr><tr id="1fdf581a-5671-8092-bdb7-ccbb338d0a4f"><td id="wmD^" class=""><strong>V1</strong></td><td id="~VaV" class=""><strong>Corte de Ausencia</strong> (無觸之斬)</td><td id="oQr@" class="">Elimina una técnica menor al contacto.</td><td id="Xi~x" class="">9</td><td id="&lt;:vE" class="">🔴 Avanzada</td><td id="WcPS" class="">4d6 existencial</td></tr><tr id="1fdf581a-5671-80af-90da-e020b77b8398"><td id="wmD^" class=""><strong>V1.5</strong></td><td id="~VaV" class=""><strong>Eco Silente del Abismo</strong> (空觸留聲)</td><td id="oQr@" class="">Fisura espiritual que causa dolor interior sin explosión externa.</td><td id="Xi~x" class="">11</td><td id="&lt;:vE" class="">🔴 Avanzada</td><td id="WcPS" class="">3d10 existencial</td></tr><tr id="1fdf581a-5671-8014-be6e-f3bcf84cdca2"><td id="wmD^" class=""><strong>V2</strong></td><td id="~VaV" class=""><strong>Campo de No-Dao</strong> (靜域之結)</td><td id="oQr@" class="">Zona donde el chi deja de responder.</td><td id="Xi~x" class="">15</td><td id="&lt;:vE" class="">◻ Mítica</td><td id="WcPS" class="">6d10 cancelación + vacío</td></tr><tr id="1fdf581a-5671-80e3-bb2c-dc140af6c6d7"><td id="wmD^" class=""><strong>V3</strong></td><td id="~VaV" class=""><strong>Decadencia del Vacío</strong> (無境枯朽)</td><td id="oQr@" class="">Elimina toda presencia del enemigo. Borrado existencial.</td><td id="Xi~x" class="">18</td><td id="&lt;:vE" class="">⚫ Prohibida</td><td id="WcPS" class="">10d10 desaparición</td></tr></tbody></table><hr id="1fdf581a-5671-8077-ba18-e4d21a02f0cc"/><h2 id="1fdf581a-5671-80c3-996b-c1ba0fcc92b8" class="">☀️ LUZ – 光律命主</h2><p id="1fdf581a-5671-806b-a9bd-d92950b2569b" class=""><strong>Dao:</strong> Restauración perfecta, reencuentro con la verdad, karma redimido.</p><table id="1fdf581a-5671-80bb-9981-deaf2a0bd424" class="simple-table"><tbody><tr id="1fdf581a-5671-80b2-9ea7-f080584f89c1"><td id="U&lt;:B" class="">Versión</td><td id="=A@w" class="">Nombre</td><td id="|djK" class="">Efecto</td><td id="TCBM" class="">Nivel</td><td id="lYRo" class="">Rango</td><td id="_JIz" class="">Daño</td></tr><tr id="1fdf581a-5671-802f-aa1c-ede6bb691b21"><td id="U&lt;:B" class=""><strong>V0</strong></td><td id="=A@w" class=""><strong>Luz del Alivio Menor</strong> (曦癒初光)</td><td id="|djK" class="">Repara chi y memorias menores.</td><td id="TCBM" class="">5</td><td id="lYRo" class="">🟡 Intermedia</td><td id="_JIz" class="">2d6 restauración</td></tr><tr id="1fdf581a-5671-80d9-9969-db56e9617217"><td id="U&lt;:B" class=""><strong>V1</strong></td><td id="=A@w" class=""><strong>Toque del Recuerdo Verdadero</strong> (映觸初心)</td><td id="|djK" class="">Cura daño leve y restaura concentración espiritual.</td><td id="TCBM" class="">9</td><td id="lYRo" class="">🔴 Avanzada</td><td id="_JIz" class="">4d6 sanación + 1d6 chi</td></tr><tr id="1fdf581a-5671-8047-86ba-fd6e5b47997f"><td id="U&lt;:B" class=""><strong>V1.5</strong></td><td id="=A@w" class=""><strong>Rayo de Calma Interior</strong> (映光微引)</td><td id="|djK" class="">Restaura equilibrio mental y anula miedo o ilusión.</td><td id="TCBM" class="">11</td><td id="lYRo" class="">🔴 Avanzada</td><td id="_JIz" class="">3d10 restauración</td></tr><tr id="1fdf581a-5671-8095-8768-e49dff02204f"><td id="U&lt;:B" class=""><strong>V2</strong></td><td id="=A@w" class=""><strong>Nombre Lumínico del Destino</strong> (光名之還)</td><td id="|djK" class="">Otorga una acción final o redención al objetivo.</td><td id="TCBM" class="">15</td><td id="lYRo" class="">◻ Mítica</td><td id="_JIz" class="">6d10 sanación + karma</td></tr><tr id="1fdf581a-5671-80d4-8692-fb5963b0a83a"><td id="U&lt;:B" class=""><strong>V3</strong></td><td id="=A@w" class=""><strong>Aurora del Alma Restaurada</strong> (映曦觸命)</td><td id="|djK" class="">Revierte el destino del objetivo. Restaura cuerpo, chi y dao.</td><td id="TCBM" class="">18</td><td id="lYRo" class="">⚫ Prohibida</td><td id="_JIz" class="">10d10 luz + reescritura</td></tr></tbody></table><hr id="1fdf581a-5671-80fa-9f27-ca58eba8b9cc"/><h2 id="1fdf581a-5671-80d9-8d79-c18b2e365da5" class="">🧠 DEL DAO DE LA PRECISIÓN TOTAL – 精律之道</h2><p id="1fdf581a-5671-80ee-979c-c5e6bcce5cbf" class=""><strong>Dao:</strong> Geometría espiritual, biomecánica, predicción total, eficiencia absoluta.</p><table id="1fdf581a-5671-8026-a7db-cef89fa451e6" class="simple-table"><tbody><tr id="1fdf581a-5671-80b4-99d0-de369e96e181"><td id="[]Cc" class="">Versión</td><td id="Pvpf" class="">Nombre</td><td id="bcDm" class="">Efecto</td><td id="ay&lt;M" class="">Nivel</td><td id=":ljV" class="">Rango</td><td id="~[aZ" class="">Daño</td></tr><tr id="1fdf581a-5671-80f5-923d-f0354260c19f"><td id="[]Cc" class=""><strong>V0</strong></td><td id="Pvpf" class=""><strong>Vector Inicial de Ruptura</strong> (向量初裂)</td><td id="bcDm" class="">Ataque angular que desajusta equilibrio enemigo.</td><td id="ay&lt;M" class="">5</td><td id=":ljV" class="">🟡 Intermedia</td><td id="~[aZ" class="">2d6 precisión</td></tr><tr id="1fdf581a-5671-8009-90e6-dca2114d4137"><td id="[]Cc" class=""><strong>V1</strong></td><td id="Pvpf" class=""><strong>Corte de la Intersección Perfecta</strong> (完交之斬)</td><td id="bcDm" class="">Rompe el punto geométrico ideal del enemigo.</td><td id="ay&lt;M" class="">7</td><td id=":ljV" class="">🔴 Avanzada</td><td id="~[aZ" class="">4d8 exactitud + desvío</td></tr><tr id="1fdf581a-5671-80d0-b332-fa0b3de02f15"><td id="[]Cc" class=""><strong>V1.5</strong></td><td id="Pvpf" class=""><strong>Secuencia de Proyección Menor</strong> (演算導擊)</td><td id="bcDm" class="">Serie predictiva que explota errores en trayectoria.</td><td id="ay&lt;M" class="">10</td><td id=":ljV" class="">🔴 Avanzada</td><td id="~[aZ" class="">3d10 cinético</td></tr><tr id="1fdf581a-5671-8085-bb34-d0b893bd005b"><td id="[]Cc" class=""><strong>V2</strong></td><td id="Pvpf" class=""><strong>Tensión Angular del Punto Final</strong> (終角擊)</td><td id="bcDm" class="">Impacto estructural que colapsa intención y forma.</td><td id="ay&lt;M" class="">14</td><td id=":ljV" class="">◻ Mítica</td><td id="~[aZ" class="">6d10 crítico + punto débil</td></tr><tr id="1fdf581a-5671-80ce-bcc4-feca4a32f053"><td id="[]Cc" class=""><strong>V3</strong></td><td id="Pvpf" class=""><strong>Colapso de la Causalidad Predictiva</strong> (預因破界)</td><td id="bcDm" class="">Niega acción enemiga antes de que ocurra.</td><td id="ay&lt;M" class="">18</td><td id=":ljV" class="">⚫ Prohibida</td><td id="~[aZ" class="">10d10 causalidad anulada</td></tr></tbody></table><h1 id="1fdf581a-5671-8036-a013-fc964ffede21" class=""><strong>BANKAI</strong></h1><p id="1fdf581a-5671-80d4-969b-ef9abeaad992" class="">
+</p><h3 id="1fdf581a-5671-8045-bf97-c62c3b2437b7" class="">🔥 <strong>Elemento Fuego</strong> – 焚界元心</h3><table id="1fdf581a-5671-8084-9db3-c0a977e9c86c" class="simple-table"><tbody><tr id="1fdf581a-5671-80d8-932a-d503aa708833"><td id="bEX|" class="">Nivel</td><td id="|Qgr" class="">Versión</td><td id="}rk}" class="">Nombre</td><td id="srqv" class="">Efecto</td><td id="RSIT" class="">Nivel mínimo</td><td id="n\Jg" class="">Rango</td><td id="q?\Q" class="">Bonificación</td><td id="B_X&lt;" class="">Costo</td></tr><tr id="1fdf581a-5671-80f4-ad10-f4e972a071d3"><td id="bEX|" class="">0</td><td id="|Qgr" class="">Diluida</td><td id="}rk}" class="">Chispa Primigenia</td><td id="srqv" class="">Control elemental básico de fuego</td><td id="RSIT" class="">5</td><td id="n\Jg" class="">🟢 Básica</td><td id="q?\Q" class="">+1d4 Daño Fuego</td><td id="B_X&lt;" class="">50 MP – Sin penalidad</td></tr><tr id="1fdf581a-5671-80e3-b676-c96e3dddf7e6"><td id="bEX|" class="">1</td><td id="|Qgr" class="">V1</td><td id="}rk}" class="">Llamarada del Espíritu</td><td id="srqv" class="">Fuego intenso, ignición de chi enemigo</td><td id="RSIT" class="">7</td><td id="n\Jg" class="">🔵 Intermedia</td><td id="q?\Q" class="">+1d6 Daño Fuego</td><td id="B_X&lt;" class="">250 MP – Si dura más de 10 turnos: la siguiente técnica cuesta +50%</td></tr><tr id="1fdf581a-5671-804d-88be-c163e9a4abbc"><td id="bEX|" class="">1.5</td><td id="|Qgr" class="">V1.5</td><td id="}rk}" class="">Incendio del Alma</td><td id="srqv" class="">Fuego espiritual persistente</td><td id="RSIT" class="">10</td><td id="n\Jg" class="">🔴 Avanzada</td><td id="q?\Q" class="">+2d6 Daño Fuego</td><td id="B_X&lt;" class="">600 MP – Si excede 10 turnos: 1 nivel de agotamiento o doble costo en la próxima técnica</td></tr><tr id="1fdf581a-5671-8036-b8cf-c9c3b329bdc4"><td id="bEX|" class="">2</td><td id="|Qgr" class="">V2</td><td id="}rk}" class="">Hoguera del Karma</td><td id="srqv" class="">Fuego que quema karma y voluntad</td><td id="RSIT" class="">14</td><td id="n\Jg" class="">◻ Mítica</td><td id="q?\Q" class="">+3d8 Daño Fuego</td><td id="B_X&lt;" class="">1,200 MP – Después de 10 turnos: tiradas con fuego tienen desventaja hasta descanso prolongado</td></tr><tr id="1fdf581a-5671-8019-8ea2-efd1c491fad3"><td id="bEX|" class="">3</td><td id="|Qgr" class="">V3</td><td id="}rk}" class="">Incineración de la Realidad</td><td id="srqv" class="">Borra existencia con fuego absoluto</td><td id="RSIT" class="">18</td><td id="n\Jg" class="">⚫ Prohibida/Mítica</td><td id="q?\Q" class="">+4d10 Daño Fuego</td><td id="B_X&lt;" class="">3,000 MP – <strong>Solo 1 uso vital</strong>. Forzar otro: se pierde el núcleo emocional y 50% del MP máximo</td></tr></tbody></table><hr id="1fdf581a-5671-80dc-ae2b-f5941989adcf"/><h3 id="1fdf581a-5671-802c-89c1-dba37effa6c4" class="">💧 <strong>Elemento Agua</strong> – 海納萬象</h3><table id="1fdf581a-5671-8046-ab95-cd07f644d329" class="simple-table"><tbody><tr id="1fdf581a-5671-80df-8b33-d911f5abf422"><td id="{M&lt;l" class="">Nivel</td><td id="AGxc" class="">Versión</td><td id="b]`_" class="">Nombre</td><td id="F;;f" class="">Efecto</td><td id="|g}l" class="">Nivel mínimo</td><td id="BGCU" class="">Rango</td><td id="SNLf" class="">Bonificación</td><td id="kzMb" class="">Costo</td></tr><tr id="1fdf581a-5671-8040-b37d-d56217dab9d5"><td id="{M&lt;l" class="">0</td><td id="AGxc" class="">Diluida</td><td id="b]`_" class="">Corriente Primordial</td><td id="F;;f" class="">Movimiento fluido, disipación leve de chi enemigo</td><td id="|g}l" class="">5</td><td id="BGCU" class="">🟢 Básica</td><td id="SNLf" class="">Recuperación menor de chi</td><td id="kzMb" class="">40 MP – Sin penalidad</td></tr><tr id="1fdf581a-5671-806e-b8e7-c49562d38679"><td id="{M&lt;l" class="">1</td><td id="AGxc" class="">V1</td><td id="b]`_" class="">Ola del Vacío Interno</td><td id="F;;f" class="">Supresión parcial del flujo energético</td><td id="|g}l" class="">7</td><td id="BGCU" class="">🔵 Intermedia</td><td id="SNLf" class="">+1d6 Supresión de chi</td><td id="kzMb" class="">220 MP – Más de 10 turnos: -2 movimiento hasta descanso</td></tr><tr id="1fdf581a-5671-8014-956c-e6b524158e42"><td id="{M&lt;l" class="">1.5</td><td id="AGxc" class="">V1.5</td><td id="b]`_" class="">Marejada Espiritual</td><td id="F;;f" class="">Interrumpe técnicas enemigas</td><td id="|g}l" class="">10</td><td id="BGCU" class="">🔴 Avanzada</td><td id="SNLf" class="">CON CD 14 o pierden turno</td><td id="kzMb" class="">550 MP – Tras 10 turnos: el usuario pierde reacción por 1d4 turnos</td></tr><tr id="1fdf581a-5671-8096-9090-ca747ae99d64"><td id="{M&lt;l" class="">2</td><td id="AGxc" class="">V2</td><td id="b]`_" class="">Marea de la Realidad</td><td id="F;;f" class="">Control fluido del entorno y chi</td><td id="|g}l" class="">14</td><td id="BGCU" class="">◻ Mítica</td><td id="SNLf" class="">Área difícil, ralentiza enemigos</td><td id="kzMb" class="">1,100 MP – Superar 10 turnos: tiradas de concentración con desventaja</td></tr><tr id="1fdf581a-5671-8049-9d1e-dbf87f11c976"><td id="{M&lt;l" class="">3</td><td id="AGxc" class="">V3</td><td id="b]`_" class="">Océano del Origen</td><td id="F;;f" class="">Inundación espiritual total</td><td id="|g}l" class="">18</td><td id="BGCU" class="">⚫ Prohibida/Mítica</td><td id="SNLf" class="">Incapacita con doble salvación</td><td id="kzMb" class="">2,500 MP – <strong>Máx. 3 usos vitales</strong>, cada uso reduce MP máximo en 10% permanente</td></tr></tbody></table><hr id="1fdf581a-5671-8066-9431-efe43b8ae82a"/><h3 id="1fdf581a-5671-80d3-9b03-ca1fd0450007" class="">🪨 <strong>Elemento Roca</strong> – 不破本石訣</h3><table id="1fdf581a-5671-80fb-8757-fe38c9d60951" class="simple-table"><tbody><tr id="1fdf581a-5671-80ac-8eba-fb0148414427"><td id="N}[z" class="">Nivel</td><td id="K_Ty" class="">Versión</td><td id="W[~O" class="">Nombre</td><td id="C\dp" class="">Efecto</td><td id="p`}U" class="">Nivel mínimo</td><td id="rRP^" class="">Rango</td><td id="|U|o" class="">Bonificación</td><td id="sVp?" class="">Costo</td></tr><tr id="1fdf581a-5671-8017-87db-dd6c4c3859e4"><td id="N}[z" class="">0</td><td id="K_Ty" class="">Diluida</td><td id="W[~O" class="">Fragmento de la Tierra</td><td id="C\dp" class="">Defensa menor, reduce retroceso</td><td id="p`}U" class="">5</td><td id="rRP^" class="">🟢 Básica</td><td id="|U|o" class="">+1 CA si no se mueve</td><td id="sVp?" class="">60 MP – Sin penalidad</td></tr><tr id="1fdf581a-5671-803e-af9d-c2940b53d24d"><td id="N}[z" class="">1</td><td id="K_Ty" class="">V1</td><td id="W[~O" class="">Muro Ancestral</td><td id="C\dp" class="">Defensa estable y reducción de daño</td><td id="p`}U" class="">7</td><td id="rRP^" class="">🔵 Intermedia</td><td id="|U|o" class="">+2 CA física</td><td id="sVp?" class="">300 MP – +50% coste si se extiende más de 10 turnos</td></tr><tr id="1fdf581a-5671-80f1-b5a2-f199aae3cbf1"><td id="N}[z" class="">1.5</td><td id="K_Ty" class="">V1.5</td><td id="W[~O" class="">Columna Inmóvil</td><td id="C\dp" class="">Defensa mágica y física</td><td id="p`}U" class="">10</td><td id="rRP^" class="">🔴 Avanzada</td><td id="|U|o" class="">+2 CA, resistencia mágica</td><td id="sVp?" class="">700 MP – Tras 10 turnos: sin movimiento y requiere CON CD 13 para desactivar sin daño</td></tr><tr id="1fdf581a-5671-8096-98a4-ec8af8380136"><td id="N}[z" class="">2</td><td id="K_Ty" class="">V2</td><td id="W[~O" class="">Núcleo del Mundo</td><td id="C\dp" class="">Inamovible, inmune a empuje</td><td id="p`}U" class="">14</td><td id="rRP^" class="">◻ Mítica</td><td id="|U|o" class="">Reducción de daño total en 50%</td><td id="sVp?" class="">1,400 MP – Exceder duración: pierde uso de técnicas no defensivas 1d4 turnos</td></tr><tr id="1fdf581a-5671-80ee-8a09-d4fe20dc9dd9"><td id="N}[z" class="">3</td><td id="K_Ty" class="">V3</td><td id="W[~O" class="">Ecos del Núcleo Inamovible</td><td id="C\dp" class="">Refleja daño directo</td><td id="p`}U" class="">18</td><td id="rRP^" class="">⚫ Prohibida/Mítica</td><td id="|U|o" class="">Refleja daño completo si falla INT</td><td id="sVp?" class="">2,800 MP – <strong>2 usos vitales</strong>, cada uno sella 1 técnica del elemento hasta meditación profunda</td></tr></tbody></table><hr id="1fdf581a-5671-8083-960c-e8e916912a2c"/><h3 id="1fdf581a-5671-806d-a8af-e578bed62a80" class="">🌬️ <strong>Elemento Aire</strong> – 風界天律</h3><table id="1fdf581a-5671-801b-bbe5-cd47d19059d3" class="simple-table"><tbody><tr id="1fdf581a-5671-8075-a861-e25070906b7c"><td id="?^fq" class="">Nivel</td><td id="~n}U" class="">Versión</td><td id="gfeC" class="">Nombre</td><td id=":b\^" class="">Efecto</td><td id="@Aee" class="">Nivel mínimo</td><td id="T]i?" class="">Rango</td><td id="ClWx" class="">Bonificación</td><td id="sA{}" class="">Costo</td></tr><tr id="1fdf581a-5671-80fa-8b72-ddb3f991758d"><td id="?^fq" class="">0</td><td id="~n}U" class="">Diluida</td><td id="gfeC" class="">Brisa Primordial</td><td id=":b\^" class="">Mejora evasión</td><td id="@Aee" class="">5</td><td id="T]i?" class="">🟢 Básica</td><td id="ClWx" class="">+1 CA en movimiento</td><td id="sA{}" class="">45 MP – Sin penalidad</td></tr><tr id="1fdf581a-5671-8088-9c88-f9700d381fad"><td id="?^fq" class="">1</td><td id="~n}U" class="">V1</td><td id="gfeC" class="">Corte del Viento</td><td id=":b\^" class="">Proyectiles de aire afilado</td><td id="@Aee" class="">7</td><td id="T]i?" class="">🔵 Intermedia</td><td id="ClWx" class="">+1d6 Daño cortante</td><td id="sA{}" class="">230 MP – Más de 10 turnos: -2 percepción (por ruido o sobrecarga sensorial)</td></tr><tr id="1fdf581a-5671-8030-8f58-d5e60ea34820"><td id="?^fq" class="">1.5</td><td id="~n}U" class="">V1.5</td><td id="gfeC" class="">Vórtice del Espíritu</td><td id=":b\^" class="">Atrapa enemigos en un giro de chi</td><td id="@Aee" class="">10</td><td id="T]i?" class="">🔴 Avanzada</td><td id="ClWx" class="">Área difícil, pierden reacción</td><td id="sA{}" class="">580 MP – Si supera 10 turnos: penalización a reacción o velocidad</td></tr><tr id="1fdf581a-5671-806d-b734-c01ae8d6e461"><td id="?^fq" class="">2</td><td id="~n}U" class="">V2</td><td id="gfeC" class="">Murmullo de los Cielos</td><td id=":b\^" class="">Control del entorno aéreo</td><td id="@Aee" class="">14</td><td id="T]i?" class="">◻ Mítica</td><td id="ClWx" class="">Manipulación libre del entorno</td><td id="sA{}" class="">1,150 MP – +100% coste si se fuerza más de 10 turnos</td></tr><tr id="1fdf581a-5671-804c-a904-f1d2a2293cf2"><td id="?^fq" class="">3</td><td id="~n}U" class="">V3</td><td id="gfeC" class="">Juramento del Huracán</td><td id=":b\^" class="">Manipulación total del aire y presión</td><td id="@Aee" class="">18</td><td id="T]i?" class="">⚫ Prohibida/Mítica</td><td id="ClWx" class="">4d10 daño + efecto masivo</td><td id="sA{}" class="">2,700 MP – <strong>Máx. 2 usos vitales</strong>, 3er uso requiere ritual o sacrificio narrativo significativo</td></tr></tbody></table><h3 id="1fdf581a-5671-80da-a618-d3688801c15b" class="">⚙️ <strong>Elemento Metal</strong> – 鋼魂律典</h3><table id="1fdf581a-5671-8095-8192-c3c28c63abd6" class="simple-table"><tbody><tr id="1fdf581a-5671-80e3-875b-f84a0d80d474"><td id="}MLP" class="">Nivel</td><td id="Kc@u" class="">Versión</td><td id="Qb~f" class="">Nombre</td><td id="nQiE" class="">Efecto</td><td id="_H\S" class="">Nivel mínimo</td><td id=";TTl" class="">Rango</td><td id="Ennk" class="">Bonificación</td><td id="{E]}" class="">Costo</td></tr><tr id="1fdf581a-5671-8001-9987-ef84a928b447"><td id="}MLP" class="">0</td><td id="Kc@u" class="">Diluida</td><td id="Qb~f" class="">Placa Interior</td><td id="nQiE" class="">Refuerza la piel con chi metálico</td><td id="_H\S" class="">5</td><td id=";TTl" class="">🟢 Básica</td><td id="Ennk" class="">+1d4 daño con armas</td><td id="{E]}" class="">60 MP – Sin penalidad</td></tr><tr id="1fdf581a-5671-80ff-9e88-f00f2b1b3eb6"><td id="}MLP" class="">1</td><td id="Kc@u" class="">V1</td><td id="Qb~f" class="">Hoja Resonante</td><td id="nQiE" class="">Golpes vibran al impactar</td><td id="_H\S" class="">7</td><td id=";TTl" class="">🔵 Intermedia</td><td id="Ennk" class="">+1d6 daño de vibración</td><td id="{E]}" class="">250 MP – Si se mantiene +10 turnos: el siguiente ataque tiene desventaja</td></tr><tr id="1fdf581a-5671-8093-b35e-dc818358353d"><td id="}MLP" class="">1.5</td><td id="Kc@u" class="">V1.5</td><td id="Qb~f" class="">Armamento Corporal</td><td id="nQiE" class="">Parte del cuerpo se convierte en arma</td><td id="_H\S" class="">10</td><td id=";TTl" class="">🔴 Avanzada</td><td id="Ennk" class="">+2d6 daño, puede cortar magia</td><td id="{E]}" class="">650 MP – Exceder duración: se pierde 1 reacción hasta descanso</td></tr><tr id="1fdf581a-5671-80ac-8ec8-cb188fccf357"><td id="}MLP" class="">2</td><td id="Kc@u" class="">V2</td><td id="Qb~f" class="">Espíritu Forjado</td><td id="nQiE" class="">Cuerpo sin puntos débiles</td><td id="_H\S" class="">14</td><td id=";TTl" class="">◻ Mítica</td><td id="Ennk" class="">75% reducción daño cortante/perforante</td><td id="{E]}" class="">1,200 MP – Si pasa de 10 turnos: penalización de -2 CA temporal</td></tr><tr id="1fdf581a-5671-806a-bc56-e1e199f0da1f"><td id="}MLP" class="">3</td><td id="Kc@u" class="">V3</td><td id="Qb~f" class="">Canonización del Cuerpo-Arma</td><td id="nQiE" class="">El usuario es un arma absoluta</td><td id="_H\S" class="">18</td><td id=";TTl" class="">⚫ Prohibida/Mítica</td><td id="Ennk" class="">+4d10 daño, crítico si golpea primero</td><td id="{E]}" class="">2,800 MP – <strong>Máx. 2 usos vitales</strong>; cada uso sella otra técnica física o metálica hasta purificación ritual</td></tr></tbody></table><hr id="1fdf581a-5671-800e-9095-d90ece3487cf"/><h3 id="1fdf581a-5671-80c3-90a4-fbb27770a1fc" class="">💪 <strong>Estilo Físico</strong> – 肉身天顯</h3><table id="1fdf581a-5671-801b-929c-d33c4dd14d51" class="simple-table"><tbody><tr id="1fdf581a-5671-80b2-ba5f-eec1ce2e2aa8"><td id="|dHz" class="">Nivel</td><td id="L{v=" class="">Versión</td><td id="LDQ[" class="">Nombre</td><td id="?hiH" class="">Efecto</td><td id="fFsJ" class="">Nivel mínimo</td><td id="{zo@" class="">Rango</td><td id="cW}~" class="">Bonificación</td><td id="eaHx" class="">Costo</td></tr><tr id="1fdf581a-5671-804d-bd35-e189cd938137"><td id="|dHz" class="">0</td><td id="L{v=" class="">Diluida</td><td id="LDQ[" class="">Movimiento Disciplinado</td><td id="?hiH" class="">Precisión mejorada</td><td id="fFsJ" class="">5</td><td id="{zo@" class="">🟢 Básica</td><td id="cW}~" class="">+1 ataque desarmado</td><td id="eaHx" class="">50 MP – Sin penalidad</td></tr><tr id="1fdf581a-5671-809b-b9dd-e9f3a54e014d"><td id="|dHz" class="">1</td><td id="L{v=" class="">V1</td><td id="LDQ[" class="">Postura Quebrantadora</td><td id="?hiH" class="">Impacto en puntos clave</td><td id="fFsJ" class="">7</td><td id="{zo@" class="">🔵 Intermedia</td><td id="cW}~" class="">+1d6 daño desarmado</td><td id="eaHx" class="">220 MP – Exceso de duración: desventaja en checks de FUE por 1 turno</td></tr><tr id="1fdf581a-5671-8035-83a1-d16b5bd3eebd"><td id="|dHz" class="">1.5</td><td id="L{v=" class="">V1.5</td><td id="LDQ[" class="">Forma Avanzada del Núcleo</td><td id="?hiH" class="">Control biomecánico fino</td><td id="fFsJ" class="">10</td><td id="{zo@" class="">🔴 Avanzada</td><td id="cW}~" class="">+2d6 daño, ignora CA &lt; 15</td><td id="eaHx" class="">600 MP – Más de 10 turnos: -1d4 a iniciativa durante combate</td></tr><tr id="1fdf581a-5671-80bf-8d27-d8a1554b9e27"><td id="|dHz" class="">2</td><td id="L{v=" class="">V2</td><td id="LDQ[" class="">Geometría Marcial</td><td id="?hiH" class="">Golpes optimizados</td><td id="fFsJ" class="">14</td><td id="{zo@" class="">◻ Mítica</td><td id="cW}~" class="">+3d8 daño, empuja 3m</td><td id="eaHx" class="">1,250 MP – Prolongar: se desactiva reacción por 2 turnos</td></tr><tr id="1fdf581a-5671-8085-82d1-d48a9c45ffe1"><td id="|dHz" class="">3</td><td id="L{v=" class="">V3</td><td id="LDQ[" class="">Forma del Cero Perfecto</td><td id="?hiH" class="">Corrige la existencia con un golpe</td><td id="fFsJ" class="">18</td><td id="{zo@" class="">⚫ Prohibida/Mítica</td><td id="cW}~" class="">Forzar CON CD 20 o KO instantáneo</td><td id="eaHx" class="">3,200 MP – <strong>Solo 1 uso vital</strong>; romper este límite borra 1 técnica aprendida del usuario para siempre</td></tr></tbody></table><hr id="1fdf581a-5671-8019-9a4b-cf54acb12d07"/><h3 id="1fdf581a-5671-80db-9e09-fa9678949dbb" class="">❄️ <strong>Elemento Hielo</strong> – 絕霜破界</h3><table id="1fdf581a-5671-80b5-8eb2-fc3f08dec11c" class="simple-table"><tbody><tr id="1fdf581a-5671-80e7-bb9b-e4ea54b1adda"><td id="F?:q" class="">Nivel</td><td id="@ycK" class="">Versión</td><td id="OoZe" class="">Nombre</td><td id="Xck=" class="">Efecto</td><td id="mdoz" class="">Nivel mínimo</td><td id="rrKc" class="">Rango</td><td id="oH:v" class="">Bonificación</td><td id="_B=n" class="">Costo</td></tr><tr id="1fdf581a-5671-8006-8765-d617ea91b995"><td id="F?:q" class="">0</td><td id="@ycK" class="">Diluida</td><td id="OoZe" class="">Escarcha del Pensamiento</td><td id="Xck=" class="">Ralentiza reacción</td><td id="mdoz" class="">5</td><td id="rrKc" class="">🟢 Básica</td><td id="oH:v" class="">-1 iniciativa enemigos</td><td id="_B=n" class="">40 MP – Sin penalidad</td></tr><tr id="1fdf581a-5671-801a-8deb-f1a791ff24b7"><td id="F?:q" class="">1</td><td id="@ycK" class="">V1</td><td id="OoZe" class="">Congelación Sutil</td><td id="Xck=" class="">Daña y enlentece</td><td id="mdoz" class="">7</td><td id="rrKc" class="">🔵 Intermedia</td><td id="oH:v" class="">+1d6 frío, desventaja en DEX</td><td id="_B=n" class="">230 MP – Tras 10 turnos: -10 velocidad hasta descanso</td></tr><tr id="1fdf581a-5671-8030-bd96-f2866f03898a"><td id="F?:q" class="">1.5</td><td id="@ycK" class="">V1.5</td><td id="OoZe" class="">Congelamiento Interno</td><td id="Xck=" class="">Bloquea movilidad y chi</td><td id="mdoz" class="">10</td><td id="rrKc" class="">🔴 Avanzada</td><td id="oH:v" class="">+2d6 frío, pierden reacción</td><td id="_B=n" class="">580 MP – Superar duración: CD 15 CON o pierde bonus defensivos por 1d4 turnos</td></tr><tr id="1fdf581a-5671-80a1-a605-d18e7916b9cf"><td id="F?:q" class="">2</td><td id="@ycK" class="">V2</td><td id="OoZe" class="">Templo del Cero</td><td id="Xck=" class="">Área paralizante</td><td id="mdoz" class="">14</td><td id="rrKc" class="">◻ Mítica</td><td id="oH:v" class="">CON CD 17 o paralizados 1 turno</td><td id="_B=n" class="">1,100 MP – Más de 10 turnos: usuario también queda ralentizado 1d2 turnos</td></tr><tr id="1fdf581a-5671-80f3-98b2-eeaaefd1b578"><td id="F?:q" class="">3</td><td id="@ycK" class="">V3</td><td id="OoZe" class="">Cero Existencial Absoluto</td><td id="Xck=" class="">Suspensión total del tiempo</td><td id="mdoz" class="">18</td><td id="rrKc" class="">⚫ Prohibida/Mítica</td><td id="oH:v" class="">Solo el usuario puede actuar</td><td id="_B=n" class="">2,700 MP – <strong>1 uso vital</strong>; romperlo congela al usuario junto al área por 1d4 días narrativos</td></tr></tbody></table><hr id="1fdf581a-5671-8022-bf58-dc396193668b"/><h3 id="1fdf581a-5671-805c-a65b-d91cecafbbbe" class="">⚡ <strong>Estilo Relámpago (nuevo)</strong> – 終雷天裁</h3><p id="1fdf581a-5671-808f-86f8-e1b96cfd84e5" class="">Aquí tienes un modelo completamente nuevo que sigue la estructura de los demás elementos, con enfoque en velocidad absoluta, interrupción de tiempo y daño explosivo:</p><table id="1fdf581a-5671-80eb-91a4-daeef971e1eb" class="simple-table"><tbody><tr id="1fdf581a-5671-8027-9e49-ffc12f40efe7"><td id="iOA&gt;" class="">Nivel</td><td id="&gt;&gt;V{" class="">Versión</td><td id="Z&gt;tV" class="">Nombre</td><td id="X]CG" class="">Efecto</td><td id="s{&gt;D" class="">Nivel mínimo</td><td id="bSqu" class="">Rango</td><td id="{]N|" class="">Bonificación</td><td id="[I?z" class="">Costo</td></tr><tr id="1fdf581a-5671-8063-b6ae-c39a83277b4e"><td id="iOA&gt;" class="">0</td><td id="&gt;&gt;V{" class="">Diluida</td><td id="Z&gt;tV" class="">Estática Interna</td><td id="X]CG" class="">Mejora reflejos con bioelectricidad</td><td id="s{&gt;D" class="">5</td><td id="bSqu" class="">🟢 Básica</td><td id="{]N|" class="">+1 a iniciativa</td><td id="[I?z" class="">60 MP – Sin penalidad</td></tr><tr id="1fdf581a-5671-8066-b58d-f5036bb01519"><td id="iOA&gt;" class="">1</td><td id="&gt;&gt;V{" class="">V1</td><td id="Z&gt;tV" class="">Impulso del Rayo</td><td id="X]CG" class="">Movimiento veloz, golpe rápido</td><td id="s{&gt;D" class="">7</td><td id="bSqu" class="">🔵 Intermedia</td><td id="{]N|" class="">+1d6 daño eléctrico y +3m desplazamiento</td><td id="[I?z" class="">250 MP – Más de 10 turnos: desventaja en tiradas de DEX</td></tr><tr id="1fdf581a-5671-8096-a648-ec2b8f8176d3"><td id="iOA&gt;" class="">1.5</td><td id="&gt;&gt;V{" class="">V1.5</td><td id="Z&gt;tV" class="">Salto Causal</td><td id="X]CG" class="">Teleport corto antes de ser golpeado</td><td id="s{&gt;D" class="">10</td><td id="bSqu" class="">🔴 Avanzada</td><td id="{]N|" class="">Teleporta 3m como reacción, 1/turno</td><td id="[I?z" class="">600 MP – Exceder 10 turnos: no puede reaccionar por 1d4 turnos</td></tr><tr id="1fdf581a-5671-8030-bbec-c3377f93ec22"><td id="iOA&gt;" class="">2</td><td id="&gt;&gt;V{" class="">V2</td><td id="Z&gt;tV" class="">Malla de Relámpagos</td><td id="X]CG" class="">Aura de descarga permanente</td><td id="s{&gt;D" class="">14</td><td id="bSqu" class="">◻ Mítica</td><td id="{]N|" class="">Enemigos que ataquen en melee sufren 3d6 eléctrico</td><td id="[I?z" class="">1,200 MP – Extender: el usuario también recibe 1d6 daño por turno</td></tr><tr id="1fdf581a-5671-80bb-9359-cef1e3955dd7"><td id="iOA&gt;" class="">3</td><td id="&gt;&gt;V{" class="">V3</td><td id="Z&gt;tV" class="">Trueno Final: Cero Tiempo</td><td id="X]CG" class="">Golpe antes del pensamiento</td><td id="s{&gt;D" class="">18</td><td id="bSqu" class="">⚫ Prohibida/Mítica</td><td id="{]N|" class="">Ataque inevitable, fuerza CD 20 DEX o 4d10 + KO</td><td id="[I?z" class="">2,900 MP – <strong>Máx. 2 usos vitales</strong>; 3er uso: el alma queda fuera de sincronía, necesita ritual de rearmonía</td></tr></tbody></table><h3 id="1fdf581a-5671-80c1-8117-e2d34da16330" class="">🌑 <strong>Elemento Vacío</strong> – 無聲恐主</h3><table id="1fdf581a-5671-80ea-a712-f2134cf17406" class="simple-table"><tbody><tr id="1fdf581a-5671-801e-9172-c2e5768f38d7"><td id=";lKO" class="">Nivel</td><td id="Fj@u" class="">Versión</td><td id="aWbm" class="">Nombre</td><td id="svhL" class="">Efecto</td><td id="=`wA" class="">Nivel mínimo</td><td id=";`bH" class="">Rango</td><td id="jfM[" class="">Bonificación</td><td id="I&gt;bs" class="">Costo</td></tr><tr id="1fdf581a-5671-8092-a091-ca5d8dbb907f"><td id=";lKO" class="">0</td><td id="Fj@u" class="">Diluida</td><td id="aWbm" class="">Sombra Primordial</td><td id="svhL" class="">Oculta presencia y chi del usuario</td><td id="=`wA" class="">5</td><td id=";`bH" class="">🟢 Básica</td><td id="jfM[" class="">Ventaja en Sigilo</td><td id="I&gt;bs" class="">45 MP – Sin penalidad</td></tr><tr id="1fdf581a-5671-804f-bba1-e5de23bd6b49"><td id=";lKO" class="">1</td><td id="Fj@u" class="">V1</td><td id="aWbm" class="">Velo Nocturno</td><td id="svhL" class="">Reduce precisión enemiga</td><td id="=`wA" class="">7</td><td id=";`bH" class="">🔵 Intermedia</td><td id="jfM[" class="">Enemigos tiran con desventaja</td><td id="I&gt;bs" class="">240 MP – Si excede 10 turnos: el usuario también recibe -2 a Percepción</td></tr><tr id="1fdf581a-5671-805c-b12a-ff39342ec81b"><td id=";lKO" class="">1.5</td><td id="Fj@u" class="">V1.5</td><td id="aWbm" class="">Abrazo de la Sombra</td><td id="svhL" class="">Confusión espiritual</td><td id="=`wA" class="">10</td><td id=";`bH" class="">🔴 Avanzada</td><td id="jfM[" class="">2d6 psíquico + desorientación</td><td id="I&gt;bs" class="">600 MP – Superar 10 turnos: CD 15 SAB o el usuario queda aturdido 1 turno</td></tr><tr id="1fdf581a-5671-800e-b1ea-ca0542d9d5ee"><td id=";lKO" class="">2</td><td id="Fj@u" class="">V2</td><td id="aWbm" class="">Desintegración del Dao</td><td id="svhL" class="">Rompe enlaces espirituales</td><td id="=`wA" class="">14</td><td id=";`bH" class="">◻ Mítica</td><td id="jfM[" class="">INT CD 16 o enemigo incapacitado</td><td id="I&gt;bs" class="">1,200 MP – Exceder duración: el usuario pierde acceso a una técnica hasta reposo largo</td></tr><tr id="1fdf581a-5671-809c-86f3-c788c1ebb98f"><td id=";lKO" class="">3</td><td id="Fj@u" class="">V3</td><td id="aWbm" class="">Decadencia del Vacío</td><td id="svhL" class="">Elimina causalidad y coherencia</td><td id="=`wA" class="">18</td><td id=";`bH" class="">⚫ Prohibida/Mítica</td><td id="jfM[" class="">4d10 psíquico + aturdimiento</td><td id="I&gt;bs" class="">3,000 MP – <strong>1 uso vital</strong>, segundo uso: el Dao del usuario se agrieta, pierde toda ventaja de SAB hasta restauración ritual</td></tr></tbody></table><hr id="1fdf581a-5671-8091-b3c0-c6b1c1f351ad"/><h3 id="1fdf581a-5671-80ac-86b6-e6c1ee6899b2" class="">☀️ <strong>Elemento Luz</strong> – 光律命主</h3><table id="1fdf581a-5671-805e-86df-f218e0435707" class="simple-table"><tbody><tr id="1fdf581a-5671-80c3-b704-caf82a9d2135"><td id="vzY[" class="">Nivel</td><td id="aIyX" class="">Versión</td><td id="Pxsu" class="">Nombre</td><td id="&gt;heU" class="">Efecto</td><td id="G}wo" class="">Nivel mínimo</td><td id="}~Y;" class="">Rango</td><td id="&gt;oBq" class="">Bonificación</td><td id="pfAT" class="">Costo</td></tr><tr id="1fdf581a-5671-8022-8f73-cacb30dc8a08"><td id="vzY[" class="">0</td><td id="aIyX" class="">Diluida</td><td id="Pxsu" class="">Destello Primordial</td><td id="&gt;heU" class="">Luz sanadora menor</td><td id="G}wo" class="">5</td><td id="}~Y;" class="">🟢 Básica</td><td id="&gt;oBq" class="">Cura 1d4 por turno</td><td id="pfAT" class="">50 MP – Sin penalidad</td></tr><tr id="1fdf581a-5671-80ea-8cc7-f9f222a22167"><td id="vzY[" class="">1</td><td id="aIyX" class="">V1</td><td id="Pxsu" class="">Aura Restauradora</td><td id="&gt;heU" class="">Sanación constante en área</td><td id="G}wo" class="">7</td><td id="}~Y;" class="">🔵 Intermedia</td><td id="&gt;oBq" class="">1d6 HP por turno</td><td id="pfAT" class="">260 MP – Exceder duración: curación se reduce a la mitad por desgaste espiritual</td></tr><tr id="1fdf581a-5671-80b0-96e3-f0173d1ab83d"><td id="vzY[" class="">1.5</td><td id="aIyX" class="">V1.5</td><td id="Pxsu" class="">Luz Renovadora</td><td id="&gt;heU" class="">Elimina penalizaciones</td><td id="G}wo" class="">10</td><td id="}~Y;" class="">🔴 Avanzada</td><td id="&gt;oBq" class="">2d6 HP + limpia 1 condición</td><td id="pfAT" class="">640 MP – Más de 10 turnos: el usuario queda cegado por 1 turno por sobreexposición</td></tr><tr id="1fdf581a-5671-80e2-824a-fb12af2e6031"><td id="vzY[" class="">2</td><td id="aIyX" class="">V2</td><td id="Pxsu" class="">Amanecer del Alma</td><td id="&gt;heU" class="">Restauración espiritual total</td><td id="G}wo" class="">14</td><td id="}~Y;" class="">◻ Mítica</td><td id="&gt;oBq" class="">3d8 HP + resistencia</td><td id="pfAT" class="">1,300 MP – Prolongar: el aura de luz se corrompe parcialmente (enemigos cercanos también curan 1d6 por turno)</td></tr><tr id="1fdf581a-5671-805f-88dc-c1684a0908e8"><td id="vzY[" class="">3</td><td id="aIyX" class="">V3</td><td id="Pxsu" class="">Toque de la Aurora Eterna</td><td id="&gt;heU" class="">Revitaliza chi, cuerpo y karma</td><td id="G}wo" class="">18</td><td id="}~Y;" class="">⚫ Prohibida/Mítica</td><td id="&gt;oBq" class="">Cura total + resurrección sin trauma</td><td id="pfAT" class="">2,800 MP – <strong>1 uso vital</strong>, segundo uso: se borra un recuerdo vital del usuario; tercer uso: el cuerpo queda “fuera del ciclo” (no puede curarse por medios normales sin intervención divina)</td></tr></tbody></table><hr id="1fdf581a-5671-80bc-bc4d-cc9e4ab721b0"/><h3 id="1fdf581a-5671-802b-a97e-f52d8f8f0092" class="">🔮 <strong>Dao de la Precisión Total</strong> – 精律之道</h3><table id="1fdf581a-5671-80ce-ba8d-dd27b7a64fa5" class="simple-table"><tbody><tr id="1fdf581a-5671-80b4-bcbf-eabf36092cdd"><td id="xAPh" class="">Nivel</td><td id="NF&lt;:" class="">Versión</td><td id="]KWn" class="">Nombre</td><td id="F[uH" class="">Efecto</td><td id="pAw}" class="">Nivel mínimo</td><td id="J[NK" class="">Rango</td><td id="hQMb" class="">Bonificación</td><td id="v:QM" class="">Costo</td></tr><tr id="1fdf581a-5671-803d-aabd-c9265554d0bd"><td id="xAPh" class="">0</td><td id="NF&lt;:" class="">Diluida</td><td id="]KWn" class="">Percepción Geométrica</td><td id="F[uH" class="">Análisis de trayectorias</td><td id="pAw}" class="">5</td><td id="J[NK" class="">🟢 Básica</td><td id="hQMb" class="">+1 al ataque</td><td id="v:QM" class="">60 MP – Sin penalidad</td></tr><tr id="1fdf581a-5671-80b0-8bcd-f8f27b76e457"><td id="xAPh" class="">1</td><td id="NF&lt;:" class="">V1</td><td id="]KWn" class="">Geometría Inicial del Combate</td><td id="F[uH" class="">Anticipación básica</td><td id="pAw}" class="">7</td><td id="J[NK" class="">🔵 Intermedia</td><td id="hQMb" class="">+2 al ataque o ventaja al primer golpe</td><td id="v:QM" class="">280 MP – Superar duración: desventaja en INT por 1d4 turnos</td></tr><tr id="1fdf581a-5671-8081-8859-cade16d7a738"><td id="xAPh" class="">1.5</td><td id="NF&lt;:" class="">V1.5</td><td id="]KWn" class="">Trayectoria Perfecta</td><td id="F[uH" class="">Cálculo orbital avanzado</td><td id="pAw}" class="">10</td><td id="J[NK" class="">🔴 Avanzada</td><td id="hQMb" class="">+3 al ataque, desventaja al enemigo</td><td id="v:QM" class="">700 MP – Exceder: se pierde reacción por 2 turnos (sobrecarga de proceso predictivo)</td></tr><tr id="1fdf581a-5671-8064-b083-cd2df18791bb"><td id="xAPh" class="">2</td><td id="NF&lt;:" class="">V2</td><td id="]KWn" class="">Modelo Predictivo del Dao</td><td id="F[uH" class="">Anticipa toda trayectoria</td><td id="pAw}" class="">14</td><td id="J[NK" class="">◻ Mítica</td><td id="hQMb" class="">+4 ataque, ventaja en DEX/INT</td><td id="v:QM" class="">1,400 MP – Exceso: el usuario queda fijo 1 turno (procesamiento intenso)</td></tr><tr id="1fdf581a-5671-8055-b6e9-d4cb38bd51cc"><td id="xAPh" class="">3</td><td id="NF&lt;:" class="">V3</td><td id="]KWn" class="">Solución Absoluta de la Batalla</td><td id="F[uH" class="">Acciona antes que la realidad</td><td id="pAw}" class="">18</td><td id="J[NK" class="">⚫ Prohibida/Mítica</td><td id="hQMb" class="">+5 al ataque, crítico automático</td><td id="v:QM" class="">3,200 MP – <strong>Máx. 2 usos vitales</strong>, 3er uso: se desintegra la capacidad de prever el caos (no puede usar técnicas de predicción hasta reconstruir su ojo espiritual)</td></tr></tbody></table></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
