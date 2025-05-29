@@ -1,5 +1,6 @@
 # populate_db.py
 import json
+import os
 from sqlalchemy.orm import Session
 from sqlalchemy.orm.attributes import flag_modified
 from database.engine import init_db, get_session
@@ -17,130 +18,18 @@ from database.models import (
 from config import DATABASE_URL
 
 # --- JSON Data Structures ---
+DATA_DIR = os.path.join(os.path.dirname(__file__), "data")
 
-DM_RULES_DATA = {
-    "nombre_guidelines": "Directrices DM Completas - Mundo Wuxia Liáng Wǔzhào",
-    "system_base": "Sistema propio con adaptaciones de D&D 5e y elementos de PbtA para narrativa.",
-    "setting_description": "Mundo de fantasía Wuxia con énfasis en el cultivo de Chi, artes marciales místicas y filosofías ancestrales. La tecnología es limitada, similar a la China dinástica, pero con artefactos de poder.",
-    "mode_directed": "Dirigido por el DM, con alta agencia de los jugadores para influir en la narrativa y el mundo. Se busca un equilibrio entre sandbox y arcos argumentales definidos.",
-    "dice_roll_responsible": "DM y Jugadores. DM para NPCs y eventos mundiales; Jugadores para sus acciones. Regla de 'fallar hacia adelante' preferida.",
-    "dice_roll_rules": "Pruebas de habilidad: D20 + Modificador vs CD. Combate: D20 + Mod Ataque vs AC. Daño: Según técnica/arma. Salvaciones: D20 + Mod vs CD Técnica/Efecto.",
-    "tone_difficulty": "Épico y Desafiante. Los jugadores son héroes (o anti-héroes) capaces, pero los peligros son reales y las decisiones tienen peso. La dificultad escala con la progresión.",
-    "tone_focus": "Aventura, Misterio, Desarrollo Personal, Intriga Política. Énfasis en la evolución del personaje y su impacto en el mundo.",
-    "tone_style": "Cinematográfico y Descriptivo. Se buscan momentos memorables y una atmósfera inmersiva. Humor es bienvenido si encaja.",
-    "relevant_chars_narration": "Todos los PJs son protagonistas. NPCs importantes tendrán arcos propios. El mundo reacciona a las acciones de los PJs.",
-    "intro_chars_restriction": "Los PJs deben tener una razón para estar en la región inicial y una motivación (aunque sea vaga) para la aventura. Se prefiere que tengan lazos (positivos o negativos) con al menos otro PJ.",
-    "session_structure": [
-        "Resumen de sesión anterior (DM o Jugador voluntario).",
-        "Foco en objetivos actuales de los PJs.",
-        "Introducción de nuevos elementos/conflictos.",
-        "Clímax o punto de inflexión.",
-        "Espacio para roleo y desarrollo de personajes.",
-        "Conclusión y preparación para la siguiente sesión (puede incluir 'cliffhanger')."
-    ],
-    "intro_chars_show_fields": [
-        "Nombre y Título (si aplica)",
-        "Concepto Breve (ej. 'Monje exiliado en busca de la verdad tras la destrucción de su templo')",
-        "Apariencia General y Primera Impresión",
-        "Motivación Principal Aparente"
-    ]
-}
+def _load_json(name: str) -> dict | list:
+    path = os.path.join(DATA_DIR, name)
+    with open(path, "r", encoding="utf-8") as f:
+        return json.load(f)
 
-WORLD_RULES_DATA = {
-    "nombre_mundo": "Mundo de Aethelgard - Era del Despertar Fragmentado",
-    "descripcion_general": "Un mundo donde la energía primordial (Chi o Maná) fluye de manera inestable tras un cataclismo conocido como 'La Disrupción'. Las civilizaciones intentan reconstruirse y dominar nuevas formas de poder, mientras antiguas verdades y peligros resurgen.",
-    "secciones": [
-        {
-            "titulo": "Flujo de Energía Primordial (Chi/Maná)",
-            "tipo": "lore_general", # Tipo para diferenciar el manejo
-            "contenido": {
-                "descripcion": "El Chi (o Maná) es la energía vital. Su flujo es inestable, con nodos y vacíos.",
-                "reglas_basicas": [
-                    "Nodos de Poder: Potencian técnicas, pueden ser peligrosos.",
-                    "Zonas de Vacío: Debilitan técnicas, causan fatiga.",
-                    "Resonancia Elemental: Áreas alineadas con elementos afectan técnicas.",
-                    "Meditación y Cultivo: Prácticas para refinar y manipular Chi."
-                ]
-            }
-        },
-        {
-            "titulo": "Cultivo y Reinos de Poder", # Esta sección define los reinos
-            "tipo": "cultivation_realms",
-            "nota": "Los Reinos de Cultivo representan niveles de entendimiento y control sobre el Chi. Cada reino desbloquea nuevas capacidades y percepciones. La progresión no es solo poder bruto, sino también comprensión filosófica y armonía con el Dao personal.",
-            "estructura": [
-                {"orden": 1, "nombre_reino": "Fundación del Núcleo", "rango_nivel_pj": "1-3", "tema": "Despertar del Chi, fortalecimiento básico del cuerpo y la mente, primeras técnicas."},
-                {"orden": 2, "nombre_reino": "Establecimiento del Flujo", "rango_nivel_pj": "4-6", "tema": "Control consciente del flujo interno de Chi, técnicas elementales básicas, mayor resistencia y capacidad sensorial."},
-                {"orden": 3, "nombre_reino": "Resonancia Elemental", "rango_nivel_pj": "7-9", "tema": "Afinidad profunda con uno o más elementos, manifestación de poder elemental avanzado, comprensión de patrones energéticos."},
-                {"orden": 4, "nombre_reino": "Geometría del Dao", "rango_nivel_pj": "10-12", "tema": "Percepción y manipulación de las estructuras fundamentales del Chi y la realidad, técnicas complejas que alteran el entorno, inicio de la trascendencia."},
-                {"orden": 5, "nombre_reino": "Unidad con el Vacío (Teórico)", "rango_nivel_pj": "13+", "tema": "Comprensión de la interconexión de todo, manipulación del Chi a nivel conceptual, habilidades legendarias o semi-divinas. Pocos han alcanzado este estado."}
-            ]
-        },
-        {
-            "titulo": "Leyes Físicas y Naturales",
-            "tipo": "lore_general",
-            "contenido": {
-                "descripcion": "Física similar a la Tierra, pero alterable por Chi.",
-                "puntos_clave": [
-                    "Gravedad: Estándar, técnicas de levitación existen.",
-                    "Ciclos Naturales: Normales, pueden afectar el Chi.",
-                    "Materiales Exóticos: Infundidos con Chi, propiedades únicas."
-                ]
-            }
-        }
-        # ... (otras secciones de WORLD_RULES_DATA como Cosmología, Sociedad, etc.)
-    ]
-}
-
-FIRE_TECHNIQUES_DATA = [ 
-    {
-        "elemento": "Fuego",
-        "dao": "Presión Térmica y Geometría de Flujo – Enfoque en la adaptabilidad estructural y la eficiencia termodinámica del Chi de Fuego.",
-        "tecnicas": [
-            {"nombre": "Disparo de Fuego Primario", "nombre_chino": "初级火焰发射", "rango": "Básica", "version": "V0", "nivel": 0, "efecto": "Proyecta una pequeña esfera de fuego.", "daño": "1d4 Fuego"},
-            {"nombre": "Escudo de Flujo Térmico", "nombre_chino": "热流护盾", "rango": "Básica", "version": "V1", "nivel": 1, "efecto": "Crea barrera de aire caliente.", "defensa": "+1 AC vs proyectiles"},
-            {"nombre": "Hoja de Fuego Adaptativa", "nombre_chino": "适应火刃", "rango": "Intermedia", "version": "V1.5", "nivel": 2, "efecto": "Manifiesta hoja de fuego variable.", "daño": "2d6 Fuego + Mod. INT", "mana_cost_inicial": 15},
-            {"nombre": "Geometría de Combustión Interna", "nombre_chino": "内燃几何", "rango": "Intermedia", "version": "V2", "nivel": 3, "efecto": "Infunde objeto/área con fuego inestable.", "daño_detonacion": "3d8 Fuego"},
-            {"nombre": "Vórtice de Presión Cinética-Térmica", "nombre_chino": "动热压力涡旋", "rango": "Avanzada", "version": "V1", "nivel": 4, "efecto": "Genera torbellino de fuego.", "daño_continuo": "2d10 Fuego"},
-            {"nombre": "Singularidad de Fuego Estructural (Prototipo)", "nombre_chino": "结构火焰奇点", "rango": "Maestra", "version": "V3 - Prototipo Delta", "nivel": 5, "efecto": "Requiere Micronúcleo. Explosión o buff.", "daño_explosion": "10d10 Fuego", "costo_micronucleo": "50 unidades"}
-        ]
-    }
-]
-
-NARRATIVE_EVENTS_DATA = {
-    "nombre_campaña": "El Despertar del Dao Geométrico",
-    "resumenes": [
-        {"titulo": "La Disrupción del Monasterio Silencioso", "dias": "0-5", "contenido": "Destrucción del Monasterio, Liáng Wǔzhào escapa con el Micronúcleo.", "personajes_clave": ["Liáng Wǔzhào", "Mentor"], "impacto_inicial": ["Pérdida de base", "Motivación"]},
-        {"titulo": "El Encuentro en el Cruce de los Mil Vientos", "dias": "10-20", "contenido": "Liáng Wǔzhào conoce a otros PJs/NPCs. Posible misión colaborativa.", "temas": ["Formación de grupo", "Intercambio de información"]},
-        {"titulo": "La Prueba de la Pagoda Escondida", "dias": "30-50", "contenido": "Búsqueda de lugar de antiguo poder. Pruebas y revelaciones.", "desafios": ["Guardianes", "Acertijos"], "recompensa_potencial": ["Nuevas técnicas", "Mejora Micronúcleo"]},
-    ]
-}
-
-LIANG_WUZHAO_FULL_JSON = {
-    "name": "Liáng Wǔzhào", "level": 5, "character_class": "Monk (Custom Subclass: Dao Geométrico)", "race": "Human",
-    "alignment": "Lawful Neutral", "background": "Hermit", "experience_points": 29600,
-    "strength_score": 10, "dexterity_score": 16, "constitution_score": 12, "intelligence_score": 20, "wisdom_score": 16, "charisma_score": 10,
-    "proficiency_bonus": 3, "hp_max": 40, "hp_current": 40, "armor_class": 14, "speed": 30,
-    "mana_max": 4730, "mana_current": 4730,
-    "status_general": "En Reclusión Estructural Completa", # Mapea a status_general
-    "dao_philosophy": "Razonado", # Nuevo campo directo
-    "affiliation": "Secta de la Llama Partida (Cuatro Estandartes)", # Nuevo campo directo
-    "saving_throws_proficiencies": {"strength": False, "dexterity": True, "constitution": False, "intelligence": True, "wisdom": True, "charisma": False},
-    "skill_proficiencies": {"arcana": True, "insight": True, "perception": True, "acrobatics": True, "history": True},
-    "languages_known": ["Common", "Celestial", "Primordial"],
-    "features_traits_list": [
-      {"name": "Micronúcleo Feature", "description": "Contenedor comprimido de chi...", "type": "Class Feature"},
-      {"name": "Silencio del Diseño Absoluto", "description": "Durante una meditación...", "type": "Special Trait"},
-      {"name": "Sistema Elemental Adaptativo – Matriz Bernoulli Multi-Módulo", "description": "Permite seleccionar una afinidad elemental...", "type": "Class Feature"},
-    ],
-    "resources_data": {"micronucleo": {"current": 132, "max": 132}}, # Mana ya está en campos directos
-    # Datos para campos normalizados (antes en custom_properties_dict)
-    "reclusion_data": {"start_day": 115, "end_day": 470, "days_remaining": 355},
-    "titles_data": {"active": ["Portador del Silencio del Diseño Absoluto"], "retired": ["El que Rediseñó su Reflejo", "El que Cortó la Escritura", "Variable Estable"]},
-    "compatible_elements_data": ["Fuego – Presión térmica", "Físico – Biomecánica", "Aire – Evasión", "Agua – Recuperación", "Luz – Precisión", "Vacío – Reacción anti-signatura"],
-    # custom_props_json remanente (si algo no se normalizó)
-    "remaining_custom_props": {"notas_generales": "Personaje complejo con enfoque en la manipulación del Chi mediante la comprensión de su estructura fundamental."}
-}
-
+DM_RULES_DATA = _load_json("dm_rules.json")
+WORLD_RULES_DATA = _load_json("world_rules.json")
+FIRE_TECHNIQUES_DATA = _load_json("fire_techniques.json")
+NARRATIVE_EVENTS_DATA = _load_json("narrative_events.json")
+LIANG_WUZHAO_FULL_JSON = _load_json("liang_wuzhao.json")
 # --- Funciones de Población ---
 
 def populate_dm_guidelines(db_session: Session, data: dict):
@@ -429,4 +318,3 @@ def populate():
 if __name__ == "__main__":
     populate()
 
-```
