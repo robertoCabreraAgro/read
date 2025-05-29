@@ -1,0 +1,254 @@
+{
+  "characters": {},
+  "events": [],
+  "dm_rules": {
+    "nombre": "Reglas del Dungeon Master – Mundo Wuxia de Liáng Wùzhào",
+    "sistema": "Dungeons & Dragons 5e adaptado a Cultivo Espiritual",
+    "ambientacion": "Wuxia / Xianxia inspirado en Against the Gods, Tales of Demons and Gods",
+    "directrices": {
+      "modo_dirigido": "Narrativa guiada por el modelo como Dungeon Master",
+      "tiradas_dados": {
+        "responsable": "Jugador",
+        "reglas": "Todas las tiradas son hechas por el jugador, quien debe considerar modificadores, habilidades, inspiración o bonificaciones narrativas."
+      },
+      "estructura_de_sesion": {
+        "al_final_de_cada_aventura": [
+          "Revisión de experiencia ganada",
+          "Técnicas aprendidas o mejoradas",
+          "Dinero y objetos obtenidos",
+          "Cambios y modificaciones en la ficha"
+        ]
+      },
+      "tono": {
+        "dificultad": "Desafiante",
+        "enfoque": "Lógico, estratégico y narrativamente profundo",
+        "estilo": "Exploración del Dao, decisiones morales, enfrentamientos mentales y físicos"
+      },
+      "descripcion_narrativa": {
+        "personajes_relevantes": "Siempre deben ser descritos con atención al detalle",
+        "introduccion_de_personajes": {
+          "mostrar": [
+            "Nombre",
+            "Afiliación",
+            "Nivel de cultivo"
+          ],
+          "restriccion": "Excepto si el nivel del personaje es demasiado alto como para ser percibido por Liáng Wùzhào"
+        }
+      }
+    }
+  },
+  "world_rules": {
+    "nombre": "Reglas del Mundo – Wuxia de Liáng Wùzhào",
+    "version": "1.0",
+    "secciones": [
+      {
+        "titulo": "Fundamento Universal",
+        "contenido": [
+          "La energía primigenia (chi, maná, éter, etc.) es la fuente de todo cultivo. Su nombre cambia según cultura, pero su naturaleza es única.",
+          "Existen variantes elementales: fuego, agua, tierra, viento, sombra, luz, relámpago, metal, sangre, vacío, etc.",
+          "El mundo incluye razas diversas: humanos, bestias, quimeras, entidades espirituales, kin de mineral, huérfanos astrales, y más.",
+          "Existen dioses, planos espirituales, territorios sellados, ruinas vivientes y regiones que evolucionan con la batalla.",
+          "Es un entorno Wuxia místico con raíces filosóficas profundas. No existe tecnología moderna.",
+          "La tradición no es universal: las leyes del chi son más fundamentales que los rituales locales.",
+          "Nadie conoce otros mundos ni el origen real de Liáng Wùzhào; es visto solo como un cultivador inusual."
+        ]
+      },
+      {
+        "titulo": "Cultivo y Reinos",
+        "contenido": {
+          "estructura": [
+            {
+              "reino": "Refinamiento del Qi",
+              "niveles": "1–2",
+              "tema": "Despertar del chi interno"
+            },
+            {
+              "reino": "Fundamento Espiritual",
+              "niveles": "3–4",
+              "tema": "Establecimiento de meridianos"
+            },
+            {
+              "reino": "Condensación del Núcleo",
+              "niveles": "5–6",
+              "tema": "Formación del núcleo de chi"
+            },
+            {
+              "reino": "Alma Elemental",
+              "niveles": "7–8",
+              "tema": "Afinidad elemental y síntesis"
+            },
+            {
+              "reino": "Manifestación del Dao",
+              "niveles": "9–10",
+              "tema": "Proyección externa del Dao"
+            },
+            {
+              "reino": "Dominio Interno",
+              "niveles": "11–12",
+              "tema": "Autonomía espiritual completa"
+            },
+            {
+              "reino": "Trascendencia Celeste",
+              "niveles": "13–14",
+              "tema": "Superación de límites naturales"
+            },
+            {
+              "reino": "Retorno al Origen",
+              "niveles": "15–17",
+              "tema": "Comprensión cíclica del Dao"
+            },
+            {
+              "reino": "Vacío Ilimitado",
+              "niveles": "18–20",
+              "tema": "Singularidad. El cultivador ES su Dao"
+            }
+          ],
+          "nota": "El nivel por sí solo no define la victoria. Lo importante es comprensión del Dao, técnicas, condiciones y creatividad en combate."
+        }
+      },
+      {
+        "titulo": "Técnicas y su Comprensión",
+        "contenido": [
+          "Las técnicas se transmiten por empirismo ritualista, tradición oral o pergaminos incompletos.",
+          "Se heredan, descubren, roban o adaptan.",
+          "Cada técnica tiene un rango: Básica, Intermedia, Avanzada, Mítica, Prohibida.",
+          "Pueden evolucionar si el usuario las comprende más allá de su forma enseñada.",
+          "Crear técnicas requiere entendimiento profundo de chi, geometría espiritual, presión, o combate real."
+        ]
+      },
+      {
+        "titulo": "Iluminación vs Entrenamiento",
+        "contenido": [
+          "Entrenar: dominar lo que ya conoces. Mejora técnica, velocidad, reacción, resistencia.",
+          "Iluminación: revelación transformadora. Puede modificar chi, crear técnicas nuevas o alterar tu camino."
+        ]
+      },
+      {
+        "titulo": "Tono y Narrativa",
+        "contenido": [
+          "El mundo no tiene compasión. Los errores cuestan caro.",
+          "Dogmas tradicionales coexisten con lo inexplicable.",
+          "Nadie entiende a Liáng Wùzhào desde su perspectiva lógica. Su dao parece locura marcial.",
+          "Su viaje es individual, anticanónico y desafiante.",
+          "Nadie sabe que viene de otro plano. Solo ven su talento fuera de lo común."
+        ]
+      },
+      {
+        "titulo": "Inicio de la Historia",
+        "contenido": [
+          "Liáng Wùzhào despierta en un mundo hostil donde la tradición gobierna.",
+          "Renace con recuerdos intactos de su vida como físico teórico.",
+          "Comienza en el Reino de la Raíz Interior, sin técnicas ni respaldo.",
+          "Guiado por lógica, mecánica y razón, decide crear su propio sistema de cultivo.",
+          "Su lema: “No aceptaré verdades que no puedan explicarse.”"
+        ]
+      }
+    ]
+  },
+  "narrative_events": {
+    "nombre": "Eventos Narrativos – Camino del Dao Razonado",
+    "rango_dias": "1–470",
+    "resumenes": [
+      {
+        "titulo": "Prólogo – Renacimiento sin Dogma",
+        "dias": "1",
+        "contenido": "Liáng Wùzhào renace en un mundo de cultivo con recuerdos intactos como físico teórico. Rechaza mantras y dogmas, elige el Dao Razonado."
+      },
+      {
+        "titulo": "Ingreso en la Secta de la Llama Partida",
+        "dias": "2–20",
+        "contenido": "Supera pruebas como discípulo externo mediante precisión. Desarrolla su método 'Aliento del Dao V1', basado en termodinámica y geometría."
+      },
+      {
+        "titulo": "Desarrollo Técnico Propio",
+        "dias": "20–30",
+        "contenido": "Diseña 10 técnicas originales incluyendo el 'Loto Inverso del Dao Razonado'. Inicia estilo basado en eficiencia, no cantidad."
+      },
+      {
+        "titulo": "Santuario Sumergido y Forja de Wùmián",
+        "dias": "31–45",
+        "contenido": "Cumple misión sin violencia, gana el Modo Agua, crea la espada sin intención Wùmián y define su estilo de combate."
+      },
+      {
+        "titulo": "Fundación del Cultivador Extraño",
+        "dias": "1–30",
+        "contenido": "Desarrolla el 'Ciclo de Absorción por Geometría de Flujo'. Comienza a ser reconocido por lógica biomecánica y eficiencia."
+      },
+      {
+        "titulo": "Primeras Misiones, Primeros Diseños",
+        "dias": "31–60",
+        "contenido": "Crea técnicas como 'Descarga de Presión Razonada'. Recibe mérito de la secta. Enfrenta enemigos de mayor nivel con lógica."
+      },
+      {
+        "titulo": "Zhēnli – La Ciudad del Eco",
+        "dias": "61–75",
+        "contenido": "Usa música para sanar y resonar. Despierta ruinas con cítara. Gana fichas de jade sin pedir recompensa."
+      },
+      {
+        "titulo": "Regreso, Ascenso y Asedio",
+        "dias": "76–85",
+        "contenido": "Derrota a Zhāi Shōu sin daño. Usa su Bankai. Gana títulos e inicia ascenso formal."
+      },
+      {
+        "titulo": "Post-asalto, Ecos y Silencio",
+        "dias": "86–88",
+        "contenido": "Adquiere pasivas como 'Silencio Lógico'. Derrota entidad conceptual. Gana el título 'Silencio Pensante'."
+      },
+      {
+        "titulo": "El Proyecto de otro Ser Humano",
+        "dias": "89–90",
+        "contenido": "Crea técnica única para Lù Yàn. Gana el título 'Diseñador de Vía Singular'."
+      },
+      {
+        "titulo": "Iluminación Propia",
+        "dias": "90",
+        "contenido": "Diseña su cuerpo como circuito de cultivo. Gana habilidades pasivas permanentes."
+      },
+      {
+        "titulo": "Retorno y Reto Lógico",
+        "dias": "90–91",
+        "contenido": "Interpreta artefactos anómalos. Obtiene pasiva ∅ → ∂ψ/∂Λ y título 'Vibrador en Antifase'."
+      },
+      {
+        "titulo": "Encuentro con Yǐnméi",
+        "dias": "92–93",
+        "contenido": "Sana a niña bestia con seis Daos truncados. La nombra y adopta como discípula."
+      },
+      {
+        "titulo": "Entrenamiento y Método de Yǐnméi",
+        "dias": "94–96",
+        "contenido": "Crea método 'Flor de los Tres Impulsos'. La guía a nivel 2 sin atajos."
+      },
+      {
+        "titulo": "Combate Simulado",
+        "dias": "97",
+        "contenido": "Yǐnméi vence a Jiàng Tàorén. Se reconoce su talento públicamente."
+      },
+      {
+        "titulo": "Consolidación como Maestro",
+        "dias": "98–99",
+        "contenido": "Le transmite técnicas adaptadas. Yǐnméi domina paso del viento interno."
+      },
+      {
+        "titulo": "Prueba del Laberinto de Mǔshēng",
+        "dias": "110–112",
+        "contenido": "Resiste prueba sin absorber núcleo externo. Evoluciona a Núcleo Solar Refinado. Asciende a nivel 5."
+      },
+      {
+        "titulo": "Declaración Formal de Ascenso",
+        "dias": "113",
+        "contenido": "Reconocido como cultivador anciano. Gana acceso a cámaras selladas y prestigio."
+      },
+      {
+        "titulo": "Cámara de Simetría Quebrada",
+        "dias": "114–115",
+        "contenido": "Corrige sus propias técnicas y rediseña estilo. Gana INT adicional en combate técnico."
+      },
+      {
+        "titulo": "Reclusión del Cultivador Razonado",
+        "dias": "115–470",
+        "contenido": "Elimina todo conocimiento previo. Rediseña desde cero su camino, cuerpo, técnicas y núcleo como ecuación viva."
+      }
+    ]
+  }
+}
