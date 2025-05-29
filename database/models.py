@@ -242,4 +242,3 @@ class WorldState(Base):
     current_event = Column(String)
     active_effects = Column(JSON)
 
-```
