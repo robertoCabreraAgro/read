@@ -1,0 +1,108 @@
+{
+  "characters": {
+    "Liáng Wǔzhào": {
+      "name": "Liáng Wǔzhào",
+      "level": 5,
+      "class": "Monk (Custom Subclass: Dao Geométrico)",
+      "race": "Human",
+      "alignment": "Lawful Neutral",
+      "background": "Hermit",
+      "experience": 29600,
+      "attributes": {
+        "strength": 10,
+        "dexterity": 16,
+        "constitution": 12,
+        "intelligence": 20,
+        "wisdom": 16,
+        "charisma": 10
+      },
+      "proficiency_bonus": 3,
+      "saving_throws": {
+        "strength": false,
+        "dexterity": true,
+        "constitution": false,
+        "intelligence": true,
+        "wisdom": true,
+        "charisma": false
+      },
+      "skills": {
+        "arcana": true,
+        "insight": true,
+        "perception": true,
+        "acrobatics": true,
+        "history": true
+      },
+      "hit_points": {
+        "max": 40,
+        "current": 40
+      },
+      "armor_class": 14,
+      "speed": 30,
+      "languages": ["Common", "Celestial", "Primordial"],
+      "features_traits": [
+        {
+          "name": "Micronúcleo",
+          "description": "Contenedor comprimido de chi que almacena 132 puntos de maná condensado para respuestas rápidas o técnicas instantáneas."
+        },
+        {
+          "name": "Silencio del Diseño Absoluto",
+          "description": "Durante una meditación perfecta, se interrumpió toda lectura de chi por 47 segundos. Gana inmunidad a detección y ventajas al meditar ininterrumpidamente."
+        },
+        {
+          "name": "Sistema Elemental Adaptativo – Matriz Bernoulli Multi-Módulo",
+          "description": "Permite seleccionar una afinidad elemental basada en eficiencia de combate. Cambio libre 1/turno si INT ≥18. Técnicas ≤150 maná se adaptan automáticamente."
+        },
+        {
+          "name": "Ciclo de Absorción por Geometría de Flujo",
+          "description": "Versión base: -15% coste en técnicas ≤100 maná, +1d4 maná si se mueve o ataca sin proyectar. Corrección automática de chi y simetría interna."
+        },
+        {
+          "name": "Mecanismo de Flujo Recursivo (V1)",
+          "description": "Recupera +1 acción menor si no proyecta. Ventaja en INT para mantener técnicas. Absorbe presión externa (1/día)."
+        },
+        {
+          "name": "Ciclo de Presión Autónoma (V2)",
+          "description": "+10% eficiencia de maná. Puede lanzar 2 técnicas basadas en presión. +2 INT para resistir colapso o disrupción."
+        },
+        {
+          "name": "Núcleo de Absorción Reflexiva (V3)",
+          "description": "Costo 0 para técnicas ≤300 maná si hubo movimiento previo. Inmune a ambientes que drenan chi. Reacción automática a cambios de entorno (1/uso)."
+        }
+      ],
+      "resources": {
+        "mana": {
+          "max": 4730,
+          "current": 4730
+        },
+        "micronucleo": 132
+      },
+      "custom_properties": {
+        "dao": "Razonado",
+        "afiliacion": "Secta de la Llama Partida (Cuatro Estandartes)",
+        "estado": "En Reclusión Estructural Completa",
+        "reclusion": {
+          "inicio_dia": 115,
+          "fin_dia": 470,
+          "dias_restantes": 355
+        },
+        "titulos": {
+          "activos": ["Portador del Silencio del Diseño Absoluto"],
+          "retirados": [
+            "El que Rediseñó su Reflejo",
+            "El que Cortó la Escritura",
+            "Variable Estable"
+          ]
+        },
+        "elementos_compatibles": [
+          "Fuego – Presión térmica",
+          "Físico – Biomecánica",
+          "Aire – Evasión",
+          "Agua – Recuperación",
+          "Luz – Precisión",
+          "Vacío – Reacción anti-signatura"
+        ]
+      }
+    }
+  },
+  "events": []
+}
