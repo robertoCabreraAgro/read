@@ -1,0 +1,43 @@
+{
+  "nombre_mundo": "Mundo de Aethelgard - Era del Despertar Fragmentado",
+  "descripcion_general": "Un mundo donde la energía primordial (Chi o Maná) fluye de manera inestable tras un cataclismo conocido como 'La Disrupción'. Las civilizaciones intentan reconstruirse y dominar nuevas formas de poder, mientras antiguas verdades y peligros resurgen.",
+  "secciones": [
+    {
+      "titulo": "Flujo de Energía Primordial (Chi/Maná)",
+      "tipo": "lore_general",
+      "contenido": {
+        "descripcion": "El Chi (o Maná) es la energía vital. Su flujo es inestable, con nodos y vacíos.",
+        "reglas_basicas": [
+          "Nodos de Poder: Potencian técnicas, pueden ser peligrosos.",
+          "Zonas de Vacío: Debilitan técnicas, causan fatiga.",
+          "Resonancia Elemental: Áreas alineadas con elementos afectan técnicas.",
+          "Meditación y Cultivo: Prácticas para refinar y manipular Chi."
+        ]
+      }
+    },
+    {
+      "titulo": "Cultivo y Reinos de Poder",
+      "tipo": "cultivation_realms",
+      "nota": "Los Reinos de Cultivo representan niveles de entendimiento y control sobre el Chi. Cada reino desbloquea nuevas capacidades y percepciones. La progresión no es solo poder bruto, sino también comprensión filosófica y armonía con el Dao personal.",
+      "estructura": [
+        {"orden": 1, "nombre_reino": "Fundación del Núcleo", "rango_nivel_pj": "1-3", "tema": "Despertar del Chi, fortalecimiento básico del cuerpo y la mente, primeras técnicas."},
+        {"orden": 2, "nombre_reino": "Establecimiento del Flujo", "rango_nivel_pj": "4-6", "tema": "Control consciente del flujo interno de Chi, técnicas elementales básicas, mayor resistencia y capacidad sensorial."},
+        {"orden": 3, "nombre_reino": "Resonancia Elemental", "rango_nivel_pj": "7-9", "tema": "Afinidad profunda con uno o más elementos, manifestación de poder elemental avanzado, comprensión de patrones energéticos."},
+        {"orden": 4, "nombre_reino": "Geometría del Dao", "rango_nivel_pj": "10-12", "tema": "Percepción y manipulación de las estructuras fundamentales del Chi y la realidad, técnicas complejas que alteran el entorno, inicio de la trascendencia."},
+        {"orden": 5, "nombre_reino": "Unidad con el Vacío (Teórico)", "rango_nivel_pj": "13+", "tema": "Comprensión de la interconexión de todo, manipulación del Chi a nivel conceptual, habilidades legendarias o semi-divinas. Pocos han alcanzado este estado."}
+      ]
+    },
+    {
+      "titulo": "Leyes Físicas y Naturales",
+      "tipo": "lore_general",
+      "contenido": {
+        "descripcion": "Física similar a la Tierra, pero alterable por Chi.",
+        "puntos_clave": [
+          "Gravedad: Estándar, técnicas de levitación existen.",
+          "Ciclos Naturales: Normales, pueden afectar el Chi.",
+          "Materiales Exóticos: Infundidos con Chi, propiedades únicas."
+        ]
+      }
+    }
+  ]
+}

@@ -1,0 +1,14 @@
+[
+  {
+    "elemento": "Fuego",
+    "dao": "Presión Térmica y Geometría de Flujo – Enfoque en la adaptabilidad estructural y la eficiencia termodinámica del Chi de Fuego.",
+    "tecnicas": [
+      {"nombre": "Disparo de Fuego Primario", "nombre_chino": "初级火焰发射", "rango": "Básica", "version": "V0", "nivel": 0, "efecto": "Proyecta una pequeña esfera de fuego.", "daño": "1d4 Fuego"},
+      {"nombre": "Escudo de Flujo Térmico", "nombre_chino": "热流护盾", "rango": "Básica", "version": "V1", "nivel": 1, "efecto": "Crea barrera de aire caliente.", "defensa": "+1 AC vs proyectiles"},
+      {"nombre": "Hoja de Fuego Adaptativa", "nombre_chino": "适应火刃", "rango": "Intermedia", "version": "V1.5", "nivel": 2, "efecto": "Manifiesta hoja de fuego variable.", "daño": "2d6 Fuego + Mod. INT", "mana_cost_inicial": 15},
+      {"nombre": "Geometría de Combustión Interna", "nombre_chino": "内燃几何", "rango": "Intermedia", "version": "V2", "nivel": 3, "efecto": "Infunde objeto/área con fuego inestable.", "daño_detonacion": "3d8 Fuego"},
+      {"nombre": "Vórtice de Presión Cinética-Térmica", "nombre_chino": "动热压力涡旋", "rango": "Avanzada", "version": "V1", "nivel": 4, "efecto": "Genera torbellino de fuego.", "daño_continuo": "2d10 Fuego"},
+      {"nombre": "Singularidad de Fuego Estructural (Prototipo)", "nombre_chino": "结构火焰奇点", "rango": "Maestra", "version": "V3 - Prototipo Delta", "nivel": 5, "efecto": "Requiere Micronúcleo. Explosión o buff.", "daño_explosion": "10d10 Fuego", "costo_micronucleo": "50 unidades"}
+    ]
+  }
+]

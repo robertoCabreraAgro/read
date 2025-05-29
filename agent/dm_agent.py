@@ -1,33 +1,36 @@
 import os
-import json 
-import openai 
-from config import DATABASE_URL, OPENAI_API_KEY 
+import json
+import openai
+from openai.error import (
+    APIAuthenticationError,
+    APIConnectionError,
+    RateLimitError,
+    APIError,
+)
+from config import DATABASE_URL, OPENAI_API_KEY
 from database.engine import init_db, get_session
 from database.models import (
-    Character, WorldState, RuleSet, LoreTopic,
-import json 
-import openai 
-from config import DATABASE_URL, OPENAI_API_KEY 
-from database.engine import init_db, get_session
-from database.models import (
-    Character, WorldState, RuleSet, LoreTopic,
-    CharacterLanguage, CharacterResource, CharacterTitle, CharacterCompatibleElement, CharacterReclusionState, 
-    Technique, CharacterKnownTechniques, # For Technique integration
-import json 
-import openai 
-from config import DATABASE_URL, OPENAI_API_KEY 
-from database.engine import init_db, get_session
-from database.models import (
-    Character, WorldState, RuleSet, LoreTopic,
-    CharacterLanguage, CharacterResource, CharacterTitle, CharacterCompatibleElement, CharacterReclusionState, 
-    Technique, CharacterKnownTechniques, 
-    DmGuidelineSet, CultivationRealm, CampaignEvent, DmSessionStructureItem 
+    Character,
+    WorldState,
+    RuleSet,
+    LoreTopic,
+    CharacterLanguage,
+    CharacterResource,
+    CharacterTitle,
+    CharacterCompatibleElement,
+    CharacterReclusionState,
+    Technique,
+    CharacterKnownTechniques,
+    DmGuidelineSet,
+    CultivationRealm,
+    CampaignEvent,
+    DmSessionStructureItem,
 )
 from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy import desc, or_ # Added or_ for keyword search
-from sqlalchemy.orm import joinedload 
-from engine.rules_engine import RulesEngine 
-from engine.narrative_engine import NarrativeEngine 
+from sqlalchemy.orm import joinedload
+from engine.rules_engine import RulesEngine
+from engine.narrative_engine import NarrativeEngine
 
 class DmAgent:
     def __init__(self, db_url: str = None): 
@@ -90,6 +93,34 @@ class DmAgent:
         except SQLAlchemyError as e:
             print(f"Database error fetching recent Campaign Events: {e}")
             return []
+
+    def create_campaign_event(
+        self,
+        title: str,
+        summary: str,
+        day_start: int | None = None,
+        day_end: int | None = None,
+        tags: list | None = None,
+        details: dict | None = None,
+    ) -> CampaignEvent | None:
+        """Create and persist a new CampaignEvent."""
+        try:
+            event = CampaignEvent(
+                title=title,
+                day_range_start=day_start,
+                day_range_end=day_end,
+                summary_content=summary,
+                full_details_json=details,
+                event_tags_json=tags,
+            )
+            self.db_session.add(event)
+            self.db_session.commit()
+            self.db_session.refresh(event)
+            return event
+        except SQLAlchemyError as e:
+            print(f"Error creating campaign event '{title}': {e}")
+            self.db_session.rollback()
+            return None
             
     def get_character_info_for_prompt(self, character_name: str) -> dict | None:
         character = self.get_character_data(character_name) 
@@ -332,16 +363,16 @@ class DmAgent:
             )
             ai_response = response.choices[0].message['content'].strip()
             return ai_response
-        except openai.APIAuthenticationError as e: # Specific error first
+        except APIAuthenticationError as e:  # Specific error first
             print(f"OpenAI API Authentication Error: {e}")
             return "OpenAI API Key es inválido o no está autorizado. Por favor, verifica tu API key."
-        except openai.APIConnectionError as e:
+        except APIConnectionError as e:
             print(f"OpenAI API Connection Error: {e}")
             return "Could not connect to OpenAI API. Please check your network connection."
-        except openai.RateLimitError as e:
+        except RateLimitError as e:
             print(f"OpenAI API Rate Limit Error: {e}")
             return "OpenAI API rate limit exceeded. Please try again later."
-        except openai.APIError as e: # Catch other OpenAI specific errors
+        except APIError as e:  # Catch other OpenAI specific errors
             print(f"OpenAI API Error: {e}")
             return "Sorry, I encountered an error trying to process your request with the AI."
         except Exception as e: # Catch any other unexpected errors
@@ -477,134 +508,3 @@ class DmAgent:
             self.db_session.close()
             print("Database session closed.")
 
-if __name__ == '__main__':
-    # This test assumes populate_db.py has been run successfully with the new schema.
-    print("Initializing DmAgent for Technique Integration testing (uses DATABASE_URL from config)...")
-    agent = DmAgent() 
-
-    if not agent.ai_enabled:
-        print("AI is not enabled. Some functionalities might be limited or provide placeholder responses.")
-
-    print("\n--- Testing DM Guideline Loading (from DmAgent.__init__) ---")
-    if agent.dm_guidelines:
-        print(f"Guidelines cargadas: {agent.dm_guidelines.name}")
-        print(f"  Tono y Estilo: {agent.dm_guidelines.tone_style}")
-        print(f"  Foco: {agent.dm_guidelines.tone_focus}")
-        if agent.dm_guidelines.session_structure_items: # Check if the list is not empty
-             print(f"  Estructura Sesión (1er item): {agent.dm_guidelines.session_structure_items[0].item_description}")
-    else:
-        print("DM Guidelines no se cargaron. Verifica que 'populate_db.py' haya sido ejecutado y el nombre sea correcto.")
-
-    print("\n--- Testing LoreTopic Query ---")
-    cultivation_lore = agent.get_lore_topic_by_name("Cultivo y Reinos de Poder")
-    if cultivation_lore:
-        print(f"LoreTopic encontrado: {cultivation_lore.name}")
-        # print(f"  Descripción: {cultivation_lore.description[:100] if cultivation_lore.description else 'N/A'}...")
-        if cultivation_lore.cultivation_realms:
-            print(f"  Primer Reino de Cultivo (desde LoreTopic): {cultivation_lore.cultivation_realms[0].name} (Orden: {cultivation_lore.cultivation_realms[0].realm_order})")
-    else:
-        print("LoreTopic 'Cultivo y Reinos de Poder' no encontrado.")
-
-    print("\n--- Testing Cultivation Realm Query ---")
-    all_realms = agent.get_all_cultivation_realms()
-    if all_realms:
-        print(f"Total de Reinos de Cultivo encontrados: {len(all_realms)}")
-        for realm_idx, realm in enumerate(all_realms):
-            if realm_idx < 2 : # Print first 2
-                print(f"  - {realm.name} (Orden: {realm.realm_order}, Rango Nivel PJ: {realm.level_range})")
-    else:
-        print("No se encontraron Reinos de Cultivo.")
-
-    print("\n--- Testing Recent Campaign Events Query ---")
-    recent_events = agent.get_recent_campaign_events(limit=2)
-    if recent_events:
-        print(f"Eventos Recientes (hasta 2):")
-        for event in recent_events:
-            event_days_str = f"Días {event.day_range_start}"
-            if event.day_range_end and event.day_range_end != event.day_range_start:
-                event_days_str += f"-{event.day_range_end}"
-            print(f"  - Título: {event.title} ({event_days_str}), Resumen: {event.summary_content[:60]}...")
-    else:
-        print("No se encontraron eventos de campaña recientes.")
-        
-    print("\n--- Testing Character Info for Prompt (Liáng Wǔzhào) ---")
-    liang_info = agent.get_character_info_for_prompt("Liáng Wǔzhào")
-    if liang_info:
-        print("Información de Liáng Wǔzhào para prompt:")
-        for key, value in liang_info.items(): # Python 3.6+ dicts are ordered
-            print(f"  {key.capitalize()}: {value}")
-    else:
-        print("No se encontró información para Liáng Wǔzhào (Asegúrate que populate_db.py haya sido ejecutado).")
-
-    print("\n--- Testing Technique Query Methods ---")
-    sample_tech_name = "Disparo de Fuego Primario" # Asumiendo que existe por populate_db.py
-    tech_details = agent.get_technique_details(sample_tech_name)
-    if tech_details:
-        print(f"Detalles de '{sample_tech_name}': Rango {tech_details.rank}, Elemento {tech_details.element_association}, Coste Maná: {tech_details.mana_cost}")
-        print(f"  Descripción: {tech_details.description}")
-    else:
-        print(f"Técnica '{sample_tech_name}' no encontrada.")
-
-    print("\n--- Testing Known Techniques for Liáng Wǔzhào ---")
-    lw_known_tech_objs = agent.get_character_known_techniques_objects("Liáng Wǔzhào")
-    if lw_known_tech_objs:
-        print(f"Liáng Wǔzhào conoce {len(lw_known_tech_objs)} técnicas (objetos CharacterKnownTechniques):")
-        for ckt_obj in lw_known_tech_objs:
-            if ckt_obj.technique:
-                 print(f"  - {ckt_obj.technique.name} (Maestría: {ckt_obj.mastery_level or 'N/A'})")
-    else:
-        print("Liáng Wǔzhào no parece conocer técnicas o no se encontró el personaje.")
-
-    formatted_known_techs = agent.get_formatted_known_techniques_for_prompt("Liáng Wǔzhào")
-    if formatted_known_techs:
-        print("\nTécnicas Conocidas por Liáng Wǔzhào (formateado para prompt):")
-        print(formatted_known_techs)
-    else:
-        print("\nNo se pudieron formatear las técnicas conocidas de Liáng Wǔzhào para el prompt.")
-    
-    print("\n--- Testing save_character_data (simple character) - Opcional, mantener si es relevante ---")
-    test_char_data = {
-        "name": "Test Dummy", "level": 1, "character_class": "Común", "race": "Humano",
-        "status_general": "Probando", "dao_philosophy": "Pragmatismo", "affiliation": "Ninguna"
-    }
-    saved_dummy = agent.save_character_data(test_char_data)
-    if saved_dummy:
-        print(f"Personaje de prueba '{saved_dummy.name}' guardado con ID {saved_dummy.id}.")
-        retrieved_dummy = agent.get_character_info_for_prompt("Test Dummy")
-        if retrieved_dummy:
-            print(f"  Recuperado para prompt: {retrieved_dummy}")
-    else:
-        print("No se pudo guardar el personaje de prueba.")
-
-
-    # Test process_input con el nuevo contexto de técnicas
-    print("\n--- Testing process_input (con contexto de BD y Técnicas) ---")
-    if agent.ai_enabled:
-        user_queries_for_process_input = [
-            "Qué opciones tengo?",
-            "Uso mi Hoja de Fuego Adaptativa contra el espantapájaros!", # Assumes this tech is known
-            "Activo mi Rayo Congelante Instantáneo!" # Assumes this tech is not known / fake
-        ]
-        for query in user_queries_for_process_input:
-            print(f"\nJugador dice: \"{query}\"")
-            ai_response = agent.process_input(query)
-            print(f"DM (AI): {ai_response}")
-    else:
-        print("Skipping AI process_input test as AI is disabled.")
-
-    print("\n--- Testing find_campaign_events_by_keyword ---")
-    # Assuming populate_db.py created an event with "Monasterio" in title or summary
-    found_events = agent.find_campaign_events_by_keyword(keyword="Monasterio")
-    if found_events:
-        print(f"Eventos encontrados para 'Monasterio':")
-        for event in found_events:
-            print(f"  - {event.title} (Días: {event.day_range_start}-{event.day_range_end})")
-    else:
-        print("No se encontraron eventos para 'Monasterio'. (populate_db.py debe crear alguno con este término)")
-    
-    print("\n--- Testing 'check rule for:' (sin cambios directos aquí) ---")
-    rule_check_response = agent.process_input("check rule for: iniciativa") 
-    print(f"DM (Rule Check para 'iniciativa'): {rule_check_response}")
-
-    print("\n--- DmAgent technique and event integration example complete ---")
-    agent.close_session()

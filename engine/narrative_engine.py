@@ -1,5 +1,11 @@
 import openai
-from config import OPENAI_API_KEY # Import from config
+from openai.error import (
+    APIAuthenticationError,
+    APIConnectionError,
+    RateLimitError,
+    APIError,
+)
+from config import OPENAI_API_KEY  # Import from config
 
 class NarrativeEngine:
     def __init__(self):
@@ -47,16 +53,16 @@ class NarrativeEngine:
             )
             narrative = response.choices[0].message['content'].strip()
             return narrative
-        except openai.APIAuthenticationError as e:
+        except APIAuthenticationError as e:
             print(f"OpenAI API Authentication Error in NarrativeEngine: {e}")
             return f"Narrative AI Error: Authentication failed. Could not generate description for '{topic}'."
-        except openai.APIConnectionError as e:
+        except APIConnectionError as e:
             print(f"OpenAI API Connection Error in NarrativeEngine: {e}")
             return f"Narrative AI Error: Connection problem. Could not generate description for '{topic}'."
-        except openai.RateLimitError as e:
+        except RateLimitError as e:
             print(f"OpenAI API Rate Limit Error in NarrativeEngine: {e}")
             return f"Narrative AI Error: Rate limit exceeded. Could not generate description for '{topic}'."
-        except openai.APIError as e:
+        except APIError as e:
             print(f"OpenAI API Error in NarrativeEngine: {e}")
             return f"Narrative AI Error: Could not generate description for '{topic}' due to API issue."
         except Exception as e:
