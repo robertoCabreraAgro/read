@@ -1,33 +1,30 @@
 import os
-import json 
-import openai 
-from config import DATABASE_URL, OPENAI_API_KEY 
+import json
+import openai
+from config import DATABASE_URL, OPENAI_API_KEY
 from database.engine import init_db, get_session
 from database.models import (
-    Character, WorldState, RuleSet, LoreTopic,
-import json 
-import openai 
-from config import DATABASE_URL, OPENAI_API_KEY 
-from database.engine import init_db, get_session
-from database.models import (
-    Character, WorldState, RuleSet, LoreTopic,
-    CharacterLanguage, CharacterResource, CharacterTitle, CharacterCompatibleElement, CharacterReclusionState, 
-    Technique, CharacterKnownTechniques, # For Technique integration
-import json 
-import openai 
-from config import DATABASE_URL, OPENAI_API_KEY 
-from database.engine import init_db, get_session
-from database.models import (
-    Character, WorldState, RuleSet, LoreTopic,
-    CharacterLanguage, CharacterResource, CharacterTitle, CharacterCompatibleElement, CharacterReclusionState, 
-    Technique, CharacterKnownTechniques, 
-    DmGuidelineSet, CultivationRealm, CampaignEvent, DmSessionStructureItem 
+    Character,
+    WorldState,
+    RuleSet,
+    LoreTopic,
+    CharacterLanguage,
+    CharacterResource,
+    CharacterTitle,
+    CharacterCompatibleElement,
+    CharacterReclusionState,
+    Technique,
+    CharacterKnownTechniques,
+    DmGuidelineSet,
+    CultivationRealm,
+    CampaignEvent,
+    DmSessionStructureItem,
 )
 from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy import desc, or_ # Added or_ for keyword search
-from sqlalchemy.orm import joinedload 
-from engine.rules_engine import RulesEngine 
-from engine.narrative_engine import NarrativeEngine 
+from sqlalchemy.orm import joinedload
+from engine.rules_engine import RulesEngine
+from engine.narrative_engine import NarrativeEngine
 
 class DmAgent:
     def __init__(self, db_url: str = None): 
@@ -90,6 +87,34 @@ class DmAgent:
         except SQLAlchemyError as e:
             print(f"Database error fetching recent Campaign Events: {e}")
             return []
+
+    def create_campaign_event(
+        self,
+        title: str,
+        summary: str,
+        day_start: int | None = None,
+        day_end: int | None = None,
+        tags: list | None = None,
+        details: dict | None = None,
+    ) -> CampaignEvent | None:
+        """Create and persist a new CampaignEvent."""
+        try:
+            event = CampaignEvent(
+                title=title,
+                day_range_start=day_start,
+                day_range_end=day_end,
+                summary_content=summary,
+                full_details_json=details,
+                event_tags_json=tags,
+            )
+            self.db_session.add(event)
+            self.db_session.commit()
+            self.db_session.refresh(event)
+            return event
+        except SQLAlchemyError as e:
+            print(f"Error creating campaign event '{title}': {e}")
+            self.db_session.rollback()
+            return None
             
     def get_character_info_for_prompt(self, character_name: str) -> dict | None:
         character = self.get_character_data(character_name) 

@@ -1,11 +1,7 @@
-import json # For parsing JSON arguments from CLI
+import json  # For parsing JSON arguments from CLI
+import os  # For checking DEBUG_DM_PROMPT in main's startup message
 from agent.dm_agent import DmAgent
-from config import DATABASE_URL # Import DATABASE_URL from config
-
-import os # For checking DEBUG_DM_PROMPT in main's startup message
-import json # For parsing JSON arguments from CLI
-from agent.dm_agent import DmAgent
-from config import DATABASE_URL # Import DATABASE_URL from config
+from config import DATABASE_URL  # Import DATABASE_URL from config
 
 def main():
     # Use DATABASE_URL from config by default for the DmAgent.
@@ -63,6 +59,7 @@ def main():
                 print("  getchar <name>                - Get detailed character sheet for <name>.")
                 print("  setworld '<event_desc>' '<effects_json>' - Set/update the world state.")
                 print("    Example: setworld \"A red sun rises\" '[\"ominous_sky\",\"eerie_calm\"]'")
+                print("  addevent \"<title>\" \"<summary>\" <day_start> [day_end] [tags_json] - Add a new campaign event.")
                 print("  history [N]                   - Show the N most recent campaign events (default N=5).")
                 print("  find event <keyword>          - Search campaign events by keyword in title, summary, or tags.")
                 print("--------------------------------------")
@@ -236,6 +233,30 @@ def main():
                     print("Usage: setworld '<event_desc>' '<effects_json>'")
                 except Exception as e:
                     print(f"An unexpected error occurred with setworld: {e}")
+
+            elif command == "addevent":
+                import shlex
+                try:
+                    parts = shlex.split(args_str)
+                    if len(parts) < 3:
+                        raise ValueError("Not enough arguments.")
+                    title = parts[0]
+                    summary = parts[1]
+                    day_start = int(parts[2])
+                    day_end = int(parts[3]) if len(parts) > 3 else None
+                    tags = json.loads(parts[4]) if len(parts) > 4 else None
+                    event = agent.create_campaign_event(title, summary, day_start, day_end, tags)
+                    if event:
+                        print(f"Campaign event '{event.title}' added with ID {event.id}.")
+                    else:
+                        print("Failed to add campaign event.")
+                except ValueError as ve:
+                    print(f"Error: {ve}")
+                    print("Usage: addevent \"<title>\" \"<summary>\" <day_start> [day_end] [tags_json]")
+                except json.JSONDecodeError as je:
+                    print(f"Error parsing tags JSON: {je}")
+                except Exception as e:
+                    print(f"An unexpected error occurred with addevent: {e}")
 
             elif command == "history":
                 limit = 5 # Default limit
