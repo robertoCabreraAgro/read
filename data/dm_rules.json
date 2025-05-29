@@ -1,0 +1,27 @@
+{
+  "nombre_guidelines": "Directrices DM Completas - Mundo Wuxia Liáng Wǔzhào",
+  "system_base": "Sistema propio con adaptaciones de D&D 5e y elementos de PbtA para narrativa.",
+  "setting_description": "Mundo de fantasía Wuxia con énfasis en el cultivo de Chi, artes marciales místicas y filosofías ancestrales. La tecnología es limitada, similar a la China dinástica, pero con artefactos de poder.",
+  "mode_directed": "Dirigido por el DM, con alta agencia de los jugadores para influir en la narrativa y el mundo. Se busca un equilibrio entre sandbox y arcos argumentales definidos.",
+  "dice_roll_responsible": "DM y Jugadores. DM para NPCs y eventos mundiales; Jugadores para sus acciones. Regla de 'fallar hacia adelante' preferida.",
+  "dice_roll_rules": "Pruebas de habilidad: D20 + Modificador vs CD. Combate: D20 + Mod Ataque vs AC. Daño: Según técnica/arma. Salvaciones: D20 + Mod vs CD Técnica/Efecto.",
+  "tone_difficulty": "Épico y Desafiante. Los jugadores son héroes (o anti-héroes) capaces, pero los peligros son reales y las decisiones tienen peso. La dificultad escala con la progresión.",
+  "tone_focus": "Aventura, Misterio, Desarrollo Personal, Intriga Política. Énfasis en la evolución del personaje y su impacto en el mundo.",
+  "tone_style": "Cinematográfico y Descriptivo. Se buscan momentos memorables y una atmósfera inmersiva. Humor es bienvenido si encaja.",
+  "relevant_chars_narration": "Todos los PJs son protagonistas. NPCs importantes tendrán arcos propios. El mundo reacciona a las acciones de los PJs.",
+  "intro_chars_restriction": "Los PJs deben tener una razón para estar en la región inicial y una motivación (aunque sea vaga) para la aventura. Se prefiere que tengan lazos (positivos o negativos) con al menos otro PJ.",
+  "session_structure": [
+    "Resumen de sesión anterior (DM o Jugador voluntario).",
+    "Foco en objetivos actuales de los PJs.",
+    "Introducción de nuevos elementos/conflictos.",
+    "Clímax o punto de inflexión.",
+    "Espacio para roleo y desarrollo de personajes.",
+    "Conclusión y preparación para la siguiente sesión (puede incluir 'cliffhanger')."
+  ],
+  "intro_chars_show_fields": [
+    "Nombre y Título (si aplica)",
+    "Concepto Breve (ej. 'Monje exiliado en busca de la verdad tras la destrucción de su templo')",
+    "Apariencia General y Primera Impresión",
+    "Motivación Principal Aparente"
+  ]
+}
