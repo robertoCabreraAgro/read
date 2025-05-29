@@ -2,14 +2,16 @@ import json # For parsing JSON arguments from CLI
 from agent.dm_agent import DmAgent
 from config import DATABASE_URL # Import DATABASE_URL from config
 
+import os # For checking DEBUG_DM_PROMPT in main's startup message
+import json # For parsing JSON arguments from CLI
+from agent.dm_agent import DmAgent
+from config import DATABASE_URL # Import DATABASE_URL from config
+
 def main():
     # Use DATABASE_URL from config by default for the DmAgent.
-    # The DmAgent's __init__ will use this if no specific db_url is passed.
-    # For the CLI, we can let DmAgent use its default logic which now reads from config.
-    # If you wanted the CLI to specifically override the config for some reason, 
-    # you could pass db_url=यहां_specific_cli_db_url, but usually, you'd want config to rule.
-    
     print(f"DmAgent will attempt to use database configured via DATABASE_URL (default: {DATABASE_URL})")
+    if os.getenv("DEBUG_DM_PROMPT", "False").lower() == "true":
+        print("INFO: DEBUG_DM_PROMPT is set to True. Full AI prompts will be printed.")
     
     try:
         # DmAgent will use DATABASE_URL from config if its db_url param is None (which is its new default)
@@ -56,11 +58,13 @@ def main():
                 print("  say <text>                    - Send <text> to the DM (AI processed).")
                 print("  describe <topic>              - Get an AI-generated description of <topic>.")
                 print("  check rule <keyword>          - Check rules for <keyword>.")
-                print("  addchar <name> '<attrs_json>' '<inv_json>' <status> - Add a new character.")
-                print("    Example: addchar Frodo '{\"str\":8,\"dex\":16}' '[\"ring\",\"lembas\"]' \"Weary\"")
-                print("  getchar <name>                - Get character details for <name>.")
+                print("  addchar <name> <level> <class> <race> - Add a new basic character.")
+                print("    Example: addchar Frodo 1 Hobbit Rogue")
+                print("  getchar <name>                - Get detailed character sheet for <name>.")
                 print("  setworld '<event_desc>' '<effects_json>' - Set/update the world state.")
                 print("    Example: setworld \"A red sun rises\" '[\"ominous_sky\",\"eerie_calm\"]'")
+                print("  history [N]                   - Show the N most recent campaign events (default N=5).")
+                print("  find event <keyword>          - Search campaign events by keyword in title, summary, or tags.")
                 print("--------------------------------------")
             
             elif command == "say":
@@ -86,52 +90,44 @@ def main():
                     print("Usage: check rule <keyword>")
 
             elif command == "addchar":
-                # Expects: name '{"attr":"val"}' '["item"]' status
+                # Simplified: addchar <name> <level> <class> <race>
                 try:
-                    # A more robust parser would be better than simple split for quoted strings
-                    # This is a basic attempt, assuming simple space separation for now after command.
-                    # For JSON, it's better to pass them as single arguments.
-                    # e.g. addchar Pippin '{"str":8}' '["pipe"]' Healthy
-                    # A real CLI might use argparse or a library.
+                    args = args_str.split(maxsplit=3) # name, level, class, race (race can have spaces)
+                    if len(args) < 4:
+                        raise ValueError("Not enough arguments.")
                     
-                    # Temporary crude parsing: find first ' {', then ' [', then the rest
-                    name_end_idx = args_str.find(" '{")
-                    if name_end_idx == -1: raise ValueError("Attributes JSON string not found or malformed start.")
-                    name = args_str[:name_end_idx]
-                    
-                    attrs_json_start_idx = name_end_idx + 1
-                    attrs_json_end_idx = args_str.find("}' ", attrs_json_start_idx) # find end of json + space
-                    if attrs_json_end_idx == -1: raise ValueError("Inventory JSON string not found or malformed start after attributes.")
-                    attrs_json_str = args_str[attrs_json_start_idx : attrs_json_end_idx+1]
-                    
-                    inv_json_start_idx = attrs_json_end_idx + 2 # skip space and '{'
-                    inv_json_end_idx = args_str.find("]' ", inv_json_start_idx)
-                    if inv_json_end_idx == -1: raise ValueError("Status not found or malformed start after inventory.")
-                    inv_json_str = args_str[inv_json_start_idx : inv_json_end_idx+1]
-                    
-                    status = args_str[inv_json_end_idx+2:].strip()
+                    name = args[0]
+                    try:
+                        level = int(args[1])
+                    except ValueError:
+                        raise ValueError("Level must be an integer.")
+                    char_class = args[2]
+                    race = args[3]
 
-                    if not name or not status: # Basic check
-                        raise ValueError("Name and status cannot be empty.")
-
-                    attributes = json.loads(attrs_json_str)
-                    inventory = json.loads(inv_json_str)
-                    
-                    char_data = {"name": name, "attributes": attributes, "inventory": inventory, "status": status}
-                    new_char = agent.save_character_data(char_data)
+                    character_data = {
+                        "name": name,
+                        "level": level,
+                        "character_class": char_class,
+                        "race": race,
+                        # Default other essential fields or let save_character_data handle defaults
+                        "hp_max": 10 + (level -1) * 5, # Example default HP
+                        "hp_current": 10 + (level-1) * 5,
+                        "strength_score": 10, # Example defaults
+                        "dexterity_score": 10,
+                        "constitution_score": 10,
+                        "intelligence_score": 10,
+                        "wisdom_score": 10,
+                        "charisma_score": 10,
+                    }
+                    new_char = agent.save_character_data(character_data)
                     if new_char:
-                        print(f"Character '{new_char.name}' saved with ID {new_char.id}.")
+                        print(f"Character '{new_char.name}' (Level {new_char.level} {new_char.race} {new_char.character_class}) saved with ID {new_char.id}.")
                     else:
-                        print("Failed to save character.")
-                except json.JSONDecodeError as je:
-                    print(f"Error: Invalid JSON provided. Details: {je}")
-                    print("Usage: addchar <name> '<attrs_json>' '<inv_json>' <status>")
-                    print("Example: addchar Frodo '{\"str\":8,\"dex\":16}' '[\"ring\",\"lembas\"]' \"Weary\"")
-                    print("Ensure JSON strings are enclosed in single quotes and use double quotes for internal keys/strings.")
+                        print(f"Failed to save character '{name}'. Check logs for details.")
                 except ValueError as ve:
-                    print(f"Error parsing arguments for addchar: {ve}")
-                    print("Usage: addchar <name> '<attrs_json>' '<inv_json>' <status>")
-                    print("Example: addchar Frodo '{\"str\":8,\"dex\":16}' '[\"ring\",\"lembas\"]' \"Weary\"")
+                    print(f"Error: {ve}")
+                    print("Usage: addchar <name> <level> <class> <race>")
+                    print("Example: addchar Frodo 1 Hobbit Rogue")
                 except Exception as e:
                     print(f"An unexpected error occurred with addchar: {e}")
 
@@ -140,11 +136,70 @@ def main():
                     name = args_str.strip()
                     character = agent.get_character_data(name)
                     if character:
-                        print(f"Character: {character.name}")
-                        print(f"  ID: {character.id}")
-                        print(f"  Attributes: {character.attributes}")
-                        print(f"  Inventory: {character.inventory}")
-                        print(f"  Status: {character.status}")
+                        print(f"\n--- Character Sheet: {character.name} ---")
+                        print(f"ID: {character.id}")
+                        print(f"Level: {character.level} {character.race} {character.character_class}")
+                        print(f"Alignment: {character.alignment if character.alignment else 'N/A'}")
+                        print(f"Background: {character.background if character.background else 'N/A'}")
+                        print(f"XP: {character.experience_points}")
+                        print(f"HP: {character.hp_current}/{character.hp_max}")
+                        ac_str = str(character.armor_class) if character.armor_class is not None else "N/A"
+                        speed_str = str(character.speed) if character.speed is not None else "N/A"
+                        print(f"AC: {ac_str}, Speed: {speed_str} ft")
+                        
+                        mana_str = "N/A"
+                        if character.mana_max is not None:
+                            mana_str = f"{character.mana_current}/{character.mana_max}"
+                        print(f"Mana: {mana_str}")
+                        print(f"Status: {character.status_general if character.status_general else 'N/A'}")
+                        print(f"Proficiency Bonus: +{character.proficiency_bonus}")
+
+                        print("\nAttributes:")
+                        print(f"  STR: {character.strength_score}, DEX: {character.dexterity_score}, CON: {character.constitution_score}")
+                        print(f"  INT: {character.intelligence_score}, WIS: {character.wisdom_score}, CHA: {character.charisma_score}")
+
+                        print("\nSaving Throw Proficiencies:")
+                        profs = [stp.attribute_name for stp in character.saving_throw_proficiencies if stp.is_proficient]
+                        print(f"  {', '.join(profs) if profs else 'None'}")
+
+                        print("\nSkill Proficiencies:")
+                        skill_profs = [sp.skill_name for sp in character.skill_proficiencies if sp.is_proficient]
+                        print(f"  {', '.join(skill_profs) if skill_profs else 'None'}")
+                        
+                        print("\nLanguages:")
+                        langs = [lang.language_name for lang in character.languages]
+                        print(f"  {', '.join(langs) if langs else 'None'}")
+
+                        print("\nFeatures & Traits:")
+                        if character.features_traits:
+                            for ft in character.features_traits:
+                                type_str = f" ({ft.type})" if ft.type else ""
+                                print(f"  - {ft.name}{type_str}: {ft.description[:70] + '...' if ft.description and len(ft.description) > 70 else ft.description if ft.description else 'No description.'}")
+                        else:
+                            print("  None")
+
+                        print("\nResources:")
+                        if character.resources:
+                            for res in character.resources:
+                                print(f"  - {res.resource_name}: {res.current_value}/{res.max_value}")
+                        else:
+                            print("  None")
+
+                        print("\nInventory:")
+                        if character.inventory_items:
+                            for item in character.inventory_items:
+                                equipped_str = " (Equipped)" if item.is_equipped else ""
+                                print(f"  - {item.item_name} (x{item.quantity}){equipped_str}")
+                        else:
+                            print("  None")
+                        
+                        print("\nCustom Properties:")
+                        if character.custom_props_json:
+                            # Assuming custom_props_json is already a dict due to SQLAlchemy JSON type
+                            print(json.dumps(character.custom_props_json, indent=2))
+                        else:
+                            print("  None")
+                        print("--------------------------------------")
                     else:
                         print(f"Character '{name}' not found.")
                 else:
@@ -181,6 +236,54 @@ def main():
                     print("Usage: setworld '<event_desc>' '<effects_json>'")
                 except Exception as e:
                     print(f"An unexpected error occurred with setworld: {e}")
+
+            elif command == "history":
+                limit = 5 # Default limit
+                if args_str:
+                    try:
+                        limit = int(args_str)
+                        if limit <= 0:
+                            print("Error: Number of events (N) must be positive.")
+                            continue
+                    except ValueError:
+                        print(f"Error: '{args_str}' is not a valid number for N. Using default N={limit}.")
+                
+                events = agent.get_recent_campaign_events(limit=limit)
+                if events:
+                    print(f"\n--- Historial Reciente de la Campaña (Últimos {len(events)} eventos) ---")
+                    for event in events:
+                        days_str = f"Días {event.day_range_start}"
+                        if event.day_range_end and event.day_range_end != event.day_range_start:
+                            days_str += f"-{event.day_range_end}"
+                        
+                        print(f"{days_str}: {event.title}")
+                        print(f"  Resumen: {event.summary_content}")
+                        if event.full_details_json: # Print some details if available
+                            details_to_show = {k: v for k, v in event.full_details_json.items() if k in ["personajes_clave", "impacto_inicial", "temas"]}
+                            if details_to_show : print(f"  Detalles clave: {json.dumps(details_to_show, ensure_ascii=False)}")
+                        print("---")
+                else:
+                    print("No hay eventos recientes en la campaña.")
+
+            elif command == "find" and args_str.startswith("event "):
+                keyword = args_str.replace("event ", "", 1).strip()
+                if not keyword:
+                    print("Usage: find event <keyword>")
+                    continue
+                
+                events = agent.find_campaign_events_by_keyword(keyword=keyword)
+                if events:
+                    print(f"\n--- Eventos Encontrados para \"{keyword}\" ---")
+                    for event in events:
+                        days_str = f"Días {event.day_range_start}"
+                        if event.day_range_end and event.day_range_end != event.day_range_start:
+                            days_str += f"-{event.day_range_end}"
+                        print(f"{days_str}: {event.title}")
+                        print(f"  Resumen: {event.summary_content}")
+                        if event.event_tags_json: print(f"  Tags: {event.event_tags_json}")
+                        print("---")
+                else:
+                    print(f"No se encontraron eventos para \"{keyword}\".")
             
             else:
                 print(f"Unknown command: '{command}'. Type 'help' for available commands.")
