@@ -1,6 +1,7 @@
 import os
 import json
 import openai
+import openai.error
 from config import DATABASE_URL, OPENAI_API_KEY
 from database.engine import init_db, get_session
 from database.models import (
@@ -357,16 +358,16 @@ class DmAgent:
             )
             ai_response = response.choices[0].message['content'].strip()
             return ai_response
-        except openai.APIAuthenticationError as e: # Specific error first
+        except openai.error.AuthenticationError as e: # Specific error first
             print(f"OpenAI API Authentication Error: {e}")
             return "OpenAI API Key es inválido o no está autorizado. Por favor, verifica tu API key."
-        except openai.APIConnectionError as e:
+        except openai.error.APIConnectionError as e:
             print(f"OpenAI API Connection Error: {e}")
             return "Could not connect to OpenAI API. Please check your network connection."
-        except openai.RateLimitError as e:
+        except openai.error.RateLimitError as e:
             print(f"OpenAI API Rate Limit Error: {e}")
             return "OpenAI API rate limit exceeded. Please try again later."
-        except openai.APIError as e: # Catch other OpenAI specific errors
+        except openai.error.APIError as e: # Catch other OpenAI specific errors
             print(f"OpenAI API Error: {e}")
             return "Sorry, I encountered an error trying to process your request with the AI."
         except Exception as e: # Catch any other unexpected errors

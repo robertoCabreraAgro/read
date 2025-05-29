@@ -1,4 +1,4 @@
 sqlalchemy
-openai
+openai>=0.27,<1
 python-dotenv
 psycopg2-binary
