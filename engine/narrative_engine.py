@@ -1,5 +1,5 @@
 import openai
-import openai.error
+from openai import OpenAIError
 from config import OPENAI_API_KEY # Import from config
 
 class NarrativeEngine:

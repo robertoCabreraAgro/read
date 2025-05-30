@@ -1,7 +1,7 @@
 import os
 import json
 import openai
-import openai.error
+from openai import OpenAIError
 from config import DATABASE_URL, OPENAI_API_KEY
 from database.engine import init_db, get_session
 from database.models import (
