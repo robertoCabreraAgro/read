@@ -1,0 +1,61 @@
+{
+    "dice_roll_history": [
+        {
+            "id": 1,
+            "session_id": 1,
+            "encounter_id": 1,
+            "roller_name": "Liáng Wǔzhào",
+            "roller_type": "character",
+            "roller_id": 1,
+            "roll_type": "initiative",
+            "dice_expression": "1d20+3",
+            "individual_rolls": [
+                15
+            ],
+            "modifiers": 3,
+            "total_result": 18,
+            "target_dc": null,
+            "success": null,
+            "context": "Initiative roll for combat encounter",
+            "timestamp": "2024-01-15T14:35:00Z"
+        },
+        {
+            "id": 2,
+            "session_id": 1,
+            "encounter_id": 1,
+            "roller_name": "Liáng Wǔzhào",
+            "roller_type": "character",
+            "roller_id": 1,
+            "roll_type": "attack",
+            "dice_expression": "1d20+5",
+            "individual_rolls": [
+                16
+            ],
+            "modifiers": 5,
+            "total_result": 21,
+            "target_dc": 12,
+            "success": true,
+            "context": "Unarmed Strike against Bandido 1",
+            "timestamp": "2024-01-15T14:38:00Z"
+        },
+        {
+            "id": 3,
+            "session_id": 1,
+            "encounter_id": 1,
+            "roller_name": "Liáng Wǔzhào",
+            "roller_type": "character",
+            "roller_id": 1,
+            "roll_type": "damage",
+            "dice_expression": "1d4+3",
+            "individual_rolls": [
+                3
+            ],
+            "modifiers": 3,
+            "total_result": 6,
+            "target_dc": null,
+            "success": null,
+            "context": "Unarmed Strike damage",
+            "timestamp": "2024-01-15T14:38:30Z"
+        }
+    ]
+}

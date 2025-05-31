@@ -1,0 +1,96 @@
+{
+    "sessions": [
+        {
+            "id": 1,
+            "session_number": 1,
+            "title": "El Inicio del Camino",
+            "date": "2024-01-15",
+            "duration_minutes": 240,
+            "dm_name": "Sistema IA",
+            "players": [
+                {
+                    "player_name": "Jugador Principal",
+                    "character_id": 1,
+                    "character_name": "Liáng Wǔzhào"
+                }
+            ],
+            "session_summary": "Liáng Wǔzhào escapa del Monasterio destruido y comienza su búsqueda del Micronúcleo robado.",
+            "events": [
+                "Destrucción del Monasterio Silencioso",
+                "Primer encuentro con bandidos",
+                "Descubrimiento de pistas sobre el mentor"
+            ],
+            "experience_awarded": 450,
+            "treasure_found": {
+                "gold": 25,
+                "items": [
+                    "Poción de Curación Menor"
+                ]
+            },
+            "character_changes": [
+                {
+                    "character_id": 1,
+                    "changes": {
+                        "hp_current": 35,
+                        "experience_points": 30050,
+                        "new_techniques": []
+                    }
+                }
+            ],
+            "dice_rolls": [
+                {
+                    "roller": "Liáng Wǔzhào",
+                    "roll_type": "initiative",
+                    "dice": "1d20+3",
+                    "result": 18,
+                    "timestamp": "2024-01-15T14:35:00Z"
+                },
+                {
+                    "roller": "Bandido 1",
+                    "roll_type": "attack",
+                    "dice": "1d20+2",
+                    "result": 8,
+                    "target": "Liáng Wǔzhào",
+                    "timestamp": "2024-01-15T14:37:00Z"
+                }
+            ],
+            "notes": "Primera sesión del arco narrativo principal",
+            "status": "completed"
+        }
+    ],
+    "parties": [
+        {
+            "id": 1,
+            "name": "Los Buscadores del Dao Perdido",
+            "active": true,
+            "formation_date": "2024-01-15",
+            "members": [
+                {
+                    "character_id": 1,
+                    "character_name": "Liáng Wǔzhào",
+                    "role": "leader",
+                    "joined_date": "2024-01-15",
+                    "active": true
+                }
+            ],
+            "shared_resources": {
+                "gold": 125,
+                "group_items": [
+                    "Mapa del Reino",
+                    "Carta de Recomendación"
+                ]
+            },
+            "reputation": {
+                "Secta de la Llama Partida": 75,
+                "Monasterio de los Ecos Helados": -10,
+                "Comerciantes Locales": 25
+            },
+            "current_location": "Cruce de los Mil Vientos",
+            "goals": [
+                "Recuperar el Micronúcleo robado",
+                "Encontrar al mentor traidor",
+                "Restaurar el honor del Monasterio"
+            ]
+        }
+    ]
+}

@@ -1,0 +1,69 @@
+{
+    "encounters": [
+        {
+            "id": 1,
+            "name": "Emboscada en el Valle Roto",
+            "encounter_type": "combat",
+            "difficulty": "medium",
+            "expected_party_level": 3,
+            "environment": "forest_valley",
+            "participants": [
+                {
+                    "participant_type": "enemy",
+                    "entity_id": 1,
+                    "entity_name": "Bandido del Valle Roto",
+                    "quantity": 3,
+                    "initiative": 12,
+                    "position": {
+                        "x": 10,
+                        "y": 15
+                    }
+                },
+                {
+                    "participant_type": "character",
+                    "entity_id": 1,
+                    "entity_name": "Liáng Wǔzhào",
+                    "quantity": 1,
+                    "initiative": 18,
+                    "position": {
+                        "x": 5,
+                        "y": 5
+                    }
+                }
+            ],
+            "turn_order": [
+                {
+                    "participant_id": 2,
+                    "initiative": 18,
+                    "has_acted": false
+                },
+                {
+                    "participant_id": 1,
+                    "initiative": 12,
+                    "has_acted": false
+                }
+            ],
+            "current_round": 1,
+            "current_turn": 0,
+            "status": "active",
+            "rewards": {
+                "experience": 450,
+                "gold": 25,
+                "items": [
+                    "Espada Oxidada",
+                    "Poción de Curación Menor"
+                ]
+            },
+            "environmental_effects": [
+                {
+                    "name": "Niebla densa",
+                    "description": "Visibilidad reducida a 20 pies",
+                    "effect": "disadvantage_perception"
+                }
+            ],
+            "start_time": "2024-01-15T14:30:00Z",
+            "end_time": null,
+            "notes": "Emboscada iniciada cuando el grupo se acercó al puente del valle"
+        }
+    ]
+}

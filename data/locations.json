@@ -1,0 +1,64 @@
+{
+    "locations": [
+        {
+            "id": 1,
+            "name": "Monasterio Silencioso",
+            "location_type": "ruins",
+            "region": "Valle del Eco Perdido",
+            "description": "Ruinas del antiguo monasterio donde Liáng Wǔzhào entrenaba.",
+            "environmental_effects": [
+                {
+                    "name": "Energía residual",
+                    "description": "Chi alterado en el área",
+                    "mechanical_effect": "advantage_arcana_checks"
+                }
+            ],
+            "notable_features": [
+                "Biblioteca en ruinas",
+                "Cámara de meditación intacta",
+                "Jardín de hierbas espirituales"
+            ],
+            "current_status": "destroyed",
+            "connections": [
+                {
+                    "location_id": 2,
+                    "travel_time_hours": 8,
+                    "difficulty": "easy",
+                    "method": "walking"
+                }
+            ],
+            "loot_available": false,
+            "enemies_present": false
+        },
+        {
+            "id": 2,
+            "name": "Cruce de los Mil Vientos",
+            "location_type": "crossroads",
+            "region": "Tierras Centrales",
+            "description": "Importante cruce de caminos donde se encuentran viajeros de todas las sectas.",
+            "environmental_effects": [],
+            "notable_features": [
+                "Posada del Viento Eterno",
+                "Mercado de técnicas",
+                "Tablón de misiones"
+            ],
+            "current_status": "active",
+            "connections": [
+                {
+                    "location_id": 1,
+                    "travel_time_hours": 8,
+                    "difficulty": "easy",
+                    "method": "walking"
+                },
+                {
+                    "location_id": 3,
+                    "travel_time_hours": 16,
+                    "difficulty": "moderate",
+                    "method": "walking"
+                }
+            ],
+            "loot_available": true,
+            "enemies_present": false
+        }
+    ]
+}

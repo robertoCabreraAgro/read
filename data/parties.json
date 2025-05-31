@@ -1,0 +1,37 @@
+{
+    "parties": [
+        {
+            "id": 1,
+            "name": "Los Buscadores del Dao Perdido",
+            "active": true,
+            "formation_date": "2024-01-15",
+            "members": [
+                {
+                    "character_id": 1,
+                    "character_name": "Liáng Wǔzhào",
+                    "role": "leader",
+                    "joined_date": "2024-01-15",
+                    "active": true
+                }
+            ],
+            "shared_resources": {
+                "gold": 125,
+                "group_items": [
+                    "Mapa del Reino",
+                    "Carta de Recomendación"
+                ]
+            },
+            "reputation": {
+                "Secta de la Llama Partida": 75,
+                "Monasterio de los Ecos Helados": -10,
+                "Comerciantes Locales": 25
+            },
+            "current_location": "Cruce de los Mil Vientos",
+            "goals": [
+                "Recuperar el Micronúcleo robado",
+                "Encontrar al mentor traidor",
+                "Restaurar el honor del Monasterio"
+            ]
+        }
+    ]
+}
