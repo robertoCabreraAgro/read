@@ -481,12 +481,12 @@ class DmAgent:
 
             if world_state:
                 world_state.current_event = event_description
-                world_state.active_effects = active_effects
+                world_state.active_effects_json = active_effects
             else:
                 # If no world state exists, create a new one
                 world_state = WorldState(
                     current_event=event_description,
-                    active_effects=active_effects
+                    active_effects_json=active_effects
                 )
                 self.db_session.add(world_state)
             
