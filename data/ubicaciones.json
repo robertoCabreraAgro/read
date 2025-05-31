@@ -1,0 +1,34 @@
+{
+    "sectas": [
+        {
+            "id": 1,
+            "nombre": "Secta de la Llama Partida",
+            "ciudad_origen_id": 1,
+            "fundador": "Gran Maestro Huǒjìng",
+            "alineamiento": "Neutral Estricto",
+            "especialidad": ["Fuego", "Presión", "Técnicas destructivas"],
+            "reputacion": "Temida por su ofensiva absoluta",
+            "requisitos_ingreso": "Control elemental básico de fuego + técnica de disuasión"
+        },
+        {
+            "id": 2,
+            "nombre": "Monasterio de los Ecos Helados",
+            "ciudad_origen_id": 2,
+            "fundador": "Abadessa Bái Xuě",
+            "alineamiento": "Legal Bueno",
+            "especialidad": ["Hielo", "Control del tiempo", "Defensa reactiva"],
+            "reputacion": "Pacíficos, pero letales si se les amenaza",
+            "requisitos_ingreso": "Disciplina mental + afinidad con agua o frío"
+        },
+        {
+            "id": 3,
+            "nombre": "Orden Geométrica del Vacío",
+            "ciudad_origen_id": 3,
+            "fundador": "Arquitecto Ael'Dar",
+            "alineamiento": "Neutral Verdadero",
+            "especialidad": ["Vacío", "Matemática espiritual", "Estrategia"],
+            "reputacion": "Incomprendida y enigmática",
+            "requisitos_ingreso": "Prueba de lógica no euclidiana + visión interior"
+        }
+    ]
+}

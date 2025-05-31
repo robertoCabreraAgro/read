@@ -1,0 +1,59 @@
+{
+  "condiciones": [
+    {
+      "id": 1,
+      "nombre": "Quemado",
+      "descripcion": "Recibe daño continuo por fuego. Algunas acciones tienen desventaja.",
+      "tipo": "Daño persistente",
+      "efectos_mecanicos": {
+        "daño_por_turno": "1d4",
+        "duracion_turnos": 3,
+        "disminuye_con_descanso": true
+      }
+    },
+    {
+      "id": 2,
+      "nombre": "Congelado",
+      "descripcion": "No puede moverse. Pierde su acción este turno.",
+      "tipo": "Control",
+      "efectos_mecanicos": {
+        "inmovilizado": true,
+        "pierde_turno": true,
+        "duracion_turnos": 1
+      }
+    },
+    {
+      "id": 3,
+      "nombre": "Aturdido",
+      "descripcion": "No puede reaccionar ni lanzar hechizos. Ataques contra él tienen ventaja.",
+      "tipo": "Debilitamiento",
+      "efectos_mecanicos": {
+        "sin_reacciones": true,
+        "ventaja_enemigos": true,
+        "duracion_turnos": 1
+      }
+    },
+    {
+      "id": 4,
+      "nombre": "Ralentizado",
+      "descripcion": "Reduce su velocidad y no puede hacer acciones complejas.",
+      "tipo": "Limitación de movimiento",
+      "efectos_mecanicos": {
+        "reduccion_velocidad": 50,
+        "no_acciones_complejas": true,
+        "duracion_turnos": 2
+      }
+    },
+    {
+      "id": 5,
+      "nombre": "Ceguera espiritual",
+      "descripcion": "No puede percibir energía espiritual ni técnicas ocultas.",
+      "tipo": "Sensopercepción",
+      "efectos_mecanicos": {
+        "percepcion_espiritual_nula": true,
+        "desventaja_percepcion": true,
+        "duracion_turnos": 2
+      }
+    }
+  ]
+}

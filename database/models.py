@@ -66,179 +66,155 @@ class CultivationRealm(Base):
 
 # --- Modelos de Personaje y relacionados ---
 
+
 class Character(Base):
     __tablename__ = "characters"
-    id = Column(Integer, primary_key=True, index=True)
-    name = Column(String, index=True, nullable=False)
-    level = Column(Integer, default=1)
-    character_class = Column(String, nullable=True)
-    race = Column(String, nullable=True)
-    alignment = Column(String, nullable=True)
-    background = Column(String, nullable=True)
-    experience_points = Column(Integer, default=0)
-
-    strength_score = Column(Integer, default=10)
-    dexterity_score = Column(Integer, default=10)
-    constitution_score = Column(Integer, default=10)
-    intelligence_score = Column(Integer, default=10)
-    wisdom_score = Column(Integer, default=10)
-    charisma_score = Column(Integer, default=10)
-
-    proficiency_bonus = Column(Integer, default=2)
-    hp_max = Column(Integer, default=10)
-    hp_current = Column(Integer, default=10)
-    armor_class = Column(Integer, default=10)
-    speed = Column(Integer, default=30)
-
-    mana_max = Column(Integer, nullable=True)
-    mana_current = Column(Integer, nullable=True)
-
-    status_general = Column(String, nullable=True)
-    dao_philosophy = Column(String, nullable=True) 
-    affiliation = Column(String, nullable=True)   
-    
-    custom_props_json = Column(JSON, nullable=True) 
-
-    saving_throw_proficiencies = relationship("CharacterSavingThrowProficiency", back_populates="character", cascade="all, delete-orphan")
-    skill_proficiencies = relationship("CharacterSkillProficiency", back_populates="character", cascade="all, delete-orphan")
-    languages = relationship("CharacterLanguage", back_populates="character", cascade="all, delete-orphan")
-    features_traits = relationship("CharacterFeatureTrait", back_populates="character", cascade="all, delete-orphan")
-    resources = relationship("CharacterResource", back_populates="character", cascade="all, delete-orphan")
-    inventory_items = relationship("CharacterInventoryItem", back_populates="character", cascade="all, delete-orphan")
-    known_techniques = relationship("CharacterKnownTechniques", back_populates="character", cascade="all, delete-orphan") 
-    
-    reclusion_state = relationship("CharacterReclusionState", uselist=False, back_populates="character", cascade="all, delete-orphan") 
-    titles = relationship("CharacterTitle", back_populates="character", cascade="all, delete-orphan") 
-    compatible_elements = relationship("CharacterCompatibleElement", back_populates="character", cascade="all, delete-orphan") 
-
-    def __repr__(self):
-        return f"<Character(name='{self.name}', level={self.level}, class='{self.character_class}')>"
-
-class CharacterSavingThrowProficiency(Base):
-    __tablename__ = "character_saving_throw_proficiencies"
-    id = Column(Integer, primary_key=True, index=True)
-    character_id = Column(Integer, ForeignKey("characters.id", ondelete="CASCADE"), nullable=False)
-    attribute_name = Column(String, nullable=False)
-    is_proficient = Column(Boolean, default=False)
-    character = relationship("Character", back_populates="saving_throw_proficiencies")
-
-class CharacterSkillProficiency(Base):
-    __tablename__ = "character_skill_proficiencies"
-    id = Column(Integer, primary_key=True, index=True)
-    character_id = Column(Integer, ForeignKey("characters.id", ondelete="CASCADE"), nullable=False)
-    skill_name = Column(String, nullable=False)
-    is_proficient = Column(Boolean, default=False)
-    character = relationship("Character", back_populates="skill_proficiencies")
-
-class CharacterLanguage(Base):
-    __tablename__ = "character_languages"
-    id = Column(Integer, primary_key=True, index=True)
-    character_id = Column(Integer, ForeignKey("characters.id", ondelete="CASCADE"), nullable=False)
-    language_name = Column(String, nullable=False)
-    character = relationship("Character", back_populates="languages")
-
-class CharacterFeatureTrait(Base):
-    __tablename__ = "character_features_traits"
-    id = Column(Integer, primary_key=True, index=True)
-    character_id = Column(Integer, ForeignKey("characters.id", ondelete="CASCADE"), nullable=False)
+    id = Column(Integer, primary_key=True)
     name = Column(String, nullable=False)
-    description = Column(Text, nullable=True)
-    type = Column(String, nullable=True)
-    character = relationship("Character", back_populates="features_traits")
+    level = Column(Integer, default=1)
+    character_class = Column(String)
+    race = Column(String)
+    affiliation = Column(String)
+    dao_philosophy = Column(String)
+    hp_max = Column(Integer)
+    hp_current = Column(Integer)
+    mana_max = Column(Integer)
+    mana_current = Column(Integer)
+    status_general = Column(String)
 
-class CharacterResource(Base):
-    __tablename__ = "character_resources"
-    id = Column(Integer, primary_key=True, index=True)
-    character_id = Column(Integer, ForeignKey("characters.id", ondelete="CASCADE"), nullable=False)
-    resource_name = Column(String, nullable=False)
-    current_value = Column(Integer, default=0)
-    max_value = Column(Integer, default=0)
-    character = relationship("Character", back_populates="resources")
-
-class CharacterInventoryItem(Base):
-    __tablename__ = "character_inventory_items"
-    id = Column(Integer, primary_key=True, index=True)
-    character_id = Column(Integer, ForeignKey("characters.id", ondelete="CASCADE"), nullable=False)
-    item_name = Column(String, nullable=False)
-    quantity = Column(Integer, default=1)
-    description = Column(Text, nullable=True)
-    is_equipped = Column(Boolean, default=False)
-    character = relationship("Character", back_populates="inventory_items")
-
-class CharacterReclusionState(Base):
-    __tablename__ = "character_reclusion_states"
-    id = Column(Integer, primary_key=True, index=True)
-    character_id = Column(Integer, ForeignKey("characters.id", ondelete="CASCADE"), unique=True, nullable=False) 
-    start_day = Column(Integer, nullable=True)
-    end_day = Column(Integer, nullable=True)
-    days_remaining = Column(Integer, nullable=True)
-    character = relationship("Character", back_populates="reclusion_state")
+    known_techniques = relationship("CharacterKnownTechnique", back_populates="character")
+    talents = relationship("CharacterTalent", back_populates="character")
+    inventory_items = relationship("InventoryItem", back_populates="character")
+    titles = relationship("CharacterTitle", back_populates="character")
+    compatible_elements = relationship("CharacterCompatibleElement", back_populates="character")
+    resources = relationship("CharacterResource", back_populates="character")
 
 class CharacterTitle(Base):
     __tablename__ = "character_titles"
-    id = Column(Integer, primary_key=True, index=True)
-    character_id = Column(Integer, ForeignKey("characters.id", ondelete="CASCADE"), nullable=False)
+    id = Column(Integer, primary_key=True)
+    character_id = Column(Integer, ForeignKey("characters.id"))
     title_name = Column(String, nullable=False)
     is_active = Column(Boolean, default=True)
     character = relationship("Character", back_populates="titles")
 
 class CharacterCompatibleElement(Base):
     __tablename__ = "character_compatible_elements"
-    id = Column(Integer, primary_key=True, index=True)
-    character_id = Column(Integer, ForeignKey("characters.id", ondelete="CASCADE"), nullable=False)
-    element_description = Column(String, nullable=False) 
+    id = Column(Integer, primary_key=True)
+    character_id = Column(Integer, ForeignKey("characters.id"))
+    element_name = Column(String, nullable=False)
     character = relationship("Character", back_populates="compatible_elements")
+
+class CharacterResource(Base):
+    __tablename__ = "character_resources"
+    id = Column(Integer, primary_key=True)
+    character_id = Column(Integer, ForeignKey("characters.id"))
+    resource_name = Column(String, nullable=False)
+    current_value = Column(Integer, default=0)
+    max_value = Column(Integer, default=0)
+    character = relationship("Character", back_populates="resources")
 
 class Technique(Base):
     __tablename__ = "techniques"
-    id = Column(Integer, primary_key=True, index=True)
-    name = Column(String, index=True, nullable=False)
-    name_chinese = Column(String, nullable=True)
-    element_association = Column(String, index=True, nullable=True)
-    description = Column(Text, nullable=True)
-    level_required = Column(Integer, nullable=True)
-    rank = Column(String, nullable=True)
-    damage_string = Column(String, nullable=True)
-    mana_cost = Column(Integer, nullable=True)
-    version = Column(String, nullable=True)
-    source_dao = Column(Text, nullable=True)
-    other_properties_json = Column(JSON, nullable=True)
-    def __repr__(self):
-        return f"<Technique(name='{self.name}')>"
+    id = Column(Integer, primary_key=True)
+    name = Column(String, nullable=False)
+    element_association = Column(String)
+    description = Column(Text)
+    level_required = Column(Integer)
+    rank = Column(String)
+    mana_cost = Column(Integer)
+    damage_string = Column(String)
+    version = Column(String)
+    source_dao = Column(String)
 
-class CharacterKnownTechniques(Base):
+class CharacterKnownTechnique(Base):
     __tablename__ = "character_known_techniques"
-    id = Column(Integer, primary_key=True, index=True)
-    character_id = Column(Integer, ForeignKey("characters.id", ondelete="CASCADE"), nullable=False)
-    technique_id = Column(Integer, ForeignKey("techniques.id", ondelete="CASCADE"), nullable=False)
-    mastery_level = Column(String, nullable=True)
-    notes = Column(Text, nullable=True)
+    id = Column(Integer, primary_key=True)
+    character_id = Column(Integer, ForeignKey("characters.id"))
+    technique_id = Column(Integer, ForeignKey("techniques.id"))
+    mastery_level = Column(String)
+    notes = Column(Text)
+
     character = relationship("Character", back_populates="known_techniques")
-    technique = relationship("Technique") 
-    def __repr__(self):
-        return f"<CharacterKnownTechniques(character_id={self.character_id}, technique_id={self.technique_id})>"
+    technique = relationship("Technique")
+
+class Talent(Base):
+    __tablename__ = "talents"
+    id = Column(Integer, primary_key=True)
+    name = Column(String, nullable=False)
+    description = Column(Text)
+    source = Column(String)
+
+class CharacterTalent(Base):
+    __tablename__ = "character_talents"
+    id = Column(Integer, primary_key=True)
+    character_id = Column(Integer, ForeignKey("characters.id"))
+    talent_id = Column(Integer, ForeignKey("talents.id"))
+
+    character = relationship("Character", back_populates="talents")
+    talent = relationship("Talent")
+
+class Affinity(Base):
+    __tablename__ = "affinities"
+    id = Column(Integer, primary_key=True)
+    name = Column(String, nullable=False)
+    description = Column(Text)
+
+class Sect(Base):
+    __tablename__ = "sects"
+    id = Column(Integer, primary_key=True)
+    name = Column(String, nullable=False)
+    philosophy = Column(Text)
+    benefits = Column(Text)
+    power_rating = Column(String)
+
+class CultivationRealm(Base):
+    __tablename__ = "cultivation_realms"
+    id = Column(Integer, primary_key=True)
+    name = Column(String, nullable=False)
+    realm_order = Column(Integer)
+    level_range = Column(String)
 
 class CampaignEvent(Base):
     __tablename__ = "campaign_events"
-    id = Column(Integer, primary_key=True, index=True)
-    title = Column(String, nullable=False, index=True)
-    day_range_start = Column(Integer, nullable=True)
-    day_range_end = Column(Integer, nullable=True)
-    summary_content = Column(Text, nullable=False)
-    full_details_json = Column(JSON, nullable=True)
-    event_tags_json = Column(JSON, nullable=True)
-    def __repr__(self):
-        return f"<CampaignEvent(title='{self.title}')>"
+    id = Column(Integer, primary_key=True)
+    title = Column(String, nullable=False)
+    day_range_start = Column(Integer)
+    day_range_end = Column(Integer)
+    summary_content = Column(Text)
+    full_details = Column(Text)
+    event_tags = Column(String)
 
-class RuleSet(Base):
-    __tablename__ = "rulesets" 
-    id = Column(Integer, primary_key=True, index=True)
-    name = Column(String, unique=True, index=True)
-    rules = Column(JSON) 
+class InventoryItem(Base):
+    __tablename__ = "inventory_items"
+    id = Column(Integer, primary_key=True)
+    character_id = Column(Integer, ForeignKey("characters.id"))
+    item_name = Column(String, nullable=False)
+    quantity = Column(Integer, default=1)
+    description = Column(Text)
+    is_equipped = Column(Boolean, default=False)
 
-class WorldState(Base): 
-    __tablename__ = "worldstates"
-    id = Column(Integer, primary_key=True, index=True)
+    character = relationship("Character", back_populates="inventory_items")
+
+class DmGuidelineSet(Base):
+    __tablename__ = "dm_guideline_sets"
+    id = Column(Integer, primary_key=True)
+    name = Column(String, nullable=False)
+    tone_style = Column(String)
+    tone_focus = Column(String)
+    dice_roll_rules = Column(Text)
+    system_base = Column(String)
+    intro_chars_show_fields = Column(Text)
+    session_structure_items = Column(Text)
+
+class LoreTopic(Base):
+    __tablename__ = "lore_topics"
+    id = Column(Integer, primary_key=True)
+    name = Column(String, nullable=False)
+    description = Column(Text)
+    related_elements = Column(String)
+
+class WorldState(Base):
+    __tablename__ = "world_state"
+    id = Column(Integer, primary_key=True)
     current_event = Column(String)
-    active_effects = Column(JSON)
-
+    active_effects = Column(String)

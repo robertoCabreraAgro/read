@@ -1,0 +1,74 @@
+{
+  "enemigos": [
+    {
+      "id": 1,
+      "nombre": "Bandido del Valle Roto",
+      "tipo": "Humanoide",
+      "rango": "Común",
+      "nivel_desafio": 0.125,
+      "pv": 11,
+      "ac": 12,
+      "velocidad": 30,
+      "ataques_ids": [201],
+      "afinidad_ids": [111],
+      "idiomas": ["Common"],
+      "notas": "Actúa en grupos, cobarde en solitario"
+    },
+    {
+      "id": 2,
+      "nombre": "Lobo Espiritual de Niebla",
+      "tipo": "Bestia mágica",
+      "rango": "Común",
+      "nivel_desafio": 0.25,
+      "pv": 18,
+      "ac": 13,
+      "velocidad": 40,
+      "ataques_ids": [202],
+      "afinidad_ids": [103],
+      "idiomas": [],
+      "notas": "Puede volverse invisible en niebla densa"
+    },
+    {
+      "id": 3,
+      "nombre": "Cultivador Corrupto",
+      "tipo": "Humanoide – Cultivador",
+      "rango": "Élite",
+      "nivel_desafio": 3,
+      "pv": 45,
+      "ac": 15,
+      "velocidad": 30,
+      "ataques_ids": [203, 204],
+      "afinidad_ids": [106],
+      "idiomas": ["Common", "Abyssal"],
+      "notas": "Usa chi invertido. Deformaciones visibles en el rostro."
+    },
+    {
+      "id": 4,
+      "nombre": "Serpiente de Cristal Carmesí",
+      "tipo": "Bestia espiritual",
+      "rango": "Avanzada",
+      "nivel_desafio": 5,
+      "pv": 68,
+      "ac": 16,
+      "velocidad": 30,
+      "ataques_ids": [205],
+      "afinidad_ids": [101],
+      "idiomas": ["Primordial"],
+      "notas": "Sangre arde al contacto con oxígeno. Vulnerable a hielo."
+    },
+    {
+      "id": 5,
+      "nombre": "Fragmento del Vacío",
+      "tipo": "Entidad elemental",
+      "rango": "Élite",
+      "nivel_desafio": 8,
+      "pv": 88,
+      "ac": 17,
+      "velocidad": 30,
+      "ataques_ids": [206, 207],
+      "afinidad_ids": [109],
+      "idiomas": ["Telepatía 60 ft."],
+      "notas": "Los proyectiles lo atraviesan. Solo el daño de energía pura lo afecta completamente."
+    }
+  ]
+}

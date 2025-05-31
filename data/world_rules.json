@@ -1,43 +1,157 @@
 {
-  "nombre_mundo": "Mundo de Aethelgard - Era del Despertar Fragmentado",
-  "descripcion_general": "Un mundo donde la energía primordial (Chi o Maná) fluye de manera inestable tras un cataclismo conocido como 'La Disrupción'. Las civilizaciones intentan reconstruirse y dominar nuevas formas de poder, mientras antiguas verdades y peligros resurgen.",
-  "secciones": [
-    {
-      "titulo": "Flujo de Energía Primordial (Chi/Maná)",
-      "tipo": "lore_general",
-      "contenido": {
-        "descripcion": "El Chi (o Maná) es la energía vital. Su flujo es inestable, con nodos y vacíos.",
-        "reglas_basicas": [
-          "Nodos de Poder: Potencian técnicas, pueden ser peligrosos.",
-          "Zonas de Vacío: Debilitan técnicas, causan fatiga.",
-          "Resonancia Elemental: Áreas alineadas con elementos afectan técnicas.",
-          "Meditación y Cultivo: Prácticas para refinar y manipular Chi."
-        ]
-      }
-    },
-    {
-      "titulo": "Cultivo y Reinos de Poder",
-      "tipo": "cultivation_realms",
-      "nota": "Los Reinos de Cultivo representan niveles de entendimiento y control sobre el Chi. Cada reino desbloquea nuevas capacidades y percepciones. La progresión no es solo poder bruto, sino también comprensión filosófica y armonía con el Dao personal.",
-      "estructura": [
-        {"orden": 1, "nombre_reino": "Fundación del Núcleo", "rango_nivel_pj": "1-3", "tema": "Despertar del Chi, fortalecimiento básico del cuerpo y la mente, primeras técnicas."},
-        {"orden": 2, "nombre_reino": "Establecimiento del Flujo", "rango_nivel_pj": "4-6", "tema": "Control consciente del flujo interno de Chi, técnicas elementales básicas, mayor resistencia y capacidad sensorial."},
-        {"orden": 3, "nombre_reino": "Resonancia Elemental", "rango_nivel_pj": "7-9", "tema": "Afinidad profunda con uno o más elementos, manifestación de poder elemental avanzado, comprensión de patrones energéticos."},
-        {"orden": 4, "nombre_reino": "Geometría del Dao", "rango_nivel_pj": "10-12", "tema": "Percepción y manipulación de las estructuras fundamentales del Chi y la realidad, técnicas complejas que alteran el entorno, inicio de la trascendencia."},
-        {"orden": 5, "nombre_reino": "Unidad con el Vacío (Teórico)", "rango_nivel_pj": "13+", "tema": "Comprensión de la interconexión de todo, manipulación del Chi a nivel conceptual, habilidades legendarias o semi-divinas. Pocos han alcanzado este estado."}
+  "world_rules": {
+    "1_fundamento_universal": {
+      "principios": [
+        "La energía primigenia (maná, etc.) es la fuente de todo cultivo. Su nombre varía por cultura, pero su esencia es única.",
+        "Esta energía se manifiesta en variantes elementales: fuego, agua, tierra, viento, sombra, luz, relámpago, metal, sangre, vacío, etc.",
+        "El mundo está compuesto por múltiples razas: humanos, bestias, semihumanos, quimeras, entidades espirituales, fragmentos conscientes, gólems autónomos, seres del eco, descendientes de planos, híbridos sellados, formas simbióticas, reflejos vivos, kin de mineral, devoradores silenciosos, huérfanos astrales y más.",
+        "Existen dioses, planos espirituales, territorios sellados, ruinas vivientes y regiones que evolucionan con la batalla.",
+        "El entorno es un mundo Wuxia místico, con raíces culturales, rituales y filosóficas profundas.",
+        "No hay tecnología ni ciencia moderna. Nadie conoce lógica computacional ni desarrollo artificial.",
+        "Cada región tiene su propio dogma, pero las leyes del chi trascienden el rito.",
+        "Nadie sabe de mundos ajenos ni del pasado del protagonista. Para todos, Liáng Wùzhào es simplemente un cultivador de talento inusual."
       ]
     },
-    {
-      "titulo": "Leyes Físicas y Naturales",
-      "tipo": "lore_general",
-      "contenido": {
-        "descripcion": "Física similar a la Tierra, pero alterable por Chi.",
-        "puntos_clave": [
-          "Gravedad: Estándar, técnicas de levitación existen.",
-          "Ciclos Naturales: Normales, pueden afectar el Chi.",
-          "Materiales Exóticos: Infundidos con Chi, propiedades únicas."
-        ]
+    "2_cultivo_y_reinos": {
+      "notas_generales": [
+        "El nivel no garantiza la victoria. El poder real depende de técnicas, comprensión del dao, condiciones físicas y narrativa."
+      ],
+      "niveles": [
+        {
+          "nombre": "Reino del Refinamiento del Qi",
+          "niveles": "1-2",
+          "tema": "Despertar del chi interno",
+          "estado": "Cuerpo sin canalizar"
+        },
+        {
+          "nombre": "Reino del Fundamento Espiritual",
+          "niveles": "3-4",
+          "tema": "Establecimiento de meridianos",
+          "estado": "Circulación básica del chi"
+        },
+        {
+          "nombre": "Reino de la Condensación del Núcleo",
+          "niveles": "5-6",
+          "tema": "Formación del núcleo de chi",
+          "estado": "Primer dominio de técnica"
+        },
+        {
+          "nombre": "Reino del Alma Elemental",
+          "niveles": "7-8",
+          "tema": "Afinidad elemental y síntesis",
+          "estado": "Interacción con el entorno"
+        },
+        {
+          "nombre": "Reino de la Manifestación del Dao",
+          "niveles": "9-10",
+          "tema": "Proyección externa del Dao",
+          "estado": "Técnicas con identidad propia"
+        },
+        {
+          "nombre": "Reino del Dominio Interno",
+          "niveles": "11-12",
+          "tema": "Autonomía espiritual completa",
+          "estado": "El chi y cuerpo obedecen la voluntad"
+        },
+        {
+          "nombre": "Reino de la Trascendencia Celeste",
+          "niveles": "13-14",
+          "tema": "Superación de límites naturales",
+          "estado": "Chi que desafía la lógica"
+        },
+        {
+          "nombre": "Reino del Retorno al Origen",
+          "niveles": "15-17",
+          "tema": "Comprensión cíclica del Dao",
+          "estado": "El cultivador olvida para superar"
+        },
+        {
+          "nombre": "Reino del Vacío Ilimitado",
+          "niveles": "18-20",
+          "tema": "Singularidad: el cultivador ES su dao",
+          "estado": "No necesita chi. La realidad se pliega"
+        }
+      ]
+    },
+    "3_tecnicas_y_comprension": {
+      "fuentes": [
+        "Empirismo ritualista",
+        "Repetición de patrones antiguos",
+        "Fe absoluta en la manifestación del chi"
+      ],
+      "adquisicion": [
+        "Se heredan",
+        "Se descubren",
+        "Se roban",
+        "Se adaptan"
+      ],
+      "rangos_de_poder": [
+        "Básica",
+        "Intermedia",
+        "Avanzada",
+        "Mítica",
+        "Prohibida"
+      ],
+      "evolucion": "Una técnica puede evolucionar si el usuario supera su comprensión inicial.",
+      "creacion": "Crear técnicas requiere comprensión profunda del chi, geometría espiritual y combate real.",
+      "ejemplo": "Dos usuarios pueden lanzar fuego, pero uno quema hierba y otro evapora montañas. Solo uno lo comprende."
+    },
+    "4_principios_espirituales": {
+      "conocimiento": [
+        "El conocimiento absoluto no existe. Incluso los sabios solo comprenden fragmentos del Dao.",
+        "El conocimiento del mundo es fragmentario y varía por raza y cultura.",
+        "Las razas están equilibradas entre sí, aunque se detallan en otra sección."
+      ],
+      "cultivo_y_daño": [
+        "El cultivo puede estancarse, romperse o invertirse si el alma se corrompe, se pierde o se traiciona a sí misma.",
+        "Una técnica incompatible con el dao del usuario puede causar desviación espiritual, desequilibrio corporal o locura progresiva.",
+        "El chi rechazado siempre encuentra una forma de manifestarse como deuda: deformaciones, delirios o ecos caóticos."
+      ],
+      "karma_y_destino": [
+        "El destino existe, pero está oculto.",
+        "Algunas acciones generan eventos cíclicos, pero nadie entiende si es karma, azar o resonancia del Dao mayor.",
+        "El Dao parece observar. La resonancia espiritual influye en los caminos posibles."
+      ]
+    },
+    "5_tono_y_narrativa": {
+      "estilo": [
+        "El mundo no tiene compasión. Errores cuestan destinos.",
+        "Lo tradicional coexiste con lo inexplicable.",
+        "El jugador no es omnipotente ni central para el universo, aunque su camino sea único."
+      ],
+      "personaje_principal": {
+        "nombre": "Liáng Wùzhào",
+        "proposito": "Romper cadenas del dogma, crear su propio camino",
+        "origen": "Desconocido para todos excepto el jugador"
+      },
+      "observacion": "Nadie razona el fuego; solo observan los resultados y lo atribuyen a genialidad marcial."
+    },
+    "6_progresion_de_experiencia": {
+      "sistema": "Basado en D&D 5e, con valores de experiencia multiplicados por 10.",
+      "descripcion": "Para avanzar entre niveles, se utiliza la misma tabla de experiencia que en D&D 5e, pero cada cantidad es multiplicada por 10. Esto refleja la dificultad, profundidad y escala del cultivo espiritual.",
+      "nota": "La experiencia se obtiene por combate, entrenamiento, eventos narrativos, comprensión del dao, misiones, logros únicos o investigación profunda.",
+      "ejemplo_tabla": {
+        "nivel_1": 0,
+        "nivel_2": 3000,
+        "nivel_3": 9000,
+        "nivel_4": 27000,
+        "nivel_5": 65000,
+        "nivel_6": 140000,
+        "nivel_7": 230000,
+        "nivel_8": 340000,
+        "nivel_9": 480000,
+        "nivel_10": 640000,
+        "nivel_11": 850000,
+        "nivel_12": 1000000,
+        "nivel_13": 1200000,
+        "nivel_14": 1400000,
+        "nivel_15": 1650000,
+        "nivel_16": 1950000,
+        "nivel_17": 2250000,
+        "nivel_18": 2650000,
+        "nivel_19": 3050000,
+        "nivel_20": 3550000
       }
     }
-  ]
+  }
 }

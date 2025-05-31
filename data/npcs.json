@@ -1,0 +1,92 @@
+{
+  "personajes": [
+    {
+      "id": 1,
+      "name": "Liáng Wǔzhào",
+      "level": 5,
+      "character_class": "Monk",
+      "subclass": "Dao Geométrico (Custom)",
+      "race": "Human",
+      "alignment": "Lawful Neutral",
+      "background": "Hermit",
+      "experience_points": 29600,
+      "proficiency_bonus": 3,
+      "status": {
+        "hp_max": 40,
+        "hp_current": 40,
+        "armor_class": 14,
+        "initiative": 3,
+        "speed": 30,
+        "hit_dice": "5d8"
+      },
+      "attributes": {
+        "strength": 10,
+        "dexterity": 16,
+        "constitution": 12,
+        "intelligence": 20,
+        "wisdom": 16,
+        "charisma": 10
+      },
+      "attribute_modifiers": {
+        "strength": 0,
+        "dexterity": 3,
+        "constitution": 1,
+        "intelligence": 5,
+        "wisdom": 3,
+        "charisma": 0
+      },
+      "saving_throws_proficiencies": {
+        "strength": false,
+        "dexterity": true,
+        "constitution": false,
+        "intelligence": true,
+        "wisdom": true,
+        "charisma": false
+      },
+      "skills": {
+        "acrobatics": 5,
+        "arcana": 8,
+        "history": 8,
+        "insight": 5,
+        "perception": 5
+      },
+      "skill_proficiencies": [
+        "Arcana",
+        "Insight",
+        "Perception",
+        "Acrobatics",
+        "History"
+      ],
+      "languages": ["Common", "Celestial", "Primordial"],
+      "features_traits": [
+        "Unarmored Defense",
+        "Martial Arts",
+        "Ki (5 points)",
+        "Unarmored Movement (+10 ft)",
+        "Deflect Missiles",
+        "Slow Fall"
+      ],
+      "spellcasting": {
+        "is_spellcaster": false,
+        "spellcasting_ability": null,
+        "spell_slots": {}
+      },
+      "attacks_ids": [101, 102, 115],
+      "inventory_ids": [201, 202, 203],
+      "affinity_ids": [301, 302, 305, 309],
+      "afiliaciones_ids": [1],
+      "condiciones_ids": [],
+      "estado_actual": "activo",
+      "custom_data": {
+        "mana_max": 4730,
+        "mana_current": 4730,
+        "dao_philosophy": "unique",
+        "titles": {
+          "active": ["Portador del Silencio del Diseño Absoluto"],
+          "retired": ["El que Cortó la Escritura"]
+        },
+        "notas_generales": "Personaje complejo con enfoque en la manipulación del Chi mediante la comprensión de su estructura fundamental."
+      }
+    }
+  ]
+}
