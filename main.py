@@ -220,7 +220,7 @@ def main():
                     
                     world_state = agent.update_world_state(event_desc_str, active_effects)
                     if world_state:
-                        print(f"World state updated: Event - '{world_state.current_event}', Effects - {world_state.active_effects}")
+                        print(f"World state updated: Event - '{world_state.current_event}', Effects - {world_state.active_effects_json}")
                     else:
                         print("Failed to update world state.")
                 except json.JSONDecodeError as je:
