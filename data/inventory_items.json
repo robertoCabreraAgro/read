@@ -1,0 +1,78 @@
+{
+  "inventario": [
+    {
+      "id": "item_001",
+      "nombre": "Espada de Llama Silenciosa",
+      "tipo": "arma",
+      "rareza": "mítica",
+      "descripcion": "Una hoja envuelta en fuego que no emite calor ni sonido, pero quema el alma.",
+      "cantidad": 1,
+      "atributos": {
+        "daño": "3d8 + afinidad_fuego",
+        "bonus_critico": "+15%",
+        "elemento": "fuego",
+        "afinidad_requerida": "fuego"
+      },
+      "efectos": [
+        "Ignición del alma en golpe crítico",
+        "Aumenta comprensión del dao de fuego"
+      ],
+      "vinculado": true,
+      "owner_id": "liang_wuzhao"
+    },
+    {
+      "id": "item_002",
+      "nombre": "Píldora de Reversión Interna",
+      "tipo": "consumible",
+      "rareza": "prohibida",
+      "descripcion": "Revierte una desviación espiritual menor. Uso peligroso.",
+      "cantidad": 2,
+      "efectos": [
+        "Restaura 1 nivel de corrupción",
+        "Puede causar alucinaciones si se abusa"
+      ],
+      "owner_id": "npc_034"
+    },
+    {
+      "id": "item_003",
+      "nombre": "Fragmento de Núcleo Celeste",
+      "tipo": "recurso",
+      "rareza": "raro",
+      "descripcion": "Fragmento de un núcleo formado por condensación pura de chi celeste.",
+      "cantidad": 5,
+      "usos": [
+        "Forja de artefactos",
+        "Catalizador de técnicas prohibidas"
+      ],
+      "owner_id": "liang_wuzhao"
+    },
+    {
+      "id": "item_004",
+      "nombre": "Túnica de Seda de Vacío",
+      "tipo": "armadura",
+      "rareza": "mítica",
+      "descripcion": "Ropa tejida con hilos de energía espacial. Liviana y resistente a todo daño elemental.",
+      "atributos": {
+        "resistencia": "+30%",
+        "inmunidades": ["fuego", "relámpago", "vacío"]
+      },
+      "owner_id": "liang_wuzhao"
+    },
+    {
+      "id": "item_005",
+      "nombre": "Compendio del Dao Fragmentado",
+      "tipo": "artefacto",
+      "rareza": "único",
+      "descripcion": "Un tomo viviente que contiene ecos de daos olvidados.",
+      "efectos": [
+        "Otorga visiones aleatorias de técnicas antiguas",
+        "Permite reconstruir una técnica rota"
+      ],
+      "requisitos": {
+        "nivel_minimo": 10,
+        "dao_compatible": true
+      },
+      "owner_id": "npc_sabio_001"
+    }
+  ]
+}

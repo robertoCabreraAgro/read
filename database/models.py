@@ -3,69 +3,36 @@ from sqlalchemy.orm import relationship, declarative_base
 
 Base = declarative_base()
 
-# --- Modelos de Reglas y Lore (DM y Mundo) ---
-
-class DmGuidelineSet(Base):
-    __tablename__ = "dm_guideline_sets"
-    id = Column(Integer, primary_key=True, index=True)
-    name = Column(String, unique=True, index=True, nullable=False)
-    system_base = Column(String, nullable=True)
-    setting_description = Column(Text, nullable=True)
-    mode_directed = Column(Text, nullable=True)
-    dice_roll_responsible = Column(String, nullable=True)
-    dice_roll_rules = Column(Text, nullable=True)
-    tone_difficulty = Column(String, nullable=True)
-    tone_focus = Column(Text, nullable=True)
-    tone_style = Column(Text, nullable=True)
-    relevant_chars_narration = Column(Text, nullable=True)
-    intro_chars_restriction = Column(Text, nullable=True)
-
-    session_structure_items = relationship("DmSessionStructureItem", back_populates="guideline_set", cascade="all, delete-orphan")
-    intro_chars_show_fields = relationship("DmIntroCharShowField", back_populates="guideline_set", cascade="all, delete-orphan")
-
-    def __repr__(self):
-        return f"<DmGuidelineSet(name='{self.name}')>"
-
-class DmSessionStructureItem(Base):
-    __tablename__ = "dm_session_structure_items"
-    id = Column(Integer, primary_key=True, index=True)
-    guideline_set_id = Column(Integer, ForeignKey("dm_guideline_sets.id", ondelete="CASCADE"), nullable=False)
-    item_description = Column(String, nullable=False)
-    guideline_set = relationship("DmGuidelineSet", back_populates="session_structure_items")
-
-class DmIntroCharShowField(Base):
-    __tablename__ = "dm_intro_char_show_fields"
-    id = Column(Integer, primary_key=True, index=True)
-    guideline_set_id = Column(Integer, ForeignKey("dm_guideline_sets.id", ondelete="CASCADE"), nullable=False)
-    field_name = Column(String, nullable=False)
-    guideline_set = relationship("DmGuidelineSet", back_populates="intro_chars_show_fields")
-
-class LoreTopic(Base):
-    __tablename__ = "loretopics"
-    id = Column(Integer, primary_key=True, index=True)
-    name = Column(String, unique=True, index=True, nullable=False)
-    description = Column(Text, nullable=True) 
-    additional_data_json = Column(JSON, nullable=True) 
-    cultivation_realms = relationship("CultivationRealm", back_populates="lore_topic", cascade="all, delete-orphan")
-
-    def __repr__(self):
-        return f"<LoreTopic(name='{self.name}')>"
+# --- Modelos de Lore y Reglas ---
 
 class CultivationRealm(Base):
     __tablename__ = "cultivation_realms"
     id = Column(Integer, primary_key=True, index=True)
-    lore_topic_id = Column(Integer, ForeignKey("loretopics.id", ondelete="SET NULL"), nullable=True) 
-    realm_order = Column(Integer, default=0) 
+    realm_order = Column(Integer, default=0)
     name = Column(String, nullable=False)
-    level_range = Column(String, nullable=True) 
+    level_range = Column(String, nullable=True)
     theme = Column(Text, nullable=True)
-    lore_topic = relationship("LoreTopic", back_populates="cultivation_realms")
+    estado = Column(String, nullable=True)
+    subetapa = Column(String, nullable=True)
+    exp = Column(Integer, nullable=True)
 
     def __repr__(self):
         return f"<CultivationRealm(name='{self.name}')>"
 
-# --- Modelos de Personaje y relacionados ---
+# --- Modelo de Secta ---
 
+class Sect(Base):
+    __tablename__ = "sects"
+    id = Column(Integer, primary_key=True)
+    nombre = Column(String, nullable=False)
+    ciudad_origen_id = Column(Integer)
+    fundador = Column(String)
+    alineamiento = Column(String)
+    especialidad = Column(JSON)
+    reputacion = Column(String)
+    requisitos_ingreso = Column(String)
+
+# --- Modelo de Personaje ---
 
 class Character(Base):
     __tablename__ = "characters"
@@ -73,148 +40,151 @@ class Character(Base):
     name = Column(String, nullable=False)
     level = Column(Integer, default=1)
     character_class = Column(String)
+    subclass = Column(String)
     race = Column(String)
-    affiliation = Column(String)
-    dao_philosophy = Column(String)
-    hp_max = Column(Integer)
-    hp_current = Column(Integer)
-    mana_max = Column(Integer)
-    mana_current = Column(Integer)
-    status_general = Column(String)
+    alignment = Column(String)
+    background = Column(String)
+    experience_points = Column(Integer)
+    proficiency_bonus = Column(Integer)
+    status = Column(JSON)
+    attributes = Column(JSON)
+    attribute_modifiers = Column(JSON)
+    saving_throws_proficiencies = Column(JSON)
+    skills = Column(JSON)
+    skill_proficiencies = Column(JSON)
+    languages = Column(JSON)
+    features_traits = Column(JSON)
+    spellcasting = Column(JSON)
+    attacks_ids = Column(JSON)
+    inventory_ids = Column(JSON)
+    affinity_ids = Column(JSON)
+    afiliaciones_ids = Column(JSON)
+    condiciones_ids = Column(JSON)
+    estado_actual = Column(String)
+    custom_data = Column(JSON)
 
-    known_techniques = relationship("CharacterKnownTechnique", back_populates="character")
-    talents = relationship("CharacterTalent", back_populates="character")
-    inventory_items = relationship("InventoryItem", back_populates="character")
-    titles = relationship("CharacterTitle", back_populates="character")
-    compatible_elements = relationship("CharacterCompatibleElement", back_populates="character")
-    resources = relationship("CharacterResource", back_populates="character")
+# --- Modelo de NPC ---
 
-class CharacterTitle(Base):
-    __tablename__ = "character_titles"
+class Npc(Base):
+    __tablename__ = "npcs"
     id = Column(Integer, primary_key=True)
-    character_id = Column(Integer, ForeignKey("characters.id"))
-    title_name = Column(String, nullable=False)
-    is_active = Column(Boolean, default=True)
-    character = relationship("Character", back_populates="titles")
+    nombre = Column(String, nullable=False)
+    tipo = Column(String)
+    nivel = Column(Integer)
+    rol = Column(String)
+    afiliaciones_ids = Column(JSON)
+    ciudad_origen_id = Column(Integer)
+    estado_actual = Column(String)
+    condiciones_ids = Column(JSON)
+    caracteristicas = Column(JSON)
+    idiomas = Column(JSON)
+    personalidad = Column(String)
+    notas = Column(Text)
 
-class CharacterCompatibleElement(Base):
-    __tablename__ = "character_compatible_elements"
-    id = Column(Integer, primary_key=True)
-    character_id = Column(Integer, ForeignKey("characters.id"))
-    element_name = Column(String, nullable=False)
-    character = relationship("Character", back_populates="compatible_elements")
-
-class CharacterResource(Base):
-    __tablename__ = "character_resources"
-    id = Column(Integer, primary_key=True)
-    character_id = Column(Integer, ForeignKey("characters.id"))
-    resource_name = Column(String, nullable=False)
-    current_value = Column(Integer, default=0)
-    max_value = Column(Integer, default=0)
-    character = relationship("Character", back_populates="resources")
+# --- Modelo de Técnica ---
 
 class Technique(Base):
     __tablename__ = "techniques"
     id = Column(Integer, primary_key=True)
-    name = Column(String, nullable=False)
-    element_association = Column(String)
-    description = Column(Text)
-    level_required = Column(Integer)
-    rank = Column(String)
-    mana_cost = Column(Integer)
-    damage_string = Column(String)
+    nombre = Column(String, nullable=False)
+    nombre_chino = Column(String)
+    elemento = Column(String)
+    rango = Column(String)
     version = Column(String)
-    source_dao = Column(String)
+    nivel = Column(Integer)
+    efecto = Column(Text)
+    daño = Column(String)
+    defensa = Column(String)
+    daño_detonacion = Column(String)
+    daño_continuo = Column(String)
+    daño_explosion = Column(String)
+    mana_cost_inicial = Column(Integer)
+    costo_micronucleo = Column(String)
 
-class CharacterKnownTechnique(Base):
-    __tablename__ = "character_known_techniques"
-    id = Column(Integer, primary_key=True)
-    character_id = Column(Integer, ForeignKey("characters.id"))
-    technique_id = Column(Integer, ForeignKey("techniques.id"))
-    mastery_level = Column(String)
-    notes = Column(Text)
-
-    character = relationship("Character", back_populates="known_techniques")
-    technique = relationship("Technique")
-
-class Talent(Base):
-    __tablename__ = "talents"
-    id = Column(Integer, primary_key=True)
-    name = Column(String, nullable=False)
-    description = Column(Text)
-    source = Column(String)
-
-class CharacterTalent(Base):
-    __tablename__ = "character_talents"
-    id = Column(Integer, primary_key=True)
-    character_id = Column(Integer, ForeignKey("characters.id"))
-    talent_id = Column(Integer, ForeignKey("talents.id"))
-
-    character = relationship("Character", back_populates="talents")
-    talent = relationship("Talent")
+# --- Modelo de Afinidad ---
 
 class Affinity(Base):
     __tablename__ = "affinities"
     id = Column(Integer, primary_key=True)
-    name = Column(String, nullable=False)
-    description = Column(Text)
+    nombre = Column(String, nullable=False)
+    descripcion = Column(Text)
+    filosofia = Column(String)
+    efectos_comunes = Column(JSON)
 
-class Sect(Base):
-    __tablename__ = "sects"
-    id = Column(Integer, primary_key=True)
-    name = Column(String, nullable=False)
-    philosophy = Column(Text)
-    benefits = Column(Text)
-    power_rating = Column(String)
+# --- Modelo de Afinidad de Personaje ---
 
-class CultivationRealm(Base):
-    __tablename__ = "cultivation_realms"
+class CharacterAffinity(Base):
+    __tablename__ = "character_affinities"
     id = Column(Integer, primary_key=True)
-    name = Column(String, nullable=False)
-    realm_order = Column(Integer)
-    level_range = Column(String)
+    personaje_id = Column(Integer)
+    elemento_id = Column(Integer)
+    nivel_afinidad = Column(String)
+    dominancia_actual = Column(Boolean)
+    notas = Column(Text)
 
-class CampaignEvent(Base):
-    __tablename__ = "campaign_events"
+# --- Modelo de Afiliación ---
+
+class Affiliation(Base):
+    __tablename__ = "affiliations"
     id = Column(Integer, primary_key=True)
-    title = Column(String, nullable=False)
-    day_range_start = Column(Integer)
-    day_range_end = Column(Integer)
-    summary_content = Column(Text)
-    full_details = Column(Text)
-    event_tags = Column(String)
+    origen_id = Column(Integer)
+    origen_tipo = Column(String)
+    objetivo_id = Column(Integer)
+    objetivo_tipo = Column(String)
+    estado = Column(String)
+    reputacion = Column(Integer)
+    notas = Column(Text)
+
+# --- Modelo de Estado/Condición ---
+
+class Condition(Base):
+    __tablename__ = "conditions"
+    id = Column(Integer, primary_key=True)
+    nombre = Column(String, nullable=False)
+    descripcion = Column(Text)
+    tipo = Column(String)
+    efectos_mecanicos = Column(JSON)
+
+# --- Modelo de Evento Narrativo ---
+
+class NarrativeEvent(Base):
+    __tablename__ = "narrative_events"
+    id = Column(Integer, primary_key=True)
+    nombre_campaña = Column(String)
+    session = Column(JSON)
+
+# --- Modelo de Elemento ---
+
+class Element(Base):
+    __tablename__ = "elements"
+    id = Column(Integer, primary_key=True)
+    nombre = Column(String, nullable=False)
+    descripcion = Column(Text)
+    filosofia = Column(String)
+    efectos_comunes = Column(JSON)
+
+# --- Modelo de Inventario ---
 
 class InventoryItem(Base):
     __tablename__ = "inventory_items"
     id = Column(Integer, primary_key=True)
-    character_id = Column(Integer, ForeignKey("characters.id"))
+    character_id = Column(Integer)
     item_name = Column(String, nullable=False)
     quantity = Column(Integer, default=1)
     description = Column(Text)
     is_equipped = Column(Boolean, default=False)
 
-    character = relationship("Character", back_populates="inventory_items")
-
-class DmGuidelineSet(Base):
-    __tablename__ = "dm_guideline_sets"
+class Enemy(Base):
+    __tablename__ = "enemies"
     id = Column(Integer, primary_key=True)
-    name = Column(String, nullable=False)
-    tone_style = Column(String)
-    tone_focus = Column(String)
-    dice_roll_rules = Column(Text)
-    system_base = Column(String)
-    intro_chars_show_fields = Column(Text)
-    session_structure_items = Column(Text)
-
-class LoreTopic(Base):
-    __tablename__ = "lore_topics"
-    id = Column(Integer, primary_key=True)
-    name = Column(String, nullable=False)
-    description = Column(Text)
-    related_elements = Column(String)
-
-class WorldState(Base):
-    __tablename__ = "world_state"
-    id = Column(Integer, primary_key=True)
-    current_event = Column(String)
-    active_effects = Column(String)
+    nombre = Column(String, nullable=False)
+    tipo = Column(String)
+    rango = Column(String)
+    nivel_desafio = Column(String)
+    pv = Column(Integer)
+    ac = Column(Integer)
+    velocidad = Column(Integer)
+    ataques_ids = Column(JSON)
+    afinidad_ids = Column(JSON)
+    idiomas = Column(JSON)
+    notas = Column(Text)

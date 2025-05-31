@@ -1,0 +1,169 @@
+{
+  "cultivation_realms": {
+    "notas_generales": [
+      "El nivel no garantiza la victoria. El poder real depende de técnicas, comprensión del dao, condiciones físicas y narrativa."
+    ],
+    "niveles": [
+      {
+        "nivel": 1,
+        "nombre": "Reino del Refinamiento del Qi",
+        "subetapa": "base",
+        "exp": 0,
+        "tema": "Despertar del chi interno",
+        "estado": "Cuerpo sin canalizar"
+      },
+      {
+        "nivel": 2,
+        "nombre": "Reino del Refinamiento del Qi",
+        "subetapa": "pico",
+        "exp": 3000,
+        "tema": "Despertar del chi interno",
+        "estado": "Cuerpo sin canalizar"
+      },
+      {
+        "nivel": 3,
+        "nombre": "Reino del Fundamento Espiritual",
+        "subetapa": "base",
+        "exp": 9000,
+        "tema": "Establecimiento de meridianos",
+        "estado": "Circulación básica del chi"
+      },
+      {
+        "nivel": 4,
+        "nombre": "Reino del Fundamento Espiritual",
+        "subetapa": "pico",
+        "exp": 27000,
+        "tema": "Establecimiento de meridianos",
+        "estado": "Circulación básica del chi"
+      },
+      {
+        "nivel": 5,
+        "nombre": "Reino de la Condensación del Núcleo",
+        "subetapa": "base",
+        "exp": 65000,
+        "tema": "Formación del núcleo de chi",
+        "estado": "Primer dominio de técnica"
+      },
+      {
+        "nivel": 6,
+        "nombre": "Reino de la Condensación del Núcleo",
+        "subetapa": "pico",
+        "exp": 140000,
+        "tema": "Formación del núcleo de chi",
+        "estado": "Primer dominio de técnica"
+      },
+      {
+        "nivel": 7,
+        "nombre": "Reino del Alma Elemental",
+        "subetapa": "base",
+        "exp": 230000,
+        "tema": "Afinidad elemental y síntesis",
+        "estado": "Interacción con el entorno"
+      },
+      {
+        "nivel": 8,
+        "nombre": "Reino del Alma Elemental",
+        "subetapa": "pico",
+        "exp": 340000,
+        "tema": "Afinidad elemental y síntesis",
+        "estado": "Interacción con el entorno"
+      },
+      {
+        "nivel": 9,
+        "nombre": "Reino de la Manifestación del Dao",
+        "subetapa": "base",
+        "exp": 480000,
+        "tema": "Proyección externa del Dao",
+        "estado": "Técnicas con identidad propia"
+      },
+      {
+        "nivel": 10,
+        "nombre": "Reino de la Manifestación del Dao",
+        "subetapa": "pico",
+        "exp": 640000,
+        "tema": "Proyección externa del Dao",
+        "estado": "Técnicas con identidad propia"
+      },
+      {
+        "nivel": 11,
+        "nombre": "Reino del Dominio Interno",
+        "subetapa": "base",
+        "exp": 850000,
+        "tema": "Autonomía espiritual completa",
+        "estado": "El chi y cuerpo obedecen la voluntad"
+      },
+      {
+        "nivel": 12,
+        "nombre": "Reino del Dominio Interno",
+        "subetapa": "pico",
+        "exp": 1000000,
+        "tema": "Autonomía espiritual completa",
+        "estado": "El chi y cuerpo obedecen la voluntad"
+      },
+      {
+        "nivel": 13,
+        "nombre": "Reino de la Trascendencia Celeste",
+        "subetapa": "base",
+        "exp": 1200000,
+        "tema": "Superación de límites naturales",
+        "estado": "Chi que desafía la lógica"
+      },
+      {
+        "nivel": 14,
+        "nombre": "Reino de la Trascendencia Celeste",
+        "subetapa": "pico",
+        "exp": 1400000,
+        "tema": "Superación de límites naturales",
+        "estado": "Chi que desafía la lógica"
+      },
+      {
+        "nivel": 15,
+        "nombre": "Reino del Retorno al Origen",
+        "subetapa": "base",
+        "exp": 1650000,
+        "tema": "Comprensión cíclica del Dao",
+        "estado": "El cultivador olvida para superar"
+      },
+      {
+        "nivel": 16,
+        "nombre": "Reino del Retorno al Origen",
+        "subetapa": "medio",
+        "exp": 1950000,
+        "tema": "Comprensión cíclica del Dao",
+        "estado": "El cultivador olvida para superar"
+      },
+      {
+        "nivel": 17,
+        "nombre": "Reino del Retorno al Origen",
+        "subetapa": "pico",
+        "exp": 2250000,
+        "tema": "Comprensión cíclica del Dao",
+        "estado": "El cultivador olvida para superar"
+      },
+      {
+        "nivel": 18,
+        "nombre": "Reino del Vacío Ilimitado",
+        "subetapa": "base",
+        "exp": 2650000,
+        "tema": "Singularidad: el cultivador ES su dao",
+        "estado": "No necesita chi. La realidad se pliega"
+      },
+      {
+        "nivel": 19,
+        "nombre": "Reino del Vacío Ilimitado",
+        "subetapa": "medio",
+        "exp": 3050000,
+        "tema": "Singularidad: el cultivador ES su dao",
+        "estado": "No necesita chi. La realidad se pliega"
+      },
+      {
+        "nivel": 20,
+        "nombre": "Reino del Vacío Ilimitado",
+        "subetapa": "pico",
+        "exp": 3550000,
+        "tema": "Singularidad: el cultivador ES su dao",
+        "estado": "No necesita chi. La realidad se pliega"
+      }
+    ]
+  }
+}

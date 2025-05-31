@@ -1,92 +1,62 @@
 {
-  "personajes": [
+  "npcs": [
     {
       "id": 1,
-      "name": "Liáng Wǔzhào",
-      "level": 5,
-      "character_class": "Monk",
-      "subclass": "Dao Geométrico (Custom)",
-      "race": "Human",
-      "alignment": "Lawful Neutral",
-      "background": "Hermit",
-      "experience_points": 29600,
-      "proficiency_bonus": 3,
-      "status": {
-        "hp_max": 40,
-        "hp_current": 40,
-        "armor_class": 14,
-        "initiative": 3,
-        "speed": 30,
-        "hit_dice": "5d8"
-      },
-      "attributes": {
-        "strength": 10,
-        "dexterity": 16,
-        "constitution": 12,
-        "intelligence": 20,
-        "wisdom": 16,
-        "charisma": 10
-      },
-      "attribute_modifiers": {
-        "strength": 0,
-        "dexterity": 3,
-        "constitution": 1,
-        "intelligence": 5,
-        "wisdom": 3,
-        "charisma": 0
-      },
-      "saving_throws_proficiencies": {
-        "strength": false,
-        "dexterity": true,
-        "constitution": false,
-        "intelligence": true,
-        "wisdom": true,
-        "charisma": false
-      },
-      "skills": {
-        "acrobatics": 5,
-        "arcana": 8,
-        "history": 8,
-        "insight": 5,
-        "perception": 5
-      },
-      "skill_proficiencies": [
-        "Arcana",
-        "Insight",
-        "Perception",
-        "Acrobatics",
-        "History"
-      ],
-      "languages": ["Common", "Celestial", "Primordial"],
-      "features_traits": [
-        "Unarmored Defense",
-        "Martial Arts",
-        "Ki (5 points)",
-        "Unarmored Movement (+10 ft)",
-        "Deflect Missiles",
-        "Slow Fall"
-      ],
-      "spellcasting": {
-        "is_spellcaster": false,
-        "spellcasting_ability": null,
-        "spell_slots": {}
-      },
-      "attacks_ids": [101, 102, 115],
-      "inventory_ids": [201, 202, 203],
-      "affinity_ids": [301, 302, 305, 309],
+      "nombre": "Lù Yàn",
+      "tipo": "Discípula interna",
+      "nivel": 3,
+      "rol": "Aliada potencial",
       "afiliaciones_ids": [1],
-      "condiciones_ids": [],
+      "ciudad_origen_id": 1,
       "estado_actual": "activo",
-      "custom_data": {
-        "mana_max": 4730,
-        "mana_current": 4730,
-        "dao_philosophy": "unique",
-        "titles": {
-          "active": ["Portador del Silencio del Diseño Absoluto"],
-          "retired": ["El que Cortó la Escritura"]
+      "condiciones_ids": [],
+      "caracteristicas": {
+        "pv": 28,
+        "ac": 13,
+        "velocidad": 30,
+        "atributos": {
+          "fuerza": 8,
+          "destreza": 14,
+          "constitucion": 10,
+          "inteligencia": 16,
+          "sabiduria": 14,
+          "carisma": 12
         },
-        "notas_generales": "Personaje complejo con enfoque en la manipulación del Chi mediante la comprensión de su estructura fundamental."
-      }
+        "afinidad_ids": [101, 102],
+        "ataques_ids": [301, 302]
+      },
+      "idiomas": ["Common", "Celestial"],
+      "personalidad": "Silenciosa, dedicada, analítica. Confía lentamente.",
+      "notas": "Interesada en el dao geométrico de Liáng. Tiene su propia agenda respecto al Gran Archivo."
+    },
+    {
+      "id": 2,
+      "nombre": "Zhāi Shōu",
+      "tipo": "Cultivador renegado",
+      "nivel": 6,
+      "rol": "Antagonista",
+      "afiliaciones_ids": [4],
+      "ciudad_origen_id": 3,
+      "estado_actual": "derrotado",
+      "condiciones_ids": [2],
+      "caracteristicas": {
+        "pv": 52,
+        "ac": 15,
+        "velocidad": 35,
+        "atributos": {
+          "fuerza": 14,
+          "destreza": 12,
+          "constitucion": 14,
+          "inteligencia": 10,
+          "sabiduria": 10,
+          "carisma": 8
+        },
+        "afinidad_ids": [106],
+        "ataques_ids": [303]
+      },
+      "idiomas": ["Common"],
+      "personalidad": "Arrogante, vengativo y brutal.",
+      "notas": "Fue expulsado de la Secta de la Llama Partida. Guarda rencor hacia sus antiguos compañeros."
     }
   ]
 }
