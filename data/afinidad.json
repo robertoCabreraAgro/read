@@ -1,0 +1,25 @@
+{
+  "afinidades_personaje": [
+    {
+      "personaje_id": 1,
+      "elemento_id": 101,
+      "nivel_afinidad": "Alta",
+      "dominancia_actual": true,
+      "notas": "Especialista en presión térmica mediante formas geométricas"
+    },
+    {
+      "personaje_id": 1,
+      "elemento_id": 107,
+      "nivel_afinidad": "Media",
+      "dominancia_actual": false,
+      "notas": "Compatible por biomecánica, pero no su elemento primario"
+    },
+    {
+      "personaje_id": 1,
+      "elemento_id": 109,
+      "nivel_afinidad": "Baja",
+      "dominancia_actual": false,
+      "notas": "Solo manifestada en casos extremos de disonancia chi"
+    }
+  ]
+}

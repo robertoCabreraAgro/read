@@ -1,0 +1,50 @@
+{
+  "nombre_campaña": "El Despertar del Dao Geométrico",
+  "session": {
+    "numero": 1,
+    "fecha": "2023-10-01",
+    "descripcion": "Liáng Wǔzhào, un joven cultivador, se embarca en una búsqueda para recuperar su Micronúcleo robado por un antiguo mentor. A lo largo de su viaje, enfrentará desafíos que pondrán a prueba su ingenio y habilidades.",
+    "objetivos": [
+      "Recuperar el Micronúcleo robado",
+      "Formar un grupo de aliados",
+      "Descubrir secretos antiguos sobre el dao geométrico"
+    ],
+    "resumenes": [
+      {
+        "titulo": "La Disrupción del Monasterio Silencioso",
+        "dias": "0-5",
+        "contenido": "Destrucción del Monasterio, Liáng Wǔzhào escapa con el Micronúcleo.",
+        "personajes_clave": [
+          "Liáng Wǔzhào",
+          "Mentor"
+        ],
+        "impacto_inicial": [
+          "Pérdida de base",
+          "Motivación"
+        ]
+      },
+      {
+        "titulo": "El Encuentro en el Cruce de los Mil Vientos",
+        "dias": "10-20",
+        "contenido": "Liáng Wǔzhào conoce a otros PJs/NPCs. Posible misión colaborativa.",
+        "temas": [
+          "Formación de grupo",
+          "Intercambio de información"
+        ]
+      },
+      {
+        "titulo": "La Prueba de la Pagoda Escondida",
+        "dias": "30-50",
+        "contenido": "Búsqueda de lugar de antiguo poder. Pruebas y revelaciones.",
+        "desafios": [
+          "Guardianes",
+          "Acertijos"
+        ],
+        "recompensa_potencial": [
+          "Nuevas técnicas",
+          "Mejora Micronúcleo"
+        ]
+      }
+    ]
+  }
+}

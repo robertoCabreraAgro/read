@@ -1,0 +1,54 @@
+{
+  "afiliaciones_estado": [
+    {
+      "id": 1,
+      "origen_id": 1,
+      "origen_tipo": "personaje",
+      "objetivo_id": 1,
+      "objetivo_tipo": "secta",
+      "estado": "aliado",
+      "reputacion": 85,
+      "notas": "Miembro activo de la Secta de la Llama Partida"
+    },
+    {
+      "id": 2,
+      "origen_id": 1,
+      "origen_tipo": "personaje",
+      "objetivo_id": 3,
+      "objetivo_tipo": "secta",
+      "estado": "neutral",
+      "reputacion": 40,
+      "notas": "Interés filosófico no declarado por la Orden del Vacío"
+    },
+    {
+      "id": 3,
+      "origen_id": 1,
+      "origen_tipo": "personaje",
+      "objetivo_id": 2,
+      "objetivo_tipo": "secta",
+      "estado": "enemigo",
+      "reputacion": -15,
+      "notas": "Conflicto indirecto con el Monasterio de los Ecos Helados"
+    },
+    {
+      "id": 4,
+      "origen_id": 3,
+      "origen_tipo": "secta",
+      "objetivo_id": 1,
+      "objetivo_tipo": "secta",
+      "estado": "enemigo",
+      "reputacion": -60,
+      "notas": "Discrepancias filosóficas entre geometría espiritual y explosiones térmicas"
+    },
+    {
+      "id": 5,
+      "origen_id": 2,
+      "origen_tipo": "ciudad",
+      "objetivo_id": 2,
+      "objetivo_tipo": "secta",
+      "estado": "aliado",
+      "reputacion": 100,
+      "notas": "Xuězhèn es la ciudad fundacional del Monasterio"
+    }
+  ]
+}

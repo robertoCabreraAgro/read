@@ -1,0 +1,82 @@
+{
+  "elementos": [
+    {
+      "id": 101,
+      "nombre": "Fuego",
+      "descripcion": "Elemento ofensivo que representa la transformación, la presión térmica y la destrucción controlada.",
+      "filosofia": "Transformación a través del conflicto",
+      "efectos_comunes": ["Daño en área", "Quemadura persistente", "Alteración de terreno"]
+    },
+    {
+      "id": 102,
+      "nombre": "Agua",
+      "descripcion": "Elemento de recuperación, fluidez y adaptación. Usado para sanar o neutralizar efectos.",
+      "filosofia": "Resistencia mediante la adaptación",
+      "efectos_comunes": ["Curación", "Reducción de temperatura", "Manipulación de forma"]
+    },
+    {
+      "id": 103,
+      "nombre": "Aire",
+      "descripcion": "Elemento veloz y evasivo. Se manifiesta como presión cinética o desplazamiento.",
+      "filosofia": "Libertad sin forma",
+      "efectos_comunes": ["Impulso", "Desplazamiento libre", "Corte invisible"]
+    },
+    {
+      "id": 104,
+      "nombre": "Tierra",
+      "descripcion": "Elemento de defensa, solidez y firmeza. Asociado a escudos y aumento de resistencia.",
+      "filosofia": "Estabilidad inquebrantable",
+      "efectos_comunes": ["Blindaje", "Anclaje", "Reducción de movimiento enemigo"]
+    },
+    {
+      "id": 105,
+      "nombre": "Luz",
+      "descripcion": "Elemento de precisión, claridad y foco espiritual. Ideal para puntería y revelación.",
+      "filosofia": "Claridad que corta la oscuridad",
+      "efectos_comunes": ["Aumento de precisión", "Cancelación de invisibilidad", "Daño radiante"]
+    },
+    {
+      "id": 106,
+      "nombre": "Sombra",
+      "descripcion": "Elemento de confusión, ocultamiento y absorción. Manipula el miedo o el sigilo.",
+      "filosofia": "Lo oculto siempre observa",
+      "efectos_comunes": ["Ceguera", "Sigilo mejorado", "Corrupción espiritual"]
+    },
+    {
+      "id": 107,
+      "nombre": "Metal",
+      "descripcion": "Elemento mecánico, filoso y contundente. Representa control, precisión y estructura.",
+      "filosofia": "Eficiencia absoluta",
+      "efectos_comunes": ["Corte imparable", "Refuerzo de técnicas", "Interferencia mágica"]
+    },
+    {
+      "id": 108,
+      "nombre": "Relámpago",
+      "descripcion": "Elemento veloz, brutal y eléctrico. Amplifica reacciones y provoca aturdimiento.",
+      "filosofia": "Voluntad que fulmina",
+      "efectos_comunes": ["Aturdimiento", "Daño explosivo", "Desintegración parcial"]
+    },
+    {
+      "id": 109,
+      "nombre": "Vacío",
+      "descripcion": "Elemento antinatural. Representa el silencio, la anti-fuerza, el hueco entre cosas.",
+      "filosofia": "Ausencia que define todo",
+      "efectos_comunes": ["Anulación de energía", "Cancelación mágica", "Absorción de chi"]
+    },
+    {
+      "id": 110,
+      "nombre": "Sangre",
+      "descripcion": "Elemento vitalista. Extrae energía del sacrificio y lo orgánico.",
+      "filosofia": "Fluir es sobrevivir",
+      "efectos_comunes": ["Robo de vida", "Enlace vital", "Poder por dolor"]
+    },
+    {
+      "id": 111,
+      "nombre": "Físico",
+      "descripcion": "Estilo sin energía elemental. Se basa en biomecánica, chi interno y fuerza real.",
+      "filosofia": "La forma es suficiente",
+      "efectos_comunes": ["Golpes puros", "Interrupción", "Ruptura de defensas"]
+    }
+  ]
+}
+
