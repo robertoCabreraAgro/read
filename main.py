@@ -1,7 +1,22 @@
 import json  # For parsing JSON arguments from CLI
 import os  # For checking DEBUG_DM_PROMPT in main's startup message
+import re
+import random
 from agent.dm_agent import DmAgent
 from config import DATABASE_URL  # Import DATABASE_URL from config
+
+
+def roll_dice(expression: str):
+    pattern = r"^(\d*)d(\d+)([+-]\d+)?$"
+    m = re.match(pattern, expression.strip())
+    if not m:
+        return None
+    num = int(m.group(1) or 1)
+    sides = int(m.group(2))
+    modifier = int(m.group(3) or 0)
+    rolls = [random.randint(1, sides) for _ in range(num)]
+    total = sum(rolls) + modifier
+    return rolls, modifier, total
 
 def main():
     # Use DATABASE_URL from config by default for the DmAgent.
@@ -52,6 +67,10 @@ def main():
                 print("  quit                          - Exit the CLI.")
                 print("  help                          - Show this help message.")
                 print("  say <text>                    - Send <text> to the DM (AI processed).")
+                print("  do <action>                  - Declare an in-game action to the DM.")
+                print("  roll <XdY+Z>                 - Roll dice with expression like 2d6+3.")
+                print("  debug [on|off]               - Toggle debug prompt output.")
+                print("  query <topic>                - Retrieve info from the database (world, session, character <name>).")
                 print("  describe <topic>              - Get an AI-generated description of <topic>.")
                 print("  check rule <keyword>          - Check rules for <keyword>.")
                 print("  addchar <name> <level> <class> <race> - Add a new basic character.")
@@ -70,6 +89,62 @@ def main():
                     print(f"DM: {response}")
                 else:
                     print("Usage: say <text to send to DM>")
+
+            elif command == "do":
+                if args_str:
+                    response = agent.process_input(args_str)
+                    print(f"DM: {response}")
+                else:
+                    print("Usage: do <action description>")
+
+            elif command == "roll":
+                if not args_str:
+                    print("Usage: roll <dice expression>")
+                else:
+                    result = roll_dice(args_str)
+                    if not result:
+                        print("Invalid dice expression. Example: 2d6+1")
+                    else:
+                        rolls, mod, total = result
+                        agent.log_dice_roll("Player", args_str, rolls, mod, total)
+                        print(f"Rolls: {rolls} Modifier: {mod} -> Total: {total}")
+
+            elif command == "debug":
+                toggle = args_str.lower()
+                if toggle in {"on", "off"}:
+                    os.environ["DEBUG_DM_PROMPT"] = "True" if toggle == "on" else "False"
+                    print(f"Debug mode {'enabled' if toggle == 'on' else 'disabled'}.")
+                else:
+                    state = os.getenv("DEBUG_DM_PROMPT", "False")
+                    print(f"Debug mode is currently {state}.")
+
+            elif command == "query":
+                topic = args_str.split(maxsplit=1)
+                if not topic:
+                    print("Usage: query <world|session|character name>")
+                else:
+                    sub = topic[0]
+                    arg = topic[1] if len(topic) > 1 else ""
+                    if sub == "world":
+                        ws = agent.get_world_state()
+                        if ws:
+                            print(f"World - Event: {ws.current_event}; Day {ws.current_day}; Effects: {ws.active_effects_json}")
+                        else:
+                            print("No world state available.")
+                    elif sub == "session":
+                        sess = agent.get_latest_session()
+                        if sess:
+                            print(f"Last Session #{sess.session_number}: {sess.title}\n{sess.session_summary}")
+                        else:
+                            print("No session data found.")
+                    elif sub == "character" and arg:
+                        info = agent.get_character_info_for_prompt(arg)
+                        if info:
+                            print(json.dumps(info, ensure_ascii=False, indent=2))
+                        else:
+                            print(f"Character '{arg}' not found.")
+                    else:
+                        print("Usage: query <world|session|character name>")
             
             elif command == "describe":
                 if args_str:
@@ -220,7 +295,7 @@ def main():
                     
                     world_state = agent.update_world_state(event_desc_str, active_effects)
                     if world_state:
-                        print(f"World state updated: Event - '{world_state.current_event}', Effects - {world_state.active_effects}")
+                        print(f"World state updated: Event - '{world_state.current_event}', Effects - {world_state.active_effects_json}")
                     else:
                         print("Failed to update world state.")
                 except json.JSONDecodeError as je:

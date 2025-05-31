@@ -20,6 +20,8 @@ from database.models import (
     CultivationRealm,
     CampaignEvent,
     DmSessionStructureItem,
+    Session,
+    DiceRollHistory,
 )
 from sqlalchemy.exc import SQLAlchemyError
 from sqlalchemy import desc, or_ # Added or_ for keyword search
@@ -185,6 +187,58 @@ class DmAgent:
                 )
         return "\n".join(formatted_list) if formatted_list else None
 
+    def get_world_state(self) -> WorldState | None:
+        """Return the most recently updated WorldState."""
+        try:
+            return (
+                self.db_session.query(WorldState)
+                .order_by(desc(WorldState.updated_at))
+                .first()
+            )
+        except SQLAlchemyError as e:
+            print(f"Database error fetching WorldState: {e}")
+            return None
+
+    def get_latest_session(self) -> Session | None:
+        """Return the latest Session by session_number."""
+        try:
+            return (
+                self.db_session.query(Session)
+                .order_by(desc(Session.session_number))
+                .first()
+            )
+        except SQLAlchemyError as e:
+            print(f"Database error fetching latest Session: {e}")
+            return None
+
+    def log_dice_roll(
+        self,
+        roller_name: str,
+        dice_expression: str,
+        rolls: list[int],
+        modifier: int,
+        total: int,
+        roll_type: str = "general",
+        session_id: int | None = None,
+    ) -> None:
+        """Store a dice roll result in the database."""
+        try:
+            record = DiceRollHistory(
+                roller_name=roller_name,
+                roller_type="player",
+                roll_type=roll_type,
+                dice_expression=dice_expression,
+                individual_rolls_json=rolls,
+                modifiers=modifier,
+                total_result=total,
+                session_id=session_id,
+            )
+            self.db_session.add(record)
+            self.db_session.commit()
+        except SQLAlchemyError as e:
+            print(f"Database error logging dice roll: {e}")
+            self.db_session.rollback()
+
     def find_campaign_events_by_keyword(self, keyword: str, limit: int = 10) -> list[CampaignEvent]:
         try:
             search_pattern = f"%{keyword}%"
@@ -243,7 +297,26 @@ class DmAgent:
             context_parts.append(f"Estilo del DM: {self.dm_guidelines.tone_style or 'No especificado'}.")
             context_parts.append(f"Enfoque del DM: {self.dm_guidelines.tone_focus or 'No especificado'}.")
             if self.dm_guidelines.dice_roll_rules: # Check specific attribute
-                 context_parts.append(f"Reglas de Dados Clave: {self.dm_guidelines.dice_roll_rules.split('.')[0]}.") 
+                 context_parts.append(f"Reglas de Dados Clave: {self.dm_guidelines.dice_roll_rules.split('.')[0]}.")
+
+        world_state = self.get_world_state()
+        if world_state:
+            effects = ", ".join(world_state.active_effects_json or [])
+            context_parts.append(
+                f"Mundo - Día {world_state.current_day}, {world_state.time_of_day} {world_state.weather}. "
+                f"Evento: {world_state.current_event}. Efectos: {effects}"
+            )
+
+        latest_session = self.get_latest_session()
+        if latest_session:
+            summary_snippet = (
+                latest_session.session_summary[:100] + "..."
+                if latest_session.session_summary and len(latest_session.session_summary) > 100
+                else latest_session.session_summary
+            )
+            context_parts.append(
+                f"Última Sesión #{latest_session.session_number} - {latest_session.title}: {summary_snippet}"
+            )
         
         char_info = self.get_character_info_for_prompt("Liáng Wǔzhào") # Assuming this is the main character for context
         if char_info:
@@ -481,12 +554,12 @@ class DmAgent:
 
             if world_state:
                 world_state.current_event = event_description
-                world_state.active_effects = active_effects
+                world_state.active_effects_json = active_effects
             else:
                 # If no world state exists, create a new one
                 world_state = WorldState(
                     current_event=event_description,
-                    active_effects=active_effects
+                    active_effects_json=active_effects
                 )
                 self.db_session.add(world_state)
             

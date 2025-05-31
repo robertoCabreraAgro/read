@@ -23,20 +23,20 @@ class RulesEngine:
             ruleset_name_origin = None
 
             for ruleset in all_rulesets:
-                if ruleset.rules is None:
+                if ruleset.rules_json is None:
                     continue # Skip if rules field is null
 
                 try:
                     # The 'rules' field in RuleSet model is expected to be JSON.
                     # SQLAlchemy's JSON type might automatically deserialize it to Python dict/list.
                     # If it's a string, json.loads() is needed.
-                    if isinstance(ruleset.rules, str):
-                        rules_data = json.loads(ruleset.rules)
+                    if isinstance(ruleset.rules_json, str):
+                        rules_data = json.loads(ruleset.rules_json)
                     else:
-                        rules_data = ruleset.rules # Assumed to be already parsed Python object by SQLAlchemy
+                        rules_data = ruleset.rules_json  # Assumed to be already parsed Python object by SQLAlchemy
                 
                 except json.JSONDecodeError as je:
-                    print(f"JSONDecodeError for ruleset '{ruleset.name}': {je}. Rules: '{ruleset.rules}'")
+                    print(f"JSONDecodeError for ruleset '{ruleset.name}': {je}. Rules: '{ruleset.rules_json}'")
                     continue # Skip this ruleset if JSON is malformed
 
                 if isinstance(rules_data, list):
@@ -94,7 +94,7 @@ class RulesEngine:
 #         {"keyword": "stealth", "description": "Roll Dexterity (Stealth) vs Perception.", "difficulty_class_info": "Varies by situation"},
 #         {"keyword": "persuade", "description": "Roll Charisma (Persuasion) vs Insight or fixed DC.", "difficulty_class_info": "DC 10 for simple, DC 20 for hard"}
 #     ])
-#     ruleset1 = RuleSet(name="Core Mechanics", rules=rules_list_json)
+#     ruleset1 = RuleSet(name="Core Mechanics", rules_json=rules_list_json)
 #     session.add(ruleset1)
 #
 #     # 2. Create and add a RuleSet with dictionary-based rules
@@ -102,7 +102,7 @@ class RulesEngine:
 #         "magic_missile": {"spell_level": 1, "damage": "3d4+3 force", "range": "120 feet", "description": "Automatically hits."},
 #         "fireball": {"spell_level": 3, "damage": "8d6 fire", "range": "150 feet", "radius": "20 feet", "save_type": "Dexterity for half"}
 #     })
-#     ruleset2 = RuleSet(name="Spell Rules", rules=rules_dict_json)
+#     ruleset2 = RuleSet(name="Spell Rules", rules_json=rules_dict_json)
 #     session.add(ruleset2)
 #     
 #     session.commit()
