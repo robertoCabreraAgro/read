@@ -9,6 +9,7 @@ from database.models import (
     WorldState,
     RuleSet,
     LoreTopic,
+    Npc,
     CharacterLanguage,
     CharacterResource,
     CharacterTitle,
@@ -116,6 +117,39 @@ class DmAgent:
             print(f"Error creating campaign event '{title}': {e}")
             self.db_session.rollback()
             return None
+
+    def get_world_state(self) -> WorldState | None:
+        """Retrieve the current world state (first row)."""
+        try:
+            return self.db_session.query(WorldState).first()
+        except SQLAlchemyError as e:
+            print(f"Database error fetching WorldState: {e}")
+            return None
+
+    def get_all_npcs(self) -> list[Npc]:
+        """Return all NPCs for simple name matching."""
+        try:
+            return self.db_session.query(Npc).all()
+        except SQLAlchemyError as e:
+            print(f"Database error fetching NPCs: {e}")
+            return []
+
+    def get_npc_info_for_prompt(self, npc: Npc) -> dict:
+        """Format basic NPC info for prompts."""
+        info = {
+            "name": npc.name,
+            "level": npc.level,
+            "role": npc.role,
+            "hp": f"{npc.hp_current}/{npc.hp_max}",
+        }
+        if npc.npc_type:
+            info["type"] = npc.npc_type
+        if npc.challenge_rating:
+            info["cr"] = npc.challenge_rating
+        if npc.notes:
+            snippet = npc.notes[:80] + "..." if len(npc.notes or "") > 80 else npc.notes
+            info["notes"] = snippet
+        return info
             
     def get_character_info_for_prompt(self, character_name: str) -> dict | None:
         character = self.get_character_data(character_name) 
@@ -254,6 +288,14 @@ class DmAgent:
             if char_info.get('reclusion'): char_summary += f" Reclusión: {char_info['reclusion']}."
             context_parts.append(char_summary)
 
+        world_state = self.get_world_state()
+        if world_state:
+            ws_desc = world_state.current_event or "Sin evento"
+            ws_str = f"Día {world_state.current_day} ({world_state.time_of_day}) - {ws_desc}"
+            context_parts.append(f"Estado del Mundo: {ws_str}")
+            if world_state.active_effects_json:
+                context_parts.append(f"Efectos Activos: {', '.join(world_state.active_effects_json)}")
+
         recent_events = self.get_recent_campaign_events(limit=1)
         if recent_events:
             event = recent_events[0]
@@ -279,6 +321,13 @@ class DmAgent:
         known_techniques_str = self.get_formatted_known_techniques_for_prompt("Liáng Wǔzhào")
         if known_techniques_str:
             context_parts.append(f"Técnicas Conocidas por Liáng Wǔzhào:\n{known_techniques_str}")
+
+        for npc in self.get_all_npcs():
+            if npc.name and npc.name.lower() in user_input_lower:
+                npc_info = self.get_npc_info_for_prompt(npc)
+                npc_desc = f"NPC Detectado: {npc_info['name']} (Nivel {npc_info['level']}, Rol: {npc_info.get('role','N/A')}, HP {npc_info['hp']})"
+                context_parts.append(npc_desc)
+                break
 
 
         # --- Prompt Formatting ---
@@ -481,12 +530,12 @@ class DmAgent:
 
             if world_state:
                 world_state.current_event = event_description
-                world_state.active_effects = active_effects
+                world_state.active_effects_json = active_effects
             else:
                 # If no world state exists, create a new one
                 world_state = WorldState(
                     current_event=event_description,
-                    active_effects=active_effects
+                    active_effects_json=active_effects
                 )
                 self.db_session.add(world_state)
             
